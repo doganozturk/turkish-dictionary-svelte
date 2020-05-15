@@ -3,18 +3,18 @@
     import Icon from '../Icon/Icon.svelte';
 </script>
 
-<footer>
-    <div class="footer-btn">
+<footer class="footer">
+    <div class="footer__btn">
         <Button>
             <Icon name="tdk-icon-history" />
         </Button>
     </div>
-    <div class="footer-btn footer-btn--search">
+    <div class="footer__btn footer__btn--search">
         <Button redBg>
             <Icon name="tdk-icon-search" size={28} color="white" />
         </Button>
     </div>
-    <div class="footer-btn">
+    <div class="footer__btn">
         <Button>
             <Icon name="tdk-icon-fav" />
         </Button>
@@ -22,7 +22,7 @@
 </footer>
 
 <style>
-    footer {
+    .footer {
         position: fixed;
         bottom: 0;
         display: flex;
@@ -36,11 +36,11 @@
         box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.04);
     }
 
-    .footer-btn {
+    .footer__btn {
         width: 56px;
         height: 56px;
     }
-    .footer-btn--search {
+    .footer__btn.footer__btn--search {
         width: 86px;
         height: 86px;
         margin-top: -15px;

@@ -23,6 +23,7 @@
 
 <style>
     :root {
+        /* COLORS */
         --birlesik-kelime-text: #2E494C;
         --birlesik-kelime-text-search: #73A5AA;
         --birlesik-kelime-bg: #E5E5E5;
@@ -37,6 +38,14 @@
         --text-paragraph-2: #758291;
         --white: #FFFFFF;
         --black: #000000;
+
+        /* TYPOGRAPHY */
+        --font-size-xxl: 32px;
+        --font-size-xl: 24px;
+        --font-size-lg: 18px;
+        --font-size-md: 16px;
+        --font-size-sm: 14px;
+        --font-size-xs: 12px;
     }
 
     :global(*) {
@@ -51,6 +60,7 @@
     }
 
     .app {
+        font-family: 'SF Pro Text', sans-serif;
         background-color: var(--tdk-page-bg);
     }
 </style>

@@ -2,13 +2,13 @@
     export let redBg = false;
 </script>
 
-<button class:red-bg={redBg}>
+<button class="button" class:red-bg={redBg}>
     <slot />
     <slot name="text" />
 </button>
 
 <style>
-    button {
+    .button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -20,7 +20,7 @@
         background-color: transparent;
     }
 
-    button.red-bg {
+    .button.red-bg {
         background-color: var(--tdk-main);
     }
 </style>
