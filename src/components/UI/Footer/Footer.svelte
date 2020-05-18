@@ -1,23 +1,30 @@
 <script>
+    import NavLink from '../NavLink/NavLink.svelte';
     import Button from '../Button/Button.svelte';
     import Icon from '../Icon/Icon.svelte';
 </script>
 
 <footer class="footer">
     <div class="footer__btn">
-        <Button>
-            <Icon name="tdk-icon-history" />
-        </Button>
+        <NavLink to="history">
+            <Button>
+                <Icon name="tdk-icon-history" />
+            </Button>
+        </NavLink>
     </div>
     <div class="footer__btn footer__btn--search">
-        <Button redBg>
-            <Icon name="tdk-icon-search" size={28} color="white" />
-        </Button>
+        <NavLink to="/">
+            <Button redBg>
+                <Icon name="tdk-icon-search" size={28} color="white" />
+            </Button>
+        </NavLink>
     </div>
     <div class="footer__btn">
-        <Button>
-            <Icon name="tdk-icon-fav" />
-        </Button>
+        <NavLink to="favorites">
+            <Button>
+                <Icon name="tdk-icon-fav" />
+            </Button>
+        </NavLink>
     </div>
 </footer>
 

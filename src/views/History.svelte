@@ -1,3 +1,3 @@
 <main>
-    DETAIL
+    HISTORY
 </main>

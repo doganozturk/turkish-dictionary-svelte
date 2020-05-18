@@ -1,24 +1,24 @@
 <script>
-    import { Router, Route, Link } from 'svelte-routing';
+    import { Router, Route } from 'svelte-routing';
     import Home from './views/Home.svelte';
     import Detail from './views/Detail.svelte';
+    import Favorites from './views/Favorites.svelte';
+    import History from './views/History.svelte';
     import Footer from './components/UI/Footer/Footer.svelte';
     import Icons from './components/UI/Icon/Icons.svelte';
-
-    export let url = '';
 </script>
 
 <Icons />
 
 <div class="app">
-    <Router {url}>
-
+    <Router>
+        <Route path="favorites" component={Favorites} />
+        <Route path="history" component={History} />
         <Route path="detail" component={Detail} />
         <Route path="/" component={Home} />
 
+        <Footer />
     </Router>
-
-    <Footer />
 </div>
 
 <style>
