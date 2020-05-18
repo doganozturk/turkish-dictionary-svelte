@@ -21,7 +21,8 @@
         height: 174px;
         background-image: url('../assets/images/background.png');
         background-repeat: no-repeat;
-        background-position-y: -12px;
+        background-position-y: -14px;
+        background-size: cover;
     }
 
     .header__btn {
