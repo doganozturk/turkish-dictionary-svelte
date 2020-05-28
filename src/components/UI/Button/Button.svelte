@@ -2,7 +2,7 @@
     export let bg = 'transparent';
 </script>
 
-<button class="button" style={`background-color: ${bg};`}>
+<button class="button" style={`background-color: ${bg};`} on:click>
     <slot />
     <slot name="text" />
 </button>
@@ -16,7 +16,6 @@
         height: 100%;
         padding: 0;
         border: none;
-        border-radius: 50%;
         background-color: transparent;
     }
 </style>

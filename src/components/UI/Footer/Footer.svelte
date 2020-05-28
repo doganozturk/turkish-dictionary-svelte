@@ -51,6 +51,8 @@
     .nav__btn {
         width: 56px;
         height: 56px;
+        border-radius: 50%;
+        overflow: hidden;
     }
     .nav__btn.nav__btn--search {
         width: 86px;
