@@ -18,9 +18,3 @@
 <Link {to} {getProps}>
     <slot />
 </Link>
-
-<!--<style>
-    :global(a.active svg) {
-        color: var(&#45;&#45;tdk-main) !important;
-    }
-</style>-->

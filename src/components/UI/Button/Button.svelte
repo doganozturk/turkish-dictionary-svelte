@@ -1,8 +1,8 @@
 <script>
-    export let redBg = false;
+    export let bg = 'transparent';
 </script>
 
-<button class="button" class:red-bg={redBg}>
+<button class="button" style={`background-color: ${bg};`}>
     <slot />
     <slot name="text" />
 </button>
@@ -18,9 +18,5 @@
         border: none;
         border-radius: 50%;
         background-color: transparent;
-    }
-
-    .button.red-bg {
-        background-color: var(--tdk-main);
     }
 </style>
