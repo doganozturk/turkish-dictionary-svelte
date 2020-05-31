@@ -42,7 +42,7 @@
 
 <style>
     .main {
-        height: calc(100% - 174px);
+        flex: 1;
         margin-top: -28px;
         padding-left: 16px;
         padding-right: 16px;

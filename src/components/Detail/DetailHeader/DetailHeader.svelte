@@ -1,0 +1,43 @@
+<script>
+    import Icon from '../../UI/Icon/Icon.svelte';
+    import NavLink from '../../UI/NavLink/NavLink.svelte';
+
+    export let title = '';
+</script>
+
+<style>
+    .detail-header {
+        display: flex;
+        align-items: center;
+        height: 68px;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .detail-header__title {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .detail-header__title h2 {
+        font-size: var(--font-size-sm);
+        color: var(--text-heading);
+        transform: translateX(-9px);
+    }
+</style>
+
+<header class="detail-header">
+    <div class="detail-header__back-btn">
+        <NavLink to="/">
+            <Icon
+                name="tdk-icon-chevron"
+                size={20}
+                color="var(--text-heading)" />
+        </NavLink>
+    </div>
+    <div class="detail-header__title">
+        <h2>{title}</h2>
+    </div>
+</header>
