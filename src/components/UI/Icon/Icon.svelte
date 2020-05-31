@@ -1,6 +1,8 @@
 <script>
     export let name;
     export let size = 24;
+    export let width = null;
+    export let height = null;
     export let color = 'var(--text-paragraph-2)';
 </script>
 
@@ -21,6 +23,10 @@
     }
 </style>
 
-<svg class="icon" width={size} height={size} style={`color: ${color};`}>
+<svg
+    class="icon"
+    width={width ? width : size}
+    height={height ? height : size}
+    style={`color: ${color};`}>
     <use xlink:href="#{name}" />
 </svg>

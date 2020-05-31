@@ -3,18 +3,37 @@
     import Connect from '../Connect/Connect.svelte';
     import Feedback from '../Feedback/Feedback.svelte';
     import Button from '../../UI/Button/Button.svelte';
+    import Icon from '../../UI/Icon/Icon.svelte';
 
     let navigationVisible = true;
     let currentView = null;
+    let currentTitle = '';
 
-    function handleNavClick(component) {
+    const items = [
+        {
+            component: AboutUs,
+            title: 'Hakkında',
+        },
+        {
+            component: Connect,
+            title: 'İletişim',
+        },
+        {
+            component: Feedback,
+            title: 'Katkı ve Öneriler',
+        },
+    ];
+
+    function handleNavClick(component, title) {
         navigationVisible = false;
         currentView = component;
+        currentTitle = title;
     }
 
     function handleNavBack() {
         navigationVisible = true;
         currentView = null;
+        currentTitle = '';
     }
 </script>
 
@@ -23,7 +42,7 @@
         position: fixed;
         bottom: 0;
         width: 100%;
-        height: 410px;
+        min-height: 410px;
         background-color: var(--white);
         border-top-left-radius: 18px;
         border-top-right-radius: 18px;
@@ -43,8 +62,6 @@
     }
 
     .header__logo {
-        width: 86px;
-        height: 40px;
         margin-top: 58px;
     }
 
@@ -78,46 +95,78 @@
         font-weight: bold;
         color: var(--text-heading);
     }
+
+    .nav__header {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav__back-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .nav__title {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-sm);
+        color: var(--text-heading);
+    }
+    .nav__title span {
+        transform: translateX(-20px);
+    }
 </style>
 
 <div class="about">
-    <div class="about__header">
-        <img
-            class="header__logo"
-            src="assets/images/tdk_logo-white.svg"
-            alt="tdk logo" />
-        <span class="header__title">Türk Dil Kurumu Başkanlığı</span>
-        <span class="header__version">v.1.0</span>
-    </div>
+    {#if navigationVisible}
+        <div class="about__header">
+            <div class="header__logo">
+                <Icon
+                    name="tdk-icon-logo"
+                    width={86}
+                    height={50}
+                    color="var(--white)" />
+            </div>
+            <span class="header__title">Türk Dil Kurumu Başkanlığı</span>
+            <span class="header__version">v.1.0</span>
+        </div>
+    {/if}
     <div class="about__nav">
         {#if navigationVisible}
-            <div class="nav__button">
-                <Button
-                    bg="var(--tdk-secondary-btn)"
-                    on:click={() => handleNavClick(AboutUs)}>
-                    <span slot="text" class="button__text">Hakkında</span>
-                </Button>
-            </div>
-
-            <div class="nav__button">
-                <Button
-                    bg="var(--tdk-secondary-btn)"
-                    on:click={() => handleNavClick(Connect)}>
-                    <span slot="text" class="button__text">İletişim</span>
-                </Button>
-            </div>
-
-            <div class="nav__button">
-                <Button
-                    bg="var(--tdk-secondary-btn)"
-                    on:click={() => handleNavClick(Feedback)}>
-                    <span slot="text" class="button__text">
-                        Katkı ve Öneriler
-                    </span>
-                </Button>
-            </div>
+            {#each items as item (item.title)}
+                <div class="nav__button">
+                    <Button
+                        bg="var(--tdk-secondary-btn)"
+                        on:click={() => handleNavClick(item.component, item.title)}>
+                        <span slot="text" class="button__text">
+                            {item.title}
+                        </span>
+                    </Button>
+                </div>
+            {/each}
         {:else}
-            <Button on:click={handleNavBack}>Back</Button>
+            <div class="nav__header">
+                <div class="nav__back-btn">
+                    <Button
+                        bg="var(--tdk-secondary-btn)"
+                        on:click={handleNavBack}>
+                        <Icon
+                            name="tdk-icon-chevron"
+                            size={20}
+                            color="var(--text-paragraph)" />
+                    </Button>
+                </div>
+                <div class="nav__title">
+                    <span>{currentTitle}</span>
+                </div>
+            </div>
             <svelte:component this={currentView} />
         {/if}
     </div>

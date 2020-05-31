@@ -43,11 +43,6 @@
         top: 30px;
         right: 16px;
     }
-
-    .header__logo {
-        width: 86px;
-        height: 40px;
-    }
 </style>
 
 <header class="header">
@@ -56,8 +51,5 @@
             <Icon name="tdk-icon-dots" color="white" />
         </Button>
     </div>
-    <img
-        class="header__logo"
-        src="assets/images/tdk_logo-white.svg"
-        alt="tdk logo" />
+    <Icon name="tdk-icon-logo" width={86} height={40} color="var(--white)" />
 </header>
