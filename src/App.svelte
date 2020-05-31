@@ -8,6 +8,18 @@
     import Icons from './components/UI/Icon/Icons.svelte';
 </script>
 
+<style>
+    .app {
+        width: 100%;
+        height: 100%;
+    }
+
+    .app {
+        font-family: 'SF Pro Text', sans-serif;
+        background-color: var(--tdk-page-bg);
+    }
+</style>
+
 <Icons />
 
 <div class="app">
@@ -20,15 +32,3 @@
         <Footer />
     </Router>
 </div>
-
-<style>
-    .app {
-        width: 100%;
-        height: 100%;
-    }
-
-    .app {
-        font-family: 'SF Pro Text', sans-serif;
-        background-color: var(--tdk-page-bg);
-    }
-</style>

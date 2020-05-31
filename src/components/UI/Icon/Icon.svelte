@@ -4,10 +4,6 @@
     export let color = 'var(--text-paragraph-2)';
 </script>
 
-<svg class="icon" width={size} height={size} style={`color: ${color};`}>
-    <use xlink:href='#{name}' />
-</svg>
-
 <style>
     .icon {
         position: relative;
@@ -24,3 +20,7 @@
         fill: none;
     }
 </style>
+
+<svg class="icon" width={size} height={size} style={`color: ${color};`}>
+    <use xlink:href="#{name}" />
+</svg>

@@ -2,13 +2,6 @@
     import Icon from '../Icon/Icon.svelte';
 </script>
 
-<div class="search">
-    <div class="search-icon">
-        <Icon name="tdk-icon-search" />
-    </div>
-    <input type="text" placeholder="Türkçe Sözlük'te Ara">
-</div>
-
 <style>
     .search {
         position: relative;
@@ -34,3 +27,10 @@
         left: 15px;
     }
 </style>
+
+<div class="search">
+    <div class="search-icon">
+        <Icon name="tdk-icon-search" />
+    </div>
+    <input type="text" placeholder="Türkçe Sözlük'te Ara" />
+</div>

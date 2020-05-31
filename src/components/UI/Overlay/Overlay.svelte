@@ -5,7 +5,7 @@
     let unsubscribe;
 
     onMount(() => {
-        unsubscribe = uiStore.subscribe(value => {
+        unsubscribe = uiStore.subscribe((value) => {
             console.log('OVERLAY_COMPONENT');
             console.log(value);
         });
@@ -16,11 +16,11 @@
     });
 
     function handleClick() {
-        uiStore.update(value => ({
+        uiStore.update((value) => ({
             ...value,
             overlay: false,
             about: false,
-        }))
+        }));
     }
 </script>
 
@@ -37,4 +37,4 @@
     }
 </style>
 
-<div class="overlay" on:click={handleClick}></div>
+<div class="overlay" on:click={handleClick} />

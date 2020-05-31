@@ -1,5 +1,11 @@
 <script>
+    import { Router, Route } from 'svelte-routing';
     import Button from '../../UI/Button/Button.svelte';
+    import AboutUs from '../AboutUs/AboutUs.svelte';
+    import Connect from '../Connect/Connect.svelte';
+    import Feedback from '../Feedback/Feedback.svelte';
+
+    let navigationVisible = true;
 </script>
 
 <style>
@@ -89,5 +95,14 @@
                 <span slot="text" class="button__text">Katkı ve Öneriler</span>
             </Button>
         </div>
+
+        {#if navigationVisible}
+            <Router>
+                <Route path="about" component={AboutUs} />
+                <Route path="connect" component={Connect} />
+                <Route path="feedback" component={Feedback} />
+            </Router>
+        {/if}
+
     </div>
 </div>

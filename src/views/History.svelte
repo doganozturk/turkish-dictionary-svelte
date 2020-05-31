@@ -1,3 +1,1 @@
-<main>
-    HISTORY
-</main>
+<main>HISTORY</main>

@@ -4,16 +4,6 @@
     export let desc = '';
 </script>
 
-<div class="home-item">
-    <h2>{title}</h2>
-    <div class="home-item__content">
-        <div class="content__inner">
-            <h3 class="inner__title">{word}</h3>
-            <p class="inner__desc">{desc}</p>
-        </div>
-    </div>
-</div>
-
 <style>
     .home-item:not(:first-child) {
         margin-top: 50px;
@@ -51,3 +41,13 @@
         color: var(--text-paragraph);
     }
 </style>
+
+<div class="home-item">
+    <h2>{title}</h2>
+    <div class="home-item__content">
+        <div class="content__inner">
+            <h3 class="inner__title">{word}</h3>
+            <p class="inner__desc">{desc}</p>
+        </div>
+    </div>
+</div>

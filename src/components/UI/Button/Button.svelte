@@ -2,11 +2,6 @@
     export let bg = 'transparent';
 </script>
 
-<button class="button" style={`background-color: ${bg};`} on:click>
-    <slot />
-    <slot name="text" />
-</button>
-
 <style>
     .button {
         display: flex;
@@ -19,3 +14,8 @@
         background-color: transparent;
     }
 </style>
+
+<button class="button" style={`background-color: ${bg};`} on:click>
+    <slot />
+    <slot name="text" />
+</button>

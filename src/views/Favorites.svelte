@@ -1,3 +1,1 @@
-<main>
-    FAVORITES
-</main>
+<main>FAVORITES</main>

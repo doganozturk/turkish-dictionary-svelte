@@ -1,3 +1,1 @@
-<main>
-    DETAIL
-</main>
+<main>DETAIL</main>

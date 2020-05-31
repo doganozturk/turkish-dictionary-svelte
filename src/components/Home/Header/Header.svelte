@@ -7,10 +7,10 @@
     let unsubscribe;
 
     onMount(() => {
-       unsubscribe = uiStore.subscribe(value => {
-           console.log('HEADER_COMPONENT');
-           console.log(value);
-       });
+        unsubscribe = uiStore.subscribe((value) => {
+            console.log('HEADER_COMPONENT');
+            console.log(value);
+        });
     });
 
     onDestroy(() => {
@@ -21,7 +21,7 @@
         uiStore.update(() => ({
             overlay: true,
             about: true,
-        }))
+        }));
     }
 </script>
 
@@ -59,6 +59,5 @@
     <img
         class="header__logo"
         src="assets/images/tdk_logo-white.svg"
-        alt="tdk logo"
-    />
+        alt="tdk logo" />
 </header>

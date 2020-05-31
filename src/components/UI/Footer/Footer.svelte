@@ -4,32 +4,6 @@
     import Icon from '../Icon/Icon.svelte';
 </script>
 
-<footer class="footer">
-    <nav class="footer__nav">
-        <div class="nav__btn">
-            <NavLink to="history">
-                <Button>
-                    <Icon name="tdk-icon-history" />
-                </Button>
-            </NavLink>
-        </div>
-        <div class="nav__btn nav__btn--search">
-            <NavLink to="/">
-                <Button bg="var(--tdk-main)">
-                    <Icon name="tdk-icon-search" size={28} color="white" />
-                </Button>
-            </NavLink>
-        </div>
-        <div class="nav__btn">
-            <NavLink to="favorites">
-                <Button>
-                    <Icon name="tdk-icon-fav" />
-                </Button>
-            </NavLink>
-        </div>
-    </nav>
-</footer>
-
 <style>
     .footer {
         position: fixed;
@@ -78,6 +52,31 @@
         height: 4px;
         background-color: var(--tdk-main);
         border-radius: 50%;
-
     }
 </style>
+
+<footer class="footer">
+    <nav class="footer__nav">
+        <div class="nav__btn">
+            <NavLink to="history">
+                <Button>
+                    <Icon name="tdk-icon-history" />
+                </Button>
+            </NavLink>
+        </div>
+        <div class="nav__btn nav__btn--search">
+            <NavLink to="/">
+                <Button bg="var(--tdk-main)">
+                    <Icon name="tdk-icon-search" size={28} color="white" />
+                </Button>
+            </NavLink>
+        </div>
+        <div class="nav__btn">
+            <NavLink to="favorites">
+                <Button>
+                    <Icon name="tdk-icon-fav" />
+                </Button>
+            </NavLink>
+        </div>
+    </nav>
+</footer>

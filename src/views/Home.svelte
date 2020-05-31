@@ -40,26 +40,6 @@
     ];
 </script>
 
-{#if storeOverlay}
-    <Overlay />
-{/if}
-<Header />
-<main class="main">
-    <Search />
-    <section class="home">
-        {#each data as item (item.title)}
-            <HomeItem
-                title={item.title}
-                word={item.word}
-                desc={item.desc}
-            />
-        {/each}
-    </section>
-</main>
-{#if storeAbout}
-    <About />
-{/if}
-
 <style>
     .main {
         height: calc(100% - 174px);
@@ -73,3 +53,19 @@
         margin-top: 50px;
     }
 </style>
+
+{#if storeOverlay}
+    <Overlay />
+{/if}
+<Header />
+<main class="main">
+    <Search />
+    <section class="home">
+        {#each data as item (item.title)}
+            <HomeItem title={item.title} word={item.word} desc={item.desc} />
+        {/each}
+    </section>
+</main>
+{#if storeAbout}
+    <About />
+{/if}

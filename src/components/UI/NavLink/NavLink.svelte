@@ -3,6 +3,7 @@
 
     export let to = '/';
 
+    // eslint-disable-next-line
     function getProps({ location, href, isPartiallyCurrent, isCurrent }) {
         const isActive =
             href === '/' ? isCurrent : isPartiallyCurrent || isCurrent;
