@@ -1,11 +1,21 @@
 <script>
-    import { Router, Route } from 'svelte-routing';
-    import Button from '../../UI/Button/Button.svelte';
     import AboutUs from '../AboutUs/AboutUs.svelte';
     import Connect from '../Connect/Connect.svelte';
     import Feedback from '../Feedback/Feedback.svelte';
+    import Button from '../../UI/Button/Button.svelte';
 
     let navigationVisible = true;
+    let currentView = null;
+
+    function handleNavClick(component) {
+        navigationVisible = false;
+        currentView = component;
+    }
+
+    function handleNavBack() {
+        navigationVisible = true;
+        currentView = null;
+    }
 </script>
 
 <style>
@@ -80,29 +90,35 @@
         <span class="header__version">v.1.0</span>
     </div>
     <div class="about__nav">
-        <div class="nav__button">
-            <Button bg="var(--tdk-secondary-btn)">
-                <span slot="text" class="button__text">Hakkında</span>
-            </Button>
-        </div>
-        <div class="nav__button">
-            <Button bg="var(--tdk-secondary-btn)">
-                <span slot="text" class="button__text">İletişim</span>
-            </Button>
-        </div>
-        <div class="nav__button">
-            <Button bg="var(--tdk-secondary-btn)">
-                <span slot="text" class="button__text">Katkı ve Öneriler</span>
-            </Button>
-        </div>
-
         {#if navigationVisible}
-            <Router>
-                <Route path="about" component={AboutUs} />
-                <Route path="connect" component={Connect} />
-                <Route path="feedback" component={Feedback} />
-            </Router>
-        {/if}
+            <div class="nav__button">
+                <Button
+                    bg="var(--tdk-secondary-btn)"
+                    on:click={() => handleNavClick(AboutUs)}>
+                    <span slot="text" class="button__text">Hakkında</span>
+                </Button>
+            </div>
 
+            <div class="nav__button">
+                <Button
+                    bg="var(--tdk-secondary-btn)"
+                    on:click={() => handleNavClick(Connect)}>
+                    <span slot="text" class="button__text">İletişim</span>
+                </Button>
+            </div>
+
+            <div class="nav__button">
+                <Button
+                    bg="var(--tdk-secondary-btn)"
+                    on:click={() => handleNavClick(Feedback)}>
+                    <span slot="text" class="button__text">
+                        Katkı ve Öneriler
+                    </span>
+                </Button>
+            </div>
+        {:else}
+            <Button on:click={handleNavBack}>Back</Button>
+            <svelte:component this={currentView} />
+        {/if}
     </div>
 </div>
