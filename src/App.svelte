@@ -26,9 +26,9 @@
 
 <div class="app">
     <Router>
-        <Route path="favorites" component={Favorites} />
-        <Route path="history" component={History} />
-        <Route path="detail" component={Detail} />
+        <Route path="favoriler" component={Favorites} />
+        <Route path="gecmis" component={History} />
+        <Route path="detay" component={Detail} />
         <Route path="/" component={Home} />
 
         <Footer />

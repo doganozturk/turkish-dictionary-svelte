@@ -56,7 +56,7 @@
 <footer class="footer">
     <nav class="footer__nav">
         <div class="nav__btn">
-            <NavLink to="history">
+            <NavLink to="gecmis">
                 <Button>
                     <Icon name="tdk-icon-history" />
                 </Button>
@@ -70,7 +70,7 @@
             </NavLink>
         </div>
         <div class="nav__btn">
-            <NavLink to="favorites">
+            <NavLink to="favoriler">
                 <Button>
                     <Icon name="tdk-icon-fav" />
                 </Button>
