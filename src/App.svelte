@@ -22,9 +22,9 @@
     }
 </style>
 
-<Icons />
-
 <div class="app">
+    <Icons />
+
     <Router>
         <Route path="favoriler" component={Favorites} />
         <Route path="gecmis" component={History} />

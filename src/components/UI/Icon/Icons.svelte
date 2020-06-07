@@ -161,6 +161,12 @@
                 fill="currentColor" />
         </symbol>
 
+        <symbol id="tdk-icon-chevron-right" viewBox="0 0 32 32">
+            <path
+                d="M13 7l9 9-9 9-2.23-2.23L17.54 16l-6.77-6.77L13 7z"
+                fill="currentColor" />
+        </symbol>
+
         <symbol id="tdk-icon-fax" viewBox="0 0 32 32">
             <path
                 d="M25.333 9.333H24V2.667H8v6.666H6.667c-2.206 0-4 1.795-4
@@ -200,6 +206,15 @@
             <path
                 d="M12.667 17.333a2 2 0 100-4 2 2 0 000 4zM19.333 17.333a2 2 0
                 100-4 2 2 0 000 4z"
+                fill="currentColor" />
+        </symbol>
+
+        <symbol id="tdk-icon-check" viewBox="0 0 32 32">
+            <path
+                d="M16 2.667C8.648 2.667 2.667 8.648 2.667 16S8.648 29.333 16
+                29.333 29.333 23.352 29.333 16 23.352 2.667 16 2.667zm-2.665
+                19.217l-4.951-4.94 1.883-1.888 3.065 3.06 7.059-7.059 1.885
+                1.886-8.941 8.941z"
                 fill="currentColor" />
         </symbol>
     </svg>
