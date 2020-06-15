@@ -1,16 +1,39 @@
 <script>
+    import { onMount, onDestroy } from 'svelte';
+    import { detailDeleteStore } from '../../../stores/detail-delete';
     import { longpress } from '../../../actions';
     import Icon from '../../UI/Icon/Icon.svelte';
+
+    let unsubscribe;
+
+    onMount(() => {
+        unsubscribe = detailDeleteStore.subscribe((ids) => {
+            console.log('DETAIL_CONTENT_ITEM_COMPONENT');
+            console.log(ids);
+        });
+    });
+
+    onDestroy(() => {
+        unsubscribe();
+    });
 
     export let data = null;
     let pressed = false;
 
     function handleLongpress() {
         pressed = true;
+
+        detailDeleteStore.update((ids) => {
+            return [...ids, data.id];
+        });
     }
 
     function handleClick() {
         pressed = false;
+
+        detailDeleteStore.update((ids) => {
+            return ids.filter((id) => id !== data.id);
+        });
     }
 </script>
 

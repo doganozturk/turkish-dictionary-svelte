@@ -1,10 +1,29 @@
 <script>
+    import { onMount, onDestroy } from 'svelte';
+    import { detailDeleteStore } from '../stores/detail-delete';
     import DetailHeader from '../components/Detail/DetailHeader/DetailHeader.svelte';
     import DetailNoContent from '../components/Detail/DetailNoContent/DetailNoContent.svelte';
     import DetailNav from '../components/Detail/DetailNav/DetailNav.svelte';
     import DetailContent from '../components/Detail/DetailContent/DetailContent.svelte';
 
-    const historyData = [
+    let unsubscribe;
+    let historyIds;
+    let selectedType = 1;
+
+    onMount(() => {
+        unsubscribe = detailDeleteStore.subscribe((ids) => {
+            console.log('HISTORY_VIEW');
+            console.log(ids);
+
+            historyIds = ids;
+        });
+    });
+
+    onDestroy(() => {
+        unsubscribe();
+    });
+
+    let historyData = [
         {
             id: 1,
             word: 'kalem',
@@ -37,10 +56,28 @@
         },
     ];
 
-    let filtered = historyData.filter((data) => data.type === 1);
+    $: filtered = historyData.filter((data) => data.type === selectedType);
 
     function filterHistoryData(event) {
         filtered = historyData.filter((data) => data.type === event.detail);
+        selectedType = event.detail;
+    }
+
+    function deleteAllSelectedHistoryData() {
+        console.log('DELETE_ALL_SELECTED_HISTORY_DATA');
+        console.log(historyIds);
+
+        historyData = historyData
+            .map((data) => {
+                if (historyIds.includes(data.id)) {
+                    return false;
+                }
+
+                return data;
+            })
+            .filter((data) => data);
+
+        detailDeleteStore.update(() => []);
     }
 </script>
 
@@ -62,4 +99,6 @@
         <DetailNav on:filter={filterHistoryData} />
         <DetailContent detailData={filtered} />
     {/if}
+
+    <div on:click={deleteAllSelectedHistoryData}>DELETE</div>
 </main>
