@@ -57,6 +57,9 @@
     .list__item {
         min-width: fit-content;
     }
+    .list__item:nth-child(3) .item__inner {
+        padding-right: 16px;
+    }
     .list__item:after {
         content: '';
         display: block;

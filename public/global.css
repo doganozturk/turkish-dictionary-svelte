@@ -79,6 +79,7 @@ table {
 * {
     box-sizing: border-box;
     outline: none;
+    user-select: none;
 }
 
 html,

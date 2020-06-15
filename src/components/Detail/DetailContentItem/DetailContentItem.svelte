@@ -44,7 +44,7 @@
 <li
     class="detail-content-item"
     class:detail-content-item--pressed={pressed}
-    use:longpress={1000}
+    use:longpress
     on:longpress={handleLongpress}
     on:click={handleClick}>
     <span class="detail-content-item__word">{data.word}</span>

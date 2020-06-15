@@ -1,21 +1,23 @@
-export function longpress(node, threshold = 500) {
-    // note — a complete answer would also consider touch events
-
+export function longpress(node, threshold = 300) {
     const handleMousedown = () => {
         const timeout = setTimeout(() => {
             node.dispatchEvent(new CustomEvent('longpress'));
         }, threshold);
+
+        const handleContextmenu = (e) => e.preventDefault();
 
         const cancel = () => {
             clearTimeout(timeout);
             node.removeEventListener('touchmove', cancel);
             node.removeEventListener('touchend', cancel);
             node.removeEventListener('touchcancel', cancel);
+            node.removeEventListener('contextmenu', handleContextmenu);
         };
 
         node.addEventListener('touchmove', cancel);
         node.addEventListener('touchend', cancel);
         node.addEventListener('touchcancel', cancel);
+        node.addEventListener('contextmenu', handleContextmenu);
     };
 
     node.addEventListener('touchstart', handleMousedown);
