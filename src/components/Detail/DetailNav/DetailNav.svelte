@@ -3,8 +3,6 @@
 
     const dispatch = createEventDispatcher();
 
-    export let filterFunc = () => {};
-
     let navData = [
         {
             id: 1,

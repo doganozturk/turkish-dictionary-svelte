@@ -5,9 +5,10 @@
     import DetailNoContent from '../components/Detail/DetailNoContent/DetailNoContent.svelte';
     import DetailNav from '../components/Detail/DetailNav/DetailNav.svelte';
     import DetailContent from '../components/Detail/DetailContent/DetailContent.svelte';
+    import DetailDeleteModal from '../components/Detail/DetailDeleteModal/DetailDeleteModal.svelte';
 
     let unsubscribe;
-    let historyIds;
+    let historyIds = [];
     let selectedType = 1;
 
     onMount(() => {
@@ -79,6 +80,18 @@
 
         detailDeleteStore.update(() => []);
     }
+
+    function selectAllHistoryData() {
+        historyIds = filtered.map((item) => item.id);
+
+        detailDeleteStore.update(() => [...historyIds]);
+    }
+
+    function deselectAllHistoryData() {
+        historyIds = [];
+
+        detailDeleteStore.update(() => []);
+    }
 </script>
 
 <style>
@@ -100,5 +113,11 @@
         <DetailContent detailData={filtered} />
     {/if}
 
-    <div on:click={deleteAllSelectedHistoryData}>DELETE</div>
+    {#if historyIds.length}
+        <DetailDeleteModal
+            deleteSelectedHandler={deleteAllSelectedHistoryData}
+            selectAllHandler={selectAllHistoryData}
+            selectedCount={historyIds.length}
+            on:modalClose={deselectAllHistoryData} />
+    {/if}
 </main>
