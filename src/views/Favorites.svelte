@@ -1,8 +1,6 @@
 <script>
-    import DetailHeader from '../components/Detail/DetailHeader/DetailHeader.svelte';
+    import DetailFeature from '../components/Detail/DetailFeature/DetailFeature.svelte';
     import DetailNoContent from '../components/Detail/DetailNoContent/DetailNoContent.svelte';
-    import DetailNav from '../components/Detail/DetailNav/DetailNav.svelte';
-    import DetailContent from '../components/Detail/DetailContent/DetailContent.svelte';
 
     const favoriteData = [
         {
@@ -31,30 +29,8 @@
             type: 1,
         },
     ];
-
-    let filtered = favoriteData.filter((data) => data.type === 1);
-
-    function filterFavoriteData(event) {
-        filtered = favoriteData.filter((data) => data.type === event.detail);
-    }
 </script>
 
-<style>
-    .favorites {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-    }
-</style>
-
-<DetailHeader title="Favoriler" />
-<main class="favorites">
-    {#if !favoriteData.length}
-        <DetailNoContent
-            icon="tdk-icon-fav"
-            noContentText="Henüz favori yok." />
-    {:else}
-        <DetailNav on:filter={filterFavoriteData} />
-        <DetailContent detailData={filtered} />
-    {/if}
-</main>
+<DetailFeature data={favoriteData} headerTitle="Favoriler">
+    <DetailNoContent icon="tdk-icon-fav" noContentText="Henüz favori yok." />
+</DetailFeature>
