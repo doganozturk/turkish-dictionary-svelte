@@ -1,7 +1,21 @@
 <script>
+    import { onMount, onDestroy } from 'svelte';
     import { createEventDispatcher } from 'svelte';
+    import { detailDeleteStore } from '../../../stores/detail-delete';
 
     const dispatch = createEventDispatcher();
+    let unsubscribe;
+
+    onMount(() => {
+        unsubscribe = detailDeleteStore.subscribe((ids) => {
+            console.log('DETAIL_NAV_COMPONENT');
+            console.log(ids);
+        });
+    });
+
+    onDestroy(() => {
+        unsubscribe();
+    });
 
     let navData = [
         {
@@ -29,6 +43,8 @@
         });
 
         dispatch('filter', id);
+
+        detailDeleteStore.update(() => []);
     }
 </script>
 

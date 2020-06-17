@@ -5,11 +5,14 @@
     import Icon from '../../UI/Icon/Icon.svelte';
 
     let unsubscribe;
+    let dataIds = [];
 
     onMount(() => {
         unsubscribe = detailDeleteStore.subscribe((ids) => {
             console.log('DETAIL_CONTENT_ITEM_COMPONENT');
             console.log(ids);
+
+            dataIds = ids;
         });
     });
 
@@ -18,19 +21,16 @@
     });
 
     export let data = null;
-    let pressed = false;
+
+    $: pressed = dataIds.some((id) => id === data.id);
 
     function handleLongpress() {
-        pressed = true;
-
         detailDeleteStore.update((ids) => {
             return [...ids, data.id];
         });
     }
 
     function handleClick() {
-        pressed = false;
-
         detailDeleteStore.update((ids) => {
             return ids.filter((id) => id !== data.id);
         });
