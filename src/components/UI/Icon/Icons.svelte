@@ -231,5 +231,12 @@
                 0h2.667V24h-2.667V13.333z"
                 fill="currentColor" />
         </symbol>
+
+        <symbol id="tdk-icon-close" viewBox="0 0 32 32">
+            <path
+                d="M22.752 7L16 13.75 9.25 7 7 9.25 13.75 16 7 22.75 9.25 25 16
+                18.25 22.752 25l2.25-2.25-6.75-6.75 6.75-6.75L22.752 7z"
+                fill="currentColor" />
+        </symbol>
     </svg>
 </div>

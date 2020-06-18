@@ -8,6 +8,7 @@
     import About from '../components/Home/About/About.svelte';
 
     let unsubscribe;
+    let searchMode = false;
     let storeOverlay = false;
     let storeAbout = false;
 
@@ -38,6 +39,10 @@
             desc: 'hafif hafif, ince ince, durmadan gözyaşı dökmek.',
         },
     ];
+
+    function handleSearchModeActivation({ detail }) {
+        searchMode = detail;
+    }
 </script>
 
 <style>
@@ -48,6 +53,10 @@
         padding-right: 16px;
         background-color: var(--tdk-page-bg);
     }
+    .main--search-active {
+        margin-top: 0;
+        padding-top: 16px;
+    }
 
     .home {
         margin-top: 50px;
@@ -57,15 +66,26 @@
 {#if storeOverlay}
     <Overlay />
 {/if}
-<Header />
-<main class="main">
-    <Search />
-    <section class="home">
-        {#each data as item (item.title)}
-            <HomeItem title={item.title} word={item.word} desc={item.desc} />
-        {/each}
-    </section>
+
+{#if !searchMode}
+    <Header />
+{/if}
+
+<main class="main" class:main--search-active={searchMode}>
+    <Search on:toggleSearchMode={handleSearchModeActivation} />
+
+    {#if !searchMode}
+        <section class="home">
+            {#each data as item (item.title)}
+                <HomeItem
+                    title={item.title}
+                    word={item.word}
+                    desc={item.desc} />
+            {/each}
+        </section>
+    {/if}
 </main>
+
 {#if storeAbout}
     <About />
 {/if}
