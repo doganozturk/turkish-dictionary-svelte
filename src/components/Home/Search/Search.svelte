@@ -1,14 +1,33 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
+    import { createEventDispatcher, onMount, onDestroy } from 'svelte';
+    import { searchStore } from '../../../stores/search';
     import Icon from '../../UI/Icon/Icon.svelte';
     import Button from '../../UI/Button/Button.svelte';
     import SearchHelper from '../SearchHelper/SearchHelper.svelte';
     import SearchRecent from '../SearchRecent/SearchRecent.svelte';
+    import SearchResults from '../SearchResults/SearchResults.svelte';
+    import DetailNoContent from '../../Detail/DetailNoContent/DetailNoContent.svelte';
 
     const dispatch = createEventDispatcher();
 
+    let unsubscribe;
     let searchMode = false;
     let searchTerm = '';
+
+    $: searchResults = searchTerm ? handleSearch() : [];
+
+    onMount(() => {
+        unsubscribe = searchStore.subscribe((value) => {
+            console.log('SEARCH_COMPONENT');
+            console.log(value);
+
+            searchTerm = value.searchTerm;
+        });
+    });
+
+    onDestroy(() => {
+        unsubscribe();
+    });
 
     function handleToggleSearchMode(isActive) {
         searchMode = isActive;
@@ -26,6 +45,17 @@
 
     function handleHelperWordAdded({ detail }) {
         searchTerm += detail;
+    }
+
+    function handleSearch() {
+        /*return [];*/
+
+        return [
+            'kalemiyle yaşamak (veya geçinmek)',
+            'kalem savaşçısı',
+            'kaleminden kan damlamak',
+            'kalem',
+        ];
     }
 </script>
 
@@ -84,6 +114,12 @@
         font-size: var(--font-size-sm);
         color: var(--text-heading);
     }
+
+    .search-no-result {
+        display: flex;
+        height: 100%;
+        background-color: var(--white);
+    }
 </style>
 
 <div class="search" class:search--active={searchMode}>
@@ -114,5 +150,20 @@
 
 {#if searchMode}
     <SearchHelper on:helperWord={handleHelperWordAdded} />
-    <SearchRecent />
+
+    {#if !searchResults.length && !searchTerm}
+        <SearchRecent />
+    {/if}
+
+    {#if !searchResults.length && searchTerm}
+        <div class="search-no-result">
+            <DetailNoContent
+                icon="tdk-icon-book"
+                noContentText="Aradığınız sözcük bulunamadı." />
+        </div>
+    {/if}
+
+    {#if searchResults.length}
+        <SearchResults results={searchResults} {searchTerm} />
+    {/if}
 {/if}

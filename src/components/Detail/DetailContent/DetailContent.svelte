@@ -1,8 +1,15 @@
 <script>
-    import DetailContentItem from '../DetailContentItem/DetailContentItem.svelte';
+    import DetailContentItemDeletable from '../DetailContentItemDeletable/DetailContentItemDeletable.svelte';
+    import DetailContentItemSearch from '../DetailContentItemSearch/DetailContentItemSearch.svelte';
 
+    export let type = 'deletable'; // 'deletable', 'search'
     export let detailData = [];
     export let title = '';
+
+    const componentMapping = {
+        deletable: DetailContentItemDeletable,
+        search: DetailContentItemSearch,
+    };
 </script>
 
 <style>
@@ -26,7 +33,7 @@
     {/if}
     <ul class="detail-content__list">
         {#each detailData as data (data.id)}
-            <DetailContentItem {data} />
+            <svelte:component this={componentMapping[type]} {data} />
         {/each}
     </ul>
 </div>

@@ -1,0 +1,54 @@
+<script>
+    import { onMount, onDestroy } from 'svelte';
+    import { searchStore } from '../../../stores/search';
+
+    let unsubscribe;
+
+    onMount(() => {
+        unsubscribe = searchStore.subscribe((value) => {
+            console.log('DETAIL_CONTENT_ITEM_SEARCH_COMPONENT');
+            console.log(value);
+        });
+    });
+
+    onDestroy(() => {
+        unsubscribe();
+    });
+
+    export let data = null;
+
+    function handleClick(word) {
+        searchStore.update((value) => ({
+            ...value,
+            searchTerm: word,
+        }));
+    }
+</script>
+
+<style>
+    .detail-content-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 54px;
+        padding: 16px;
+        background-color: var(--white);
+        border-radius: 6px;
+    }
+
+    .detail-content-item + .detail-content-item {
+        margin-top: 12px;
+    }
+
+    .detail-content-item__word {
+        max-width: 230px;
+        font-size: var(--font-size-md);
+        font-weight: bold;
+        line-height: 26px;
+    }
+</style>
+
+<li class="detail-content-item" on:click={() => handleClick(data.word)}>
+    <span class="detail-content-item__word">{data.word}</span>
+</li>

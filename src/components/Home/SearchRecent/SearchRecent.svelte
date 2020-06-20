@@ -21,5 +21,8 @@
 </script>
 
 <div class="search-recent">
-    <DetailContent detailData={recentSearches} title="SON ARAMALAR" />
+    <DetailContent
+        detailData={recentSearches}
+        title="SON ARAMALAR"
+        type="search" />
 </div>
