@@ -1,7 +1,9 @@
 <script>
     import { createEventDispatcher } from 'svelte';
-    import Icon from '../Icon/Icon.svelte';
-    import Button from '../Button/Button.svelte';
+    import Icon from '../../UI/Icon/Icon.svelte';
+    import Button from '../../UI/Button/Button.svelte';
+    import SearchHelper from '../SearchHelper/SearchHelper.svelte';
+    import SearchRecent from '../SearchRecent/SearchRecent.svelte';
 
     const dispatch = createEventDispatcher();
 
@@ -21,6 +23,10 @@
     function handleInputDelete() {
         searchTerm = '';
     }
+
+    function handleHelperWordAdded({ detail }) {
+        searchTerm += detail;
+    }
 </script>
 
 <style>
@@ -34,6 +40,8 @@
         align-items: center;
         justify-content: space-between;
         height: 48px;
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     .search input {
@@ -64,7 +72,7 @@
     .close-icon {
         position: absolute;
         top: 15px;
-        right: 70px;
+        right: 86px;
     }
 
     .search__cancel {
@@ -103,3 +111,8 @@
         </div>
     {/if}
 </div>
+
+{#if searchMode}
+    <SearchHelper on:helperWord={handleHelperWordAdded} />
+    <SearchRecent />
+{/if}

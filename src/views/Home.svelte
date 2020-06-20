@@ -3,7 +3,7 @@
     import { uiStore } from '../stores/ui';
     import Header from '../components/Home/Header/Header.svelte';
     import HomeItem from '../components/Home/HomeItem/HomeItem.svelte';
-    import Search from '../components/UI/Search/Search.svelte';
+    import Search from '../components/Home/Search/Search.svelte';
     import Overlay from '../components/UI/Overlay/Overlay.svelte';
     import About from '../components/Home/About/About.svelte';
 
@@ -56,6 +56,8 @@
     .main--search-active {
         margin-top: 0;
         padding-top: 16px;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .home {
