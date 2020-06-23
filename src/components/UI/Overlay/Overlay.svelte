@@ -1,13 +1,13 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
-    import { uiStore } from '../../../stores/ui';
+    import { ui } from '../../../stores';
 
     let unsubscribe;
 
     onMount(() => {
-        unsubscribe = uiStore.subscribe((value) => {
+        unsubscribe = ui.subscribe((state) => {
             console.log('OVERLAY_COMPONENT');
-            console.log(value);
+            console.log(state);
         });
     });
 
@@ -16,11 +16,7 @@
     });
 
     function handleClick() {
-        uiStore.update((value) => ({
-            ...value,
-            overlay: false,
-            about: false,
-        }));
+        ui.reset();
     }
 </script>
 

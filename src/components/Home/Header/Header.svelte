@@ -1,15 +1,15 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
-    import { uiStore } from '../../../stores/ui';
+    import { ui } from '../../../stores';
     import Button from '../../UI/Button/Button.svelte';
     import Icon from '../../UI/Icon/Icon.svelte';
 
     let unsubscribe;
 
     onMount(() => {
-        unsubscribe = uiStore.subscribe((value) => {
+        unsubscribe = ui.subscribe((state) => {
             console.log('HEADER_COMPONENT');
-            console.log(value);
+            console.log(state);
         });
     });
 
@@ -18,10 +18,8 @@
     });
 
     function onAboutButtonClick() {
-        uiStore.update(() => ({
-            overlay: true,
-            about: true,
-        }));
+        ui.activate('overlay');
+        ui.activate('about');
     }
 </script>
 

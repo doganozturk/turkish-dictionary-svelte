@@ -1,6 +1,6 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
-    import { uiStore } from '../stores/ui';
+    import { ui } from '../stores';
     import Header from '../components/Home/Header/Header.svelte';
     import HomeItem from '../components/Home/HomeItem/HomeItem.svelte';
     import Search from '../components/Home/Search/Search.svelte';
@@ -13,7 +13,7 @@
     let storeAbout = false;
 
     onMount(() => {
-        unsubscribe = uiStore.subscribe(({ overlay, about }) => {
+        unsubscribe = ui.subscribe(({ overlay, about }) => {
             console.log('HOME_VIEW');
             console.log(overlay);
             console.log(about);
