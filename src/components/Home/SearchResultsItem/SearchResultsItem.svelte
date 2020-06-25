@@ -1,13 +1,11 @@
 <script>
+    import { search } from '../../../stores';
     import Icon from '../../UI/Icon/Icon.svelte';
 
     export let data = '';
-    export let searchTerm = '';
 
-    $: word = makeSearchTermBold();
-
-    function makeSearchTermBold() {
-        const index = data.indexOf(searchTerm);
+    function makeSearchTermBold(term) {
+        const index = data.indexOf(term);
 
         if (index < 0) {
             return data;
@@ -15,7 +13,7 @@
 
         const dataArr = data.split('');
 
-        for (let i = index; i < index + searchTerm.length; i++) {
+        for (let i = index; i < index + term.length; i++) {
             dataArr[i] = `<strong>${dataArr[i]}</strong>`;
         }
 
@@ -45,7 +43,7 @@
 
 <li class="search-results-item">
     <span class="search-results-item__word">
-        {@html word}
+        {@html makeSearchTermBold($search.searchTerm)}
     </span>
     <span class="search-results-item__icon-chevron">
         <Icon name="tdk-icon-chevron-right" size={20} color="var(--tdk-main)" />

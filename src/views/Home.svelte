@@ -1,31 +1,10 @@
 <script>
-    import { onMount, onDestroy } from 'svelte';
-    import { ui } from '../stores';
+    import { ui, search } from '../stores';
     import Header from '../components/Home/Header/Header.svelte';
     import HomeItem from '../components/Home/HomeItem/HomeItem.svelte';
     import Search from '../components/Home/Search/Search.svelte';
     import Overlay from '../components/UI/Overlay/Overlay.svelte';
     import About from '../components/Home/About/About.svelte';
-
-    let unsubscribe;
-    let searchMode = false;
-    let storeOverlay = false;
-    let storeAbout = false;
-
-    onMount(() => {
-        unsubscribe = ui.subscribe(({ overlay, about }) => {
-            console.log('HOME_VIEW');
-            console.log(overlay);
-            console.log(about);
-
-            storeOverlay = overlay;
-            storeAbout = about;
-        });
-    });
-
-    onDestroy(() => {
-        unsubscribe();
-    });
 
     const data = [
         {
@@ -39,10 +18,6 @@
             desc: 'hafif hafif, ince ince, durmadan gözyaşı dökmek.',
         },
     ];
-
-    function handleSearchModeActivation({ detail }) {
-        searchMode = detail;
-    }
 </script>
 
 <style>
@@ -65,18 +40,18 @@
     }
 </style>
 
-{#if storeOverlay}
+{#if $ui.overlay}
     <Overlay />
 {/if}
 
-{#if !searchMode}
+{#if !$search.searchMode}
     <Header />
 {/if}
 
-<main class="main" class:main--search-active={searchMode}>
-    <Search on:toggleSearchMode={handleSearchModeActivation} />
+<main class="main" class:main--search-active={$search.searchMode}>
+    <Search />
 
-    {#if !searchMode}
+    {#if !$search.searchMode}
         <section class="home">
             {#each data as item (item.title)}
                 <HomeItem
@@ -88,6 +63,6 @@
     {/if}
 </main>
 
-{#if storeAbout}
+{#if $ui.about}
     <About />
 {/if}

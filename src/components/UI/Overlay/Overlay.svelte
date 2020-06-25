@@ -1,19 +1,5 @@
 <script>
-    import { onMount, onDestroy } from 'svelte';
     import { ui } from '../../../stores';
-
-    let unsubscribe;
-
-    onMount(() => {
-        unsubscribe = ui.subscribe((state) => {
-            console.log('OVERLAY_COMPONENT');
-            console.log(state);
-        });
-    });
-
-    onDestroy(() => {
-        unsubscribe();
-    });
 
     function handleClick() {
         ui.reset();

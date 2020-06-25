@@ -1,8 +1,6 @@
 <script>
+    import { search } from '../../../stores';
     import SearchResultsItem from '../SearchResultsItem/SearchResultsItem.svelte';
-
-    export let results = [];
-    export let searchTerm = '';
 </script>
 
 <style>
@@ -14,7 +12,7 @@
 </style>
 
 <ul class="search-results">
-    {#each results as result (result)}
-        <SearchResultsItem data={result} {searchTerm} />
+    {#each $search.searchResults as result (result)}
+        <SearchResultsItem data={result} />
     {/each}
 </ul>

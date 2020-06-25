@@ -1,27 +1,11 @@
 <script>
-    import { onMount, onDestroy } from 'svelte';
-    import { searchStore } from '../../../stores/search';
-
-    let unsubscribe;
-
-    onMount(() => {
-        unsubscribe = searchStore.subscribe((value) => {
-            console.log('DETAIL_CONTENT_ITEM_SEARCH_COMPONENT');
-            console.log(value);
-        });
-    });
-
-    onDestroy(() => {
-        unsubscribe();
-    });
+    import { search } from '../../../stores';
 
     export let data = null;
 
     function handleClick(word) {
-        searchStore.update((value) => ({
-            ...value,
-            searchTerm: word,
-        }));
+        search.set('searchTerm', word);
+        search.fetchResults();
     }
 </script>
 

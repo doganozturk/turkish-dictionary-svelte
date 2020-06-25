@@ -1,21 +1,7 @@
 <script>
-    import { onMount, onDestroy } from 'svelte';
     import { ui } from '../../../stores';
     import Button from '../../UI/Button/Button.svelte';
     import Icon from '../../UI/Icon/Icon.svelte';
-
-    let unsubscribe;
-
-    onMount(() => {
-        unsubscribe = ui.subscribe((state) => {
-            console.log('HEADER_COMPONENT');
-            console.log(state);
-        });
-    });
-
-    onDestroy(() => {
-        unsubscribe();
-    });
 
     function onAboutButtonClick() {
         ui.activate('overlay');

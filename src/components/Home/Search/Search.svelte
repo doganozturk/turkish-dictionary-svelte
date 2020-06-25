@@ -1,6 +1,5 @@
 <script>
-    import { createEventDispatcher, onMount, onDestroy } from 'svelte';
-    import { searchStore } from '../../../stores/search';
+    import { search } from '../../../stores';
     import Icon from '../../UI/Icon/Icon.svelte';
     import Button from '../../UI/Button/Button.svelte';
     import SearchHelper from '../SearchHelper/SearchHelper.svelte';
@@ -8,54 +7,18 @@
     import SearchResults from '../SearchResults/SearchResults.svelte';
     import DetailNoContent from '../../Detail/DetailNoContent/DetailNoContent.svelte';
 
-    const dispatch = createEventDispatcher();
-
-    let unsubscribe;
-    let searchMode = false;
-    let searchTerm = '';
-
-    $: searchResults = searchTerm ? handleSearch() : [];
-
-    onMount(() => {
-        unsubscribe = searchStore.subscribe((value) => {
-            console.log('SEARCH_COMPONENT');
-            console.log(value);
-
-            searchTerm = value.searchTerm;
-        });
-    });
-
-    onDestroy(() => {
-        unsubscribe();
-    });
-
     function handleToggleSearchMode(isActive) {
-        searchMode = isActive;
+        search.set('searchMode', isActive);
 
         if (!isActive) {
-            searchTerm = '';
+            search.set('searchTerm', '');
+            search.set('searchResults', []);
         }
-
-        dispatch('toggleSearchMode', isActive);
     }
 
     function handleInputDelete() {
-        searchTerm = '';
-    }
-
-    function handleHelperWordAdded({ detail }) {
-        searchTerm += detail;
-    }
-
-    function handleSearch() {
-        /*return [];*/
-
-        return [
-            'kalemiyle yaşamak (veya geçinmek)',
-            'kalem savaşçısı',
-            'kaleminden kan damlamak',
-            'kalem',
-        ];
+        search.set('searchTerm', '');
+        search.set('searchResults', []);
     }
 </script>
 
@@ -122,8 +85,8 @@
     }
 </style>
 
-<div class="search" class:search--active={searchMode}>
-    {#if searchMode}
+<div class="search" class:search--active={$search.searchMode}>
+    {#if $search.searchMode}
         <div class="close-icon" on:click={handleInputDelete}>
             <Icon name="tdk-icon-close" size={18} />
         </div>
@@ -135,11 +98,11 @@
 
     <input
         type="text"
-        bind:value={searchTerm}
-        placeholder={searchMode ? '' : "Türkçe Sözlük'te Ara"}
+        bind:value={$search.searchTerm}
+        placeholder={$search.searchMode ? '' : "Türkçe Sözlük'te Ara"}
         on:focus={() => handleToggleSearchMode(true)}
-        on:blur={searchMode ? () => {} : () => handleToggleSearchMode(false)} />
-    {#if searchMode}
+        on:blur={$search.searchMode ? () => {} : () => handleToggleSearchMode(false)} />
+    {#if $search.searchMode}
         <div class="search__cancel">
             <Button on:click={() => handleToggleSearchMode(false)}>
                 <span slot="text" class="cancel__text">Vazgeç</span>
@@ -148,14 +111,14 @@
     {/if}
 </div>
 
-{#if searchMode}
-    <SearchHelper on:helperWord={handleHelperWordAdded} />
+{#if $search.searchMode}
+    <SearchHelper />
 
-    {#if !searchResults.length && !searchTerm}
+    {#if !$search.searchResults.length && !$search.searchTerm}
         <SearchRecent />
     {/if}
 
-    {#if !searchResults.length && searchTerm}
+    {#if !$search.searchResults.length && $search.searchTerm}
         <div class="search-no-result">
             <DetailNoContent
                 icon="tdk-icon-book"
@@ -163,7 +126,7 @@
         </div>
     {/if}
 
-    {#if searchResults.length}
-        <SearchResults results={searchResults} {searchTerm} />
+    {#if $search.searchResults.length}
+        <SearchResults />
     {/if}
 {/if}

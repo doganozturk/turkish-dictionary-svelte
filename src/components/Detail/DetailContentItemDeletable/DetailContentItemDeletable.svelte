@@ -1,39 +1,18 @@
 <script>
-    import { onMount, onDestroy } from 'svelte';
-    import { detailDeleteStore } from '../../../stores/detail-delete';
+    import { detailDelete } from '../../../stores';
     import { longpress } from '../../../actions';
     import Icon from '../../UI/Icon/Icon.svelte';
 
-    let unsubscribe;
-    let dataIds = [];
-
-    onMount(() => {
-        unsubscribe = detailDeleteStore.subscribe((ids) => {
-            console.log('DETAIL_CONTENT_ITEM_COMPONENT');
-            console.log(ids);
-
-            dataIds = ids;
-        });
-    });
-
-    onDestroy(() => {
-        unsubscribe();
-    });
-
     export let data = null;
 
-    $: pressed = dataIds.some((id) => id === data.id);
+    $: pressed = $detailDelete.deletables.some((id) => id === data.id);
 
     function handleLongpress() {
-        detailDeleteStore.update((ids) => {
-            return [...ids, data.id];
-        });
+        detailDelete.addDeletable(data.id);
     }
 
     function handleClick() {
-        detailDeleteStore.update((ids) => {
-            return ids.filter((id) => id !== data.id);
-        });
+        detailDelete.removeDeletable(data.id);
     }
 </script>
 

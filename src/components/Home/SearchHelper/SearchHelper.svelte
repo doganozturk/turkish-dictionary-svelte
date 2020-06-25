@@ -1,8 +1,12 @@
 <script>
-    import { createEventDispatcher } from 'svelte';
+    import { search } from '../../../stores';
 
-    const dispatch = createEventDispatcher();
     const data = ['ç', 'ğ', 'ı', 'ö', 'ş', 'ü', 'â', 'î', 'û'];
+
+    function handleClick(word) {
+        search.set('searchTerm', $search.searchTerm + word);
+        search.fetchResults();
+    }
 </script>
 
 <style>
@@ -33,9 +37,7 @@
 
 <div class="search-helper">
     {#each data as word (word)}
-        <span
-            class="search-helper__item"
-            on:click={() => dispatch('helperWord', word)}>
+        <span class="search-helper__item" on:click={() => handleClick(word)}>
             {word}
         </span>
     {/each}
