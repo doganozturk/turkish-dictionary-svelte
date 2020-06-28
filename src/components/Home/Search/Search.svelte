@@ -2,10 +2,10 @@
     import { search } from '../../../stores';
     import Icon from '../../UI/Icon/Icon.svelte';
     import Button from '../../UI/Button/Button.svelte';
-    import SearchHelper from '../SearchHelper/SearchHelper.svelte';
-    import SearchRecent from '../SearchRecent/SearchRecent.svelte';
-    import SearchResults from '../SearchResults/SearchResults.svelte';
-    import DetailNoContent from '../../Detail/DetailNoContent/DetailNoContent.svelte';
+    import SearchHelper from './SearchHelper/SearchHelper.svelte';
+    import SearchRecent from './SearchRecent/SearchRecent.svelte';
+    import SearchResults from './SearchResults/SearchResults.svelte';
+    import DetailNoContent from '../../Detail/DetailFeature/DetailNoContent/DetailNoContent.svelte';
 
     function handleToggleSearchMode(isActive) {
         search.set('searchMode', isActive);

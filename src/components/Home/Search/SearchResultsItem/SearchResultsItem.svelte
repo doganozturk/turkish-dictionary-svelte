@@ -1,6 +1,6 @@
 <script>
-    import { search } from '../../../stores';
-    import Icon from '../../UI/Icon/Icon.svelte';
+    import { search } from '../../../../stores';
+    import Icon from '../../../UI/Icon/Icon.svelte';
 
     export let data = '';
 

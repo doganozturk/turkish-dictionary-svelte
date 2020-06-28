@@ -1,7 +1,7 @@
 <script>
     import { createEventDispatcher } from 'svelte';
-    import Button from '../../UI/Button/Button.svelte';
-    import Icon from '../../UI/Icon/Icon.svelte';
+    import Button from '../../../UI/Button/Button.svelte';
+    import Icon from '../../../UI/Icon/Icon.svelte';
 
     export let deleteSelectedHandler;
     export let selectAllHandler;

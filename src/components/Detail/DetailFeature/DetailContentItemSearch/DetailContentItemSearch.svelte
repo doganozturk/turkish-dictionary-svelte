@@ -1,5 +1,5 @@
 <script>
-    import { search } from '../../../stores';
+    import { search } from '../../../../stores';
 
     export let data = null;
 

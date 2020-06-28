@@ -1,5 +1,5 @@
 <script>
-    import { search } from '../../../stores';
+    import { search } from '../../../../stores';
     import SearchResultsItem from '../SearchResultsItem/SearchResultsItem.svelte';
 </script>
 

@@ -1,7 +1,7 @@
 <script>
-    import { detailDelete } from '../../../stores';
-    import { longpress } from '../../../actions';
-    import Icon from '../../UI/Icon/Icon.svelte';
+    import { detailDelete } from '../../../../stores';
+    import { longpress } from '../../../../actions';
+    import Icon from '../../../UI/Icon/Icon.svelte';
 
     export let data = null;
 

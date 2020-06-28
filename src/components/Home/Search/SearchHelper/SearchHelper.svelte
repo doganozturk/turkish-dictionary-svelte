@@ -1,5 +1,5 @@
 <script>
-    import { search } from '../../../stores';
+    import { search } from '../../../../stores';
 
     const data = ['ç', 'ğ', 'ı', 'ö', 'ş', 'ü', 'â', 'î', 'û'];
 

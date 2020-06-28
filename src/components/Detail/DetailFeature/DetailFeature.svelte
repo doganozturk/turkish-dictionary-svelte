@@ -2,8 +2,8 @@
     import { detailDelete } from '../../../stores';
     import DetailHeader from '../../../components/Detail/DetailHeader/DetailHeader.svelte';
     import DetailNav from '../../../components/Detail/DetailNav/DetailNav.svelte';
-    import DetailContent from '../../../components/Detail/DetailContent/DetailContent.svelte';
-    import DetailDeleteModal from '../../../components/Detail/DetailDeleteModal/DetailDeleteModal.svelte';
+    import DetailContent from './DetailContent/DetailContent.svelte';
+    import DetailDeleteModal from './DetailDeleteModal/DetailDeleteModal.svelte';
 
     export let data = [];
     export let headerTitle = '';

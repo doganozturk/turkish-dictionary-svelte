@@ -1,6 +1,6 @@
 <script>
-    import { search } from '../../../stores';
-    import DetailContent from '../../Detail/DetailContent/DetailContent.svelte';
+    import { search } from '../../../../stores';
+    import DetailContent from '../../../Detail/DetailFeature/DetailContent/DetailContent.svelte';
 </script>
 
 <div class="search-recent">

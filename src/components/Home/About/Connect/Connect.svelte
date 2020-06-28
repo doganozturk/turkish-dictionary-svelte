@@ -1,6 +1,6 @@
 <script>
-    import Button from '../../UI/Button/Button.svelte';
-    import Icon from '../../UI/Icon/Icon.svelte';
+    import Button from '../../../UI/Button/Button.svelte';
+    import Icon from '../../../UI/Icon/Icon.svelte';
 
     const data = [
         {

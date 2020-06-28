@@ -1,7 +1,7 @@
 <script>
-    import AboutUs from '../AboutUs/AboutUs.svelte';
-    import Connect from '../Connect/Connect.svelte';
-    import Feedback from '../Feedback/Feedback.svelte';
+    import AboutUs from './AboutUs/AboutUs.svelte';
+    import Connect from './Connect/Connect.svelte';
+    import Feedback from './Feedback/Feedback.svelte';
     import Button from '../../UI/Button/Button.svelte';
     import Icon from '../../UI/Icon/Icon.svelte';
 
