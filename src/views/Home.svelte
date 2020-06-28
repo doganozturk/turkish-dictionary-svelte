@@ -1,23 +1,40 @@
 <script>
+    import { onMount } from 'svelte';
     import { ui, search } from '../stores';
+    import { contentService } from '../services';
+    import HomeContentItem from '../models/HomeContentItem';
     import Header from '../components/Home/Header/Header.svelte';
     import HomeItem from '../components/Home/HomeItem/HomeItem.svelte';
     import Search from '../components/Home/Search/Search.svelte';
     import Overlay from '../components/UI/Overlay/Overlay.svelte';
     import About from '../components/Home/About/About.svelte';
 
-    const data = [
-        {
-            title: 'Bir Kelime',
-            word: 'maraz',
-            desc: 'hastalık.',
-        },
-        {
-            title: 'Bir Deyim - Atasözü',
-            word: 'siyem siyem ağlamak',
-            desc: 'hafif hafif, ince ince, durmadan gözyaşı dökmek.',
-        },
-    ];
+    let homeContent = [];
+
+    onMount(async () => {
+        homeContent = await getInitialData();
+    });
+
+    async function getInitialData() {
+        const { data, error } = await contentService.getContent();
+
+        if (error) {
+            return [];
+        }
+
+        return [
+            new HomeContentItem(
+                'Bir Kelime',
+                data.kelime[0].madde,
+                data.kelime[0].anlam,
+            ),
+            new HomeContentItem(
+                'Bir Deyim-Atasözü',
+                data.atasoz[0].madde,
+                data.atasoz[0].anlam,
+            ),
+        ];
+    }
 </script>
 
 <style>
@@ -53,11 +70,11 @@
 
     {#if !$search.searchMode}
         <section class="home">
-            {#each data as item (item.title)}
+            {#each homeContent as item (item.title)}
                 <HomeItem
                     title={item.title}
                     word={item.word}
-                    desc={item.desc} />
+                    desc={item.description} />
             {/each}
         </section>
     {/if}
