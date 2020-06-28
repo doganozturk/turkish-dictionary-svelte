@@ -8,11 +8,27 @@
     $: pressed = $detailDelete.deletables.some((id) => id === data.id);
 
     function handleLongpress() {
+        if (pressed) {
+            return;
+        }
+
         detailDelete.addDeletable(data.id);
     }
 
     function handleClick() {
-        detailDelete.removeDeletable(data.id);
+        if (!$detailDelete.deletables.length) {
+            return;
+        }
+
+        if (!pressed) {
+            detailDelete.addDeletable(data.id);
+
+            return;
+        }
+
+        if (pressed) {
+            detailDelete.removeDeletable(data.id);
+        }
     }
 </script>
 
