@@ -1,5 +1,7 @@
 <script>
+    import debounce from 'lodash-es/debounce';
     import { search } from '../../../stores';
+    import { autocompleteService } from '../../../services';
     import Icon from '../../UI/Icon/Icon.svelte';
     import Button from '../../UI/Button/Button.svelte';
     import SearchHelper from './SearchHelper/SearchHelper.svelte';
@@ -7,12 +9,20 @@
     import SearchResults from './SearchResults/SearchResults.svelte';
     import DetailNoContent from '../../Detail/DetailFeature/DetailNoContent/DetailNoContent.svelte';
 
-    function handleToggleSearchMode(isActive) {
+    async function handleToggleSearchMode(isActive) {
         search.set('searchMode', isActive);
 
         if (!isActive) {
             search.set('searchTerm', '');
             search.set('searchResults', []);
+
+            return;
+        }
+
+        if (!$search.autocompleteData[0]) {
+            const data = await autocompleteService.getAutocompleteData();
+
+            search.set('autocompleteData', data);
         }
     }
 
@@ -100,6 +110,7 @@
         type="text"
         bind:value={$search.searchTerm}
         placeholder={$search.searchMode ? '' : "Türkçe Sözlük'te Ara"}
+        on:keypress={debounce(search.fetchResults, 500)}
         on:focus={() => handleToggleSearchMode(true)}
         on:blur={$search.searchMode ? () => {} : () => handleToggleSearchMode(false)} />
     {#if $search.searchMode}

@@ -1,4 +1,4 @@
-export default class HomeContentItem {
+export class HomeContentItem {
     constructor(title, word, description) {
         this.title = title;
         this.word = word;

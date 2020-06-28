@@ -21,26 +21,28 @@ const initialState = {
             type: 3,
         },
     ],
+    autocompleteData: [],
 };
 
-const { subscribe, set, update } = writable(initialState);
+const { subscribe, update } = writable(initialState);
 
 export const search = {
     subscribe,
     fetchResults: () =>
-        update((state) => {
-            // TODO: use 'state.searchTerm' to make API call!
-
-            return {
-                ...state,
-                searchResults: [
-                    'kalemiyle yaşamak (veya geçinmek)',
-                    'kalem savaşçısı',
-                    'kaleminden kan damlamak',
-                    'kalem',
-                ],
-            };
-        }),
+        update((state) => ({
+            ...state,
+            searchResults: state.autocompleteData
+                .filter(
+                    (data) =>
+                        data.madde.includes(state.searchTerm) &&
+                        data.madde.indexOf(state.searchTerm) === 0,
+                )
+                .map((data) => data.madde),
+        })),
     set: (param, value) => update((state) => ({ ...state, [param]: value })),
-    reset: () => set(initialState),
+    reset: () =>
+        update((state) => ({
+            ...initialState,
+            autocompleteData: state.autocompleteData,
+        })),
 };

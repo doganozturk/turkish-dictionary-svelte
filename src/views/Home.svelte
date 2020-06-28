@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { ui, search } from '../stores';
     import { contentService } from '../services';
-    import HomeContentItem from '../models/HomeContentItem';
+    import { HomeContentItem } from '../models';
     import Header from '../components/Home/Header/Header.svelte';
     import HomeItem from '../components/Home/HomeItem/HomeItem.svelte';
     import Search from '../components/Home/Search/Search.svelte';
@@ -50,6 +50,7 @@
         padding-top: 16px;
         padding-left: 0;
         padding-right: 0;
+        overflow-y: scroll;
     }
 
     .home {

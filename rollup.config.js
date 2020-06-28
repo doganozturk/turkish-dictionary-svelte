@@ -1,6 +1,9 @@
+/* eslint-disable */
+
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 
@@ -20,7 +23,7 @@ export default {
             dev: !production,
             // we'll extract any component CSS out into
             // a separate file - better for performance
-            css: css => {
+            css: (css) => {
                 css.write('public/build/bundle.css');
             },
         }),
@@ -35,6 +38,7 @@ export default {
             dedupe: ['svelte'],
         }),
         commonjs(),
+        json(),
 
         // In dev mode, call `npm run start` once
         // the bundle has been generated
@@ -61,10 +65,14 @@ function serve() {
             if (!started) {
                 started = true;
 
-                require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
-                    stdio: ['ignore', 'inherit', 'inherit'],
-                    shell: true,
-                });
+                require('child_process').spawn(
+                    'npm',
+                    ['run', 'start', '--', '--dev'],
+                    {
+                        stdio: ['ignore', 'inherit', 'inherit'],
+                        shell: true,
+                    },
+                );
             }
         },
     };

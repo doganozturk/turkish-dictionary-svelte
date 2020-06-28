@@ -12,6 +12,7 @@
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "11.0.2",
+        "@rollup/plugin-json": "^4.1.0",
         "@rollup/plugin-node-resolve": "^7.0.0",
         "eslint": "^7.0.0",
         "eslint-config-prettier": "^6.11.0",
@@ -30,6 +31,7 @@
     },
     "dependencies": {
         "axios": "^0.19.2",
+        "lodash-es": "^4.17.15",
         "sirv-cli": "^0.4.4"
     },
     "husky": {
