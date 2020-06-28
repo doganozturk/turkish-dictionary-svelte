@@ -1,44 +1,64 @@
 import { writable } from 'svelte/store';
+import { localStorageService } from '../services';
+
+const MAX_SEARCH_RECENT_NUMBER = 10;
 
 const initialState = {
     searchMode: false,
     searchTerm: '',
     searchResults: [],
-    searchRecents: [
-        {
-            id: 1,
-            word: 'kalem',
-            type: 1,
-        },
-        {
-            id: 9,
-            word: 'feyz',
-            type: 1,
-        },
-        {
-            id: 5,
-            word: 'kalem savaşçısı',
-            type: 3,
-        },
-    ],
+    searchRecents: localStorageService.getSearchRecents(),
     autocompleteData: [],
 };
 
 const { subscribe, update } = writable(initialState);
 
+const updateRecents = (state) => {
+    if (state.searchRecents.some((item) => item.word === state.searchTerm)) {
+        return state.searchRecents;
+    }
+
+    let newSearchRecents = [];
+
+    newSearchRecents =
+        state.searchRecents.length === MAX_SEARCH_RECENT_NUMBER
+            ? state.searchRecents.filter((_, i) => i !== 0)
+            : state.searchRecents;
+
+    newSearchRecents = [
+        ...newSearchRecents,
+        {
+            // @TODO: There is some sort of 'id: -1' problem here :\
+            id: newSearchRecents.length - 1,
+            word: state.searchTerm,
+        },
+    ];
+
+    localStorageService.setSearchRecents(newSearchRecents);
+
+    return newSearchRecents;
+};
+
 export const search = {
     subscribe,
     fetchResults: () =>
-        update((state) => ({
-            ...state,
-            searchResults: state.autocompleteData
-                .filter(
-                    (data) =>
-                        data.madde.includes(state.searchTerm) &&
-                        data.madde.indexOf(state.searchTerm) === 0,
-                )
-                .map((data) => data.madde),
-        })),
+        update((state) => {
+            if (state.searchTerm.length <= 1) {
+                return;
+            }
+
+            return {
+                ...state,
+                searchRecents: updateRecents(state),
+                searchResults: state.autocompleteData
+                    .filter(
+                        (data) =>
+                            data.madde.includes(state.searchTerm) &&
+                            data.madde.indexOf(state.searchTerm) === 0,
+                    )
+                    .map((data) => data.madde),
+            };
+        }),
     set: (param, value) => update((state) => ({ ...state, [param]: value })),
     reset: () =>
         update((state) => ({

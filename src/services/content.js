@@ -1,4 +1,4 @@
-import TDKAPI from './tdk-api';
+import TDKAPI from '../apis/tdk-api';
 
 export const contentService = {
     getContent() {
