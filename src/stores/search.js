@@ -39,30 +39,34 @@ const updateRecents = (state) => {
     return newSearchRecents;
 };
 
+const fetchResults = () =>
+    update((state) => {
+        if (state.searchTerm.length <= 1) {
+            return state;
+        }
+
+        return {
+            ...state,
+            searchRecents: updateRecents(state),
+            searchResults: state.autocompleteData
+                .filter(
+                    (data) =>
+                        data.madde.includes(state.searchTerm) &&
+                        data.madde.indexOf(state.searchTerm) === 0,
+                )
+                .map((data) => data.madde),
+        };
+    });
+
+const reset = () =>
+    update((state) => ({
+        ...initialState,
+        autocompleteData: state.autocompleteData,
+    }));
+
 export const search = {
     subscribe,
-    fetchResults: () =>
-        update((state) => {
-            if (state.searchTerm.length <= 1) {
-                return;
-            }
-
-            return {
-                ...state,
-                searchRecents: updateRecents(state),
-                searchResults: state.autocompleteData
-                    .filter(
-                        (data) =>
-                            data.madde.includes(state.searchTerm) &&
-                            data.madde.indexOf(state.searchTerm) === 0,
-                    )
-                    .map((data) => data.madde),
-            };
-        }),
+    fetchResults,
     set: (param, value) => update((state) => ({ ...state, [param]: value })),
-    reset: () =>
-        update((state) => ({
-            ...initialState,
-            autocompleteData: state.autocompleteData,
-        })),
+    reset,
 };

@@ -9,7 +9,7 @@
     import SearchResults from './SearchResults/SearchResults.svelte';
     import DetailNoContent from '../../Detail/DetailFeature/DetailNoContent/DetailNoContent.svelte';
 
-    async function handleToggleSearchMode(isActive) {
+    function handleToggleSearchMode(isActive) {
         search.set('searchMode', isActive);
 
         if (!isActive) {
@@ -20,7 +20,7 @@
         }
 
         if (!$search.autocompleteData[0]) {
-            const data = await autocompleteService.getAutocompleteData();
+            const data = autocompleteService.getAutocompleteData();
 
             search.set('autocompleteData', data);
         }
@@ -110,7 +110,7 @@
         type="text"
         bind:value={$search.searchTerm}
         placeholder={$search.searchMode ? '' : "Türkçe Sözlük'te Ara"}
-        on:keypress={debounce(search.fetchResults, 500)}
+        on:keyup={debounce(search.fetchResults, 500)}
         on:focus={() => handleToggleSearchMode(true)}
         on:blur={$search.searchMode ? () => {} : () => handleToggleSearchMode(false)} />
     {#if $search.searchMode}
