@@ -39,12 +39,15 @@
         height: 52px;
     }
     .search.search--active {
+        position: fixed;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 48px;
-        padding-left: 16px;
-        padding-right: 16px;
+        width: 100%;
+        height: 80px;
+        padding: 16px;
+        background-color: var(--tdk-page-bg);
+        z-index: 1;
     }
 
     .search input {
@@ -74,7 +77,7 @@
 
     .close-icon {
         position: absolute;
-        top: 15px;
+        top: 30px;
         right: 86px;
     }
 

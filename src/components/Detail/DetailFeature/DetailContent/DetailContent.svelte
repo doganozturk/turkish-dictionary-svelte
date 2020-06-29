@@ -14,7 +14,7 @@
 
 <style>
     .detail-content {
-        padding: 24px 16px 0 16px;
+        padding: 24px 16px;
     }
 
     .detail-content__title {

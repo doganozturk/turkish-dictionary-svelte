@@ -47,7 +47,6 @@
     }
     .main--search-active {
         margin-top: 0;
-        padding-top: 16px;
         padding-left: 0;
         padding-right: 0;
         overflow-y: scroll;

@@ -5,8 +5,10 @@
 
 <style>
     .search-results {
-        min-height: 100%;
-        padding: 16px;
+        position: relative;
+        top: 128px;
+        min-height: calc(100% - 128px);
+        padding: 0 16px;
         background-color: var(--white);
     }
 </style>

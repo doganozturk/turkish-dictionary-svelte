@@ -5,6 +5,14 @@
     import DetailContent from '../../../Detail/DetailFeature/DetailContent/DetailContent.svelte';
 </script>
 
+<style>
+    .search-recent {
+        position: relative;
+        top: 128px;
+        min-height: calc(100% - 128px);
+    }
+</style>
+
 <div class="search-recent">
     <DetailContent
         detailData={$search.searchRecents}

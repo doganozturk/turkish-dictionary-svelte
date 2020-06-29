@@ -11,12 +11,16 @@
 
 <style>
     .search-helper {
+        position: fixed;
+        top: 64px;
         display: flex;
         align-items: center;
+        width: 100%;
         height: 48px;
         margin-top: 16px;
         background-color: #f0f0f0;
         overflow-x: scroll;
+        z-index: 1;
     }
 
     .search-helper__item {
