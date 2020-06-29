@@ -28,8 +28,7 @@ const updateRecents = (state) => {
     newSearchRecents = [
         ...newSearchRecents,
         {
-            // @TODO: There is some sort of 'id: -1' problem here :\
-            id: newSearchRecents.length - 1,
+            id: newSearchRecents.length,
             word: state.searchTerm,
         },
     ];
