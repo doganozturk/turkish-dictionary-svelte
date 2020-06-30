@@ -6,18 +6,22 @@ const initialState = {
 
 const { subscribe, set, update } = writable(initialState);
 
+const addDeletable = (deletable) =>
+    update((state) => ({
+        ...state,
+        deletables: [...state.deletables, deletable],
+    }));
+
+const removeDeletable = (deletable) =>
+    update((state) => ({
+        ...state,
+        deletables: state.deletables.filter((id) => id !== deletable),
+    }));
+
 export const detailDelete = {
     subscribe,
-    addDeletable: (deletable) =>
-        update((state) => ({
-            ...state,
-            deletables: [...state.deletables, deletable],
-        })),
-    removeDeletable: (deletable) =>
-        update((state) => ({
-            ...state,
-            deletables: state.deletables.filter((id) => id !== deletable),
-        })),
+    addDeletable,
+    removeDeletable,
     set: (param, value) => update((state) => ({ ...state, [param]: value })),
     reset: () => set(initialState),
 };

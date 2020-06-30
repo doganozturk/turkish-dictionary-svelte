@@ -18,7 +18,7 @@
         height: 162px;
         padding: 16px;
         background-color: var(--white);
-        z-index: 1;
+        z-index: 2;
         box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.04);
     }
 

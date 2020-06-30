@@ -1,6 +1,6 @@
 <script>
     import { createEventDispatcher } from 'svelte';
-    import { detailDelete } from '../../../stores';
+    import { detailDelete } from '../../../../stores';
 
     const dispatch = createEventDispatcher();
 

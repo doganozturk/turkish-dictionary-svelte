@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 import { localStorageService } from '../services';
 
-const MAX_SEARCH_RECENT_NUMBER = 10;
+const MAX_SEARCH_RECENT_NUMBER = 5;
 
 const initialState = {
     searchMode: false,

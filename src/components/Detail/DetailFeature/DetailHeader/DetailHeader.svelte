@@ -1,6 +1,6 @@
 <script>
-    import Icon from '../../UI/Icon/Icon.svelte';
-    import NavLink from '../../UI/NavLink/NavLink.svelte';
+    import Icon from '../../../UI/Icon/Icon.svelte';
+    import NavLink from '../../../UI/NavLink/NavLink.svelte';
 
     export let title = '';
 </script>

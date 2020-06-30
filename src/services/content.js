@@ -1,7 +1,7 @@
-import TDKAPI from '../apis/tdk-api';
+import tdk from '../apis/tdk';
 
 export const contentService = {
     getContent() {
-        return TDKAPI.get('/icerik');
+        return tdk.get('/icerik');
     },
 };

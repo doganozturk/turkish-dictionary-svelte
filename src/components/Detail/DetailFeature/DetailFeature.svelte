@@ -1,7 +1,7 @@
 <script>
     import { detailDelete } from '../../../stores';
-    import DetailHeader from '../../../components/Detail/DetailHeader/DetailHeader.svelte';
-    import DetailNav from '../../../components/Detail/DetailNav/DetailNav.svelte';
+    import DetailHeader from './DetailHeader/DetailHeader.svelte';
+    import DetailNav from './DetailNav/DetailNav.svelte';
     import DetailContent from './DetailContent/DetailContent.svelte';
     import DetailDeleteModal from './DetailDeleteModal/DetailDeleteModal.svelte';
 
