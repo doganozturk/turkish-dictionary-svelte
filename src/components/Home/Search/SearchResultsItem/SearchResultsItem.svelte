@@ -1,6 +1,7 @@
 <script>
     import { search } from '../../../../stores';
     import Icon from '../../../UI/Icon/Icon.svelte';
+    import NavLink from '../../../UI/NavLink/NavLink.svelte';
 
     export let data = '';
 
@@ -25,9 +26,15 @@
     .search-results-item {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         min-height: 84px;
         background-color: var(--white);
+    }
+    :global(.search-results-item a) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
     }
     .search-results-item + .search-results-item {
         border-top: 1px solid #eef0f2;
@@ -42,10 +49,15 @@
 </style>
 
 <li class="search-results-item">
-    <span class="search-results-item__word">
-        {@html makeSearchTermBold($search.searchTerm)}
-    </span>
-    <span class="search-results-item__icon-chevron">
-        <Icon name="tdk-icon-chevron-right" size={20} color="var(--tdk-main)" />
-    </span>
+    <NavLink to={`/detay/${data}`}>
+        <span class="search-results-item__word">
+            {@html makeSearchTermBold($search.searchTerm)}
+        </span>
+        <span class="search-results-item__icon-chevron">
+            <Icon
+                name="tdk-icon-chevron-right"
+                size={20}
+                color="var(--tdk-main)" />
+        </span>
+    </NavLink>
 </li>

@@ -1,6 +1,6 @@
 <script>
-    import Icon from '../../../UI/Icon/Icon.svelte';
-    import NavLink from '../../../UI/NavLink/NavLink.svelte';
+    import Icon from '../../UI/Icon/Icon.svelte';
+    import NavLink from '../../UI/NavLink/NavLink.svelte';
 
     export let title = '';
 </script>
@@ -24,6 +24,7 @@
     .detail-header__title h2 {
         font-size: var(--font-size-sm);
         color: var(--text-heading);
+        text-transform: capitalize;
         transform: translateX(-9px);
     }
 </style>

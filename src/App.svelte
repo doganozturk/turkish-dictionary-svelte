@@ -21,6 +21,11 @@
         font-family: 'SF Pro Text', sans-serif;
         background-color: var(--tdk-page-bg);
     }
+
+    :global(a) {
+        color: inherit;
+        text-decoration: inherit;
+    }
 </style>
 
 <div class="app">
@@ -29,7 +34,7 @@
     <Router>
         <Route path="favoriler" component={Favorites} />
         <Route path="gecmis" component={History} />
-        <Route path="detay" component={Detail} />
+        <Route path="detay/:word" component={Detail} />
         <Route path="/" component={Home} />
 
         <Footer />
