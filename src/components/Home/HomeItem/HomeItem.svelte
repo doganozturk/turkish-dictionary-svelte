@@ -17,7 +17,7 @@
 
     .home-item__content {
         width: 100%;
-        height: 72px;
+        min-height: 72px;
         margin-top: 10px;
         padding: 13px;
         background-color: var(--white);
@@ -38,6 +38,7 @@
     .inner__desc {
         margin-top: 10px;
         font-size: var(--font-size-xs);
+        line-height: 1.3;
         color: var(--text-paragraph);
     }
 </style>

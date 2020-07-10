@@ -1,6 +1,7 @@
 <script>
     import DetailHeader from '../components/Detail/DetailHeader/DetailHeader.svelte';
     import DetailNav from '../components/Detail/DetailNav/DetailNav.svelte';
+    import DetailTop from '../components/Detail/DetailTop/DetailTop.svelte';
 
     export let data = [];
     export let word = '';
@@ -17,4 +18,5 @@
 <DetailHeader title={word} />
 <main class="detail">
     <DetailNav />
+    <DetailTop title={word} />
 </main>
