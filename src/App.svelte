@@ -38,8 +38,8 @@
         <Route path="gecmis">
             <History />
         </Route>
-        <Route path="detay/:word">
-            <Detail />
+        <Route path="detay/:word" let:params>
+            <Detail word={params.word} />
         </Route>
         <Route path="/">
             <Home />
