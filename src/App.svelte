@@ -32,10 +32,18 @@
     <Icons />
 
     <Router>
-        <Route path="favoriler" component={Favorites} />
-        <Route path="gecmis" component={History} />
-        <Route path="detay/:word" component={Detail} />
-        <Route path="/" component={Home} />
+        <Route path="favoriler">
+            <Favorites />
+        </Route>
+        <Route path="gecmis">
+            <History />
+        </Route>
+        <Route path="detay/:word">
+            <Detail />
+        </Route>
+        <Route path="/">
+            <Home />
+        </Route>
 
         <Footer />
     </Router>
