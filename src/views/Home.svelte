@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { onMount } from 'svelte';
     import { ui, search } from '../stores';
     import { contentService } from '../services';
@@ -15,7 +15,8 @@
         homeContent = await getInitialData();
     });
 
-    async function getInitialData() {
+    async function getInitialData(): HomeContentItem[] {
+        // @TODO: Burada 'data' nın typing'i dandik.
         const { data, error } = await contentService.getContent();
 
         if (error) {

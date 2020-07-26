@@ -1,9 +1,18 @@
 import { writable } from 'svelte/store';
 import { localStorageService } from '../services';
+import { SearchItem, AutocompleteItem } from '../models';
 
 const MAX_SEARCH_RECENT_NUMBER = 5;
 
-const initialState = {
+interface IStoreState {
+    searchMode: boolean;
+    searchTerm: string;
+    searchResults: string[];
+    searchRecents: SearchItem[];
+    autocompleteData: AutocompleteItem[];
+}
+
+const initialState: IStoreState = {
     searchMode: false,
     searchTerm: '',
     searchResults: [],
@@ -13,12 +22,12 @@ const initialState = {
 
 const { subscribe, update } = writable(initialState);
 
-const updateRecents = (state) => {
+const updateRecents = (state: IStoreState): SearchItem[] => {
     if (state.searchRecents.some((item) => item.word === state.searchTerm)) {
         return state.searchRecents;
     }
 
-    let newSearchRecents = [];
+    let newSearchRecents: SearchItem[] = [];
 
     newSearchRecents =
         state.searchRecents.length === MAX_SEARCH_RECENT_NUMBER
@@ -27,10 +36,7 @@ const updateRecents = (state) => {
 
     newSearchRecents = [
         ...newSearchRecents,
-        {
-            id: newSearchRecents.length,
-            word: state.searchTerm,
-        },
+        new SearchItem(newSearchRecents.length + 1, state.searchTerm),
     ];
 
     localStorageService.setSearchRecents(newSearchRecents);
@@ -66,6 +72,7 @@ const reset = () =>
 export const search = {
     subscribe,
     fetchResults,
+    // @TODO: How to type this?
     set: (param, value) => update((state) => ({ ...state, [param]: value })),
     reset,
 };

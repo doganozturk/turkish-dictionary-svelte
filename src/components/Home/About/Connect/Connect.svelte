@@ -1,8 +1,17 @@
-<script>
+<script lang="ts">
     import Button from '../../../UI/Button/Button.svelte';
     import Icon from '../../../UI/Icon/Icon.svelte';
 
-    const data = [
+    const data: {
+        name: string;
+        address: string;
+        phone: string;
+        fax: string;
+        contactButton: {
+            title: string;
+            link: string;
+        };
+    }[] = [
         {
             name: 'Türk Dil Kurumu Başkanlığı',
             address: 'Atatürk Bulvarı No: 217 06680 Kavaklıdere/ANKARA',

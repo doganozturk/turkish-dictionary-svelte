@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
     import { Link } from 'svelte-routing';
 
     export let to = '/';
 
-    // eslint-disable-next-line
-    function getProps({ location, href, isPartiallyCurrent, isCurrent }) {
+    // @TODO: Bunun typing'ine bakalım.
+    function getProps({ href, isPartiallyCurrent, isCurrent }) {
         const isActive =
             href === '/' ? isCurrent : isPartiallyCurrent || isCurrent;
 

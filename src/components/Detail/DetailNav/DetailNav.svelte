@@ -1,10 +1,14 @@
-<script>
+<script lang="ts">
     import { createEventDispatcher } from 'svelte';
     import { detailDelete } from '../../../stores';
 
     const dispatch = createEventDispatcher();
 
-    let navData = [
+    let navData: {
+        id: number;
+        title: string;
+        active: boolean;
+    }[] = [
         {
             id: 1,
             title: 'Sözcük',
@@ -22,7 +26,7 @@
         },
     ];
 
-    function handleNavItemClick(id) {
+    function handleNavItemClick(id: number) {
         navData = navData.map((data) => {
             data.active = data.id === id;
 

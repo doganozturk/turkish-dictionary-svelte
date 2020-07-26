@@ -6,14 +6,18 @@
         "dev": "rollup -c -w",
         "start": "sirv public --single",
         "lint": "eslint --fix",
-        "lint:all": "eslint '*/**/*.{js,svelte}' --fix",
+        "lint:all": "eslint '*/**/*.{ts,svelte}' --fix",
         "format": "prettier --write",
-        "format:all": "prettier --write '*/**/*.{js,svelte}'"
+        "format:all": "prettier --write '*/**/*.{ts,svelte}'"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "11.0.2",
         "@rollup/plugin-json": "^4.1.0",
         "@rollup/plugin-node-resolve": "^7.0.0",
+        "@rollup/plugin-typescript": "^5.0.2",
+        "@tsconfig/svelte": "^1.0.3",
+        "@typescript-eslint/eslint-plugin": "^3.7.0",
+        "@typescript-eslint/parser": "^3.7.0",
         "eslint": "^7.0.0",
         "eslint-config-prettier": "^6.11.0",
         "eslint-plugin-prettier": "^3.1.3",
@@ -22,12 +26,15 @@
         "lint-staged": "^10.2.2",
         "prettier": "^2.0.5",
         "prettier-plugin-svelte": "^1.1.0",
-        "rollup": "^1.20.0",
+        "rollup": "^2.23.0",
         "rollup-plugin-livereload": "^1.0.0",
         "rollup-plugin-svelte": "^5.0.3",
         "rollup-plugin-terser": "^5.1.2",
-        "svelte": "^3.0.0",
-        "svelte-routing": "^1.4.2"
+        "svelte": "^3.24.0",
+        "svelte-check": "^0.1.56",
+        "svelte-preprocess": "^4.0.8",
+        "svelte-routing": "^1.4.2",
+        "typescript": "^3.9.7"
     },
     "dependencies": {
         "axios": "^0.19.2",
@@ -40,7 +47,7 @@
         }
     },
     "lint-staged": {
-        "*.{js,svelte}": [
+        "*.{ts,svelte}": [
             "npm run format",
             "npm run lint"
         ]

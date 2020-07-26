@@ -1,19 +1,16 @@
-<script>
+<script lang="ts">
     import { onMount } from 'svelte';
     import { history } from '../stores';
+    import { FeatureDataItem } from '../models';
     import DetailHeader from '../components/Detail/DetailHeader/DetailHeader.svelte';
     import DetailNav from '../components/Detail/DetailNav/DetailNav.svelte';
     import DetailTop from '../components/Detail/DetailTop/DetailTop.svelte';
 
-    export let data = [];
+    export let data: FeatureDataItem[] = [];
     export let word = '';
 
     onMount(() => {
-        history.addHistoryItem({
-            id: 7,
-            word: 'cemaat',
-            type: 1, // Sözcük
-        });
+        history.addHistoryItem(new FeatureDataItem(7, 'cemaat', 1));
     });
 </script>
 

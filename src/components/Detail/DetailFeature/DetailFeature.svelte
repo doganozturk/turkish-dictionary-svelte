@@ -1,17 +1,19 @@
-<script>
+<script lang="ts">
     import { detailDelete } from '../../../stores';
+    import { FeatureDataItem } from '../../../models';
     import DetailHeader from '../DetailHeader/DetailHeader.svelte';
     import DetailNav from '../DetailNav/DetailNav.svelte';
     import DetailContent from './DetailContent/DetailContent.svelte';
     import DetailDeleteModal from './DetailDeleteModal/DetailDeleteModal.svelte';
 
-    export let data = [];
+    export let data: FeatureDataItem[] = [];
     export let headerTitle = '';
 
     let selectedType = 1;
 
     $: filtered = data.filter((d) => d.type === selectedType);
 
+    // @TODO: 'event' type?
     function filterData(event) {
         filtered = data.filter((d) => d.type === event.detail);
         selectedType = event.detail;

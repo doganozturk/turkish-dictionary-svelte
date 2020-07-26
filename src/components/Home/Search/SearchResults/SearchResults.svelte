@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { search } from '../../../../stores';
     import SearchResultsItem from '../SearchResultsItem/SearchResultsItem.svelte';
 </script>
