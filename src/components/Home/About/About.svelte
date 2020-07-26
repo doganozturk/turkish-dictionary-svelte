@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+    import { SvelteComponent } from 'svelte';
     import AboutUs from './AboutUs/AboutUs.svelte';
     import Connect from './Connect/Connect.svelte';
     import Feedback from './Feedback/Feedback.svelte';
@@ -6,10 +7,10 @@
     import Icon from '../../UI/Icon/Icon.svelte';
 
     let navigationVisible = true;
-    let currentView = null;
+    let currentView: SvelteComponent = null;
     let currentTitle = '';
 
-    const items = [
+    const items: { component: SvelteComponent; title: string } = [
         {
             component: AboutUs,
             title: 'Hakkında',
@@ -24,7 +25,7 @@
         },
     ];
 
-    function handleNavClick(component, title) {
+    function handleNavClick(component: SvelteComponent, title: string) {
         navigationVisible = false;
         currentView = component;
         currentTitle = title;

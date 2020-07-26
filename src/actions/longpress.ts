@@ -1,10 +1,10 @@
-export function longpress(node, threshold = 300) {
+export function longpress(node: HTMLElement, threshold = 300) {
     const handleMousedown = () => {
         const timeout = setTimeout(() => {
             node.dispatchEvent(new CustomEvent('longpress'));
         }, threshold);
 
-        const handleContextmenu = (e) => e.preventDefault();
+        const handleContextmenu = (e: TouchEvent) => e.preventDefault();
 
         const cancel = () => {
             clearTimeout(timeout);

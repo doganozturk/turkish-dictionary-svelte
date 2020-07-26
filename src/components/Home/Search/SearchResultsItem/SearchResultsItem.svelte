@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
     import { search } from '../../../../stores';
     import Icon from '../../../UI/Icon/Icon.svelte';
     import NavLink from '../../../UI/NavLink/NavLink.svelte';
 
     export let data = '';
 
-    function makeSearchTermBold(term) {
+    function makeSearchTermBold(term: string): string {
         const index = data.indexOf(term);
 
         if (index < 0) {

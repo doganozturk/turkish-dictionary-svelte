@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
     import { search } from '../../../../stores';
 
     const data = ['ç', 'ğ', 'ı', 'ö', 'ş', 'ü', 'â', 'î', 'û'];
 
-    function handleClick(word) {
+    function handleClick(word: string) {
         search.set('searchTerm', $search.searchTerm + word);
         search.fetchResults();
     }

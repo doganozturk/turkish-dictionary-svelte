@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { search } from '../../../../stores';
     import DetailContent from '../../../Detail/DetailFeature/DetailContent/DetailContent.svelte';
 </script>

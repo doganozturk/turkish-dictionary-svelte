@@ -1,33 +1,14 @@
-<script>
+<script lang="ts">
     import DetailFeature from '../components/Detail/DetailFeature/DetailFeature.svelte';
     import DetailNoContent from '../components/Detail/DetailFeature/DetailNoContent/DetailNoContent.svelte';
+    import { FeatureDataItem } from '../models';
 
-    const favoriteData = [
-        {
-            id: 1,
-            word: 'kalem',
-            type: 1, // Sözcük
-        },
-        {
-            id: 2,
-            word: 'gül',
-            type: 1,
-        },
-        {
-            id: 7,
-            word: 'selam',
-            type: 1,
-        },
-        {
-            id: 8,
-            word: 'rüzgar',
-            type: 1,
-        },
-        {
-            id: 9,
-            word: 'feyz',
-            type: 1,
-        },
+    const favoriteData: FeatureDataItem[] = [
+        new FeatureDataItem(1, 'kalem', 1),
+        new FeatureDataItem(2, 'gül', 1),
+        new FeatureDataItem(7, 'selam', 1),
+        new FeatureDataItem(8, 'rüzgar', 1),
+        new FeatureDataItem(9, 'feyz', 1),
     ];
 </script>
 

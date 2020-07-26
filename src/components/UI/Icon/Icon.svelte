@@ -1,8 +1,8 @@
-<script>
-    export let name;
+<script lang="ts">
+    export let name: string = '';
     export let size = 24;
-    export let width = null;
-    export let height = null;
+    export let width: number | null = null;
+    export let height: number | null = null;
     export let color = 'var(--text-paragraph-2)';
 </script>
 

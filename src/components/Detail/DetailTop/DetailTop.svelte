@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Icon from '../../UI/Icon/Icon.svelte';
     import Button from '../../UI/Button/Button.svelte';
 

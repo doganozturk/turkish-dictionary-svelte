@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import NavLink from '../NavLink/NavLink.svelte';
     import Button from '../Button/Button.svelte';
     import Icon from '../Icon/Icon.svelte';
