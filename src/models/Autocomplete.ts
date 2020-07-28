@@ -1,3 +1,3 @@
-export class AutocompleteItem {
+export class Autocomplete {
     constructor(public madde: string) {}
 }

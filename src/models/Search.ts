@@ -1,3 +1,3 @@
-export class SearchItem {
+export class Search {
     constructor(public id: number, public word: string) {}
 }

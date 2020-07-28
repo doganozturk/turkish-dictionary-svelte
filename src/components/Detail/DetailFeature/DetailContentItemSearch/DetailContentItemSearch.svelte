@@ -1,8 +1,8 @@
 <script lang="ts">
     import { search } from '../../../../stores';
-    import { FeatureDataItem } from '../../../../models';
+    import { FeatureData } from '../../../../models';
 
-    export let data: FeatureDataItem = null;
+    export let data: FeatureData = null;
 
     function handleClick(word: string) {
         search.set('searchTerm', word);

@@ -1,12 +1,12 @@
 <script lang="ts">
     import { detailDelete } from '../../../stores';
-    import { FeatureDataItem } from '../../../models';
+    import { FeatureData } from '../../../models';
     import DetailHeader from '../DetailHeader/DetailHeader.svelte';
     import DetailNav from '../DetailNav/DetailNav.svelte';
     import DetailContent from './DetailContent/DetailContent.svelte';
     import DetailDeleteModal from './DetailDeleteModal/DetailDeleteModal.svelte';
 
-    export let data: FeatureDataItem[] = [];
+    export let data: FeatureData[] = [];
     export let headerTitle = '';
 
     let selectedType = 1;

@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { ui, search } from '../stores';
     import { contentService } from '../services';
-    import { HomeContentItem } from '../models';
+    import { HomeContent } from '../models';
     import Header from '../components/Home/Header/Header.svelte';
     import HomeItem from '../components/Home/HomeItem/HomeItem.svelte';
     import Search from '../components/Home/Search/Search.svelte';
@@ -15,7 +15,7 @@
         homeContent = await getInitialData();
     });
 
-    async function getInitialData(): HomeContentItem[] {
+    async function getInitialData(): HomeContent[] {
         // @TODO: Burada 'data' nın typing'i dandik.
         const { data, error } = await contentService.getContent();
 
@@ -24,12 +24,12 @@
         }
 
         return [
-            new HomeContentItem(
+            new HomeContent(
                 'Bir Kelime',
                 data.kelime[0].madde,
                 data.kelime[0].anlam,
             ),
-            new HomeContentItem(
+            new HomeContent(
                 'Bir Deyim-Atasözü',
                 data.atasoz[0].madde,
                 data.atasoz[0].anlam,

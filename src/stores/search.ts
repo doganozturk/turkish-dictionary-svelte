@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import { localStorageService } from '../services';
-import { SearchItem, AutocompleteItem } from '../models';
+import { Search, Autocomplete } from '../models';
 
 const MAX_SEARCH_RECENT_NUMBER = 5;
 
@@ -8,8 +8,8 @@ interface IStoreState {
     searchMode: boolean;
     searchTerm: string;
     searchResults: string[];
-    searchRecents: SearchItem[];
-    autocompleteData: AutocompleteItem[];
+    searchRecents: Search[];
+    autocompleteData: Autocomplete[];
 }
 
 const initialState: IStoreState = {
@@ -22,12 +22,12 @@ const initialState: IStoreState = {
 
 const { subscribe, update } = writable(initialState);
 
-const updateRecents = (state: IStoreState): SearchItem[] => {
+const updateRecents = (state: IStoreState): Search[] => {
     if (state.searchRecents.some((item) => item.word === state.searchTerm)) {
         return state.searchRecents;
     }
 
-    let newSearchRecents: SearchItem[] = [];
+    let newSearchRecents: Search[] = [];
 
     newSearchRecents =
         state.searchRecents.length === MAX_SEARCH_RECENT_NUMBER
@@ -36,7 +36,7 @@ const updateRecents = (state: IStoreState): SearchItem[] => {
 
     newSearchRecents = [
         ...newSearchRecents,
-        new SearchItem(newSearchRecents.length + 1, state.searchTerm),
+        new Search(newSearchRecents.length + 1, state.searchTerm),
     ];
 
     localStorageService.setSearchRecents(newSearchRecents);

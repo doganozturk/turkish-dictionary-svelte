@@ -1,18 +1,18 @@
 import { writable } from 'svelte/store';
-import { FeatureDataItem } from '../models';
+import { FeatureData } from '../models';
 
 interface IHistoryState {
-    history: FeatureDataItem[];
+    history: FeatureData[];
 }
 
 const initialState: IHistoryState = {
     history: [
-        new FeatureDataItem(1, 'kalem', 1),
-        new FeatureDataItem(2, 'gül', 1),
-        new FeatureDataItem(3, 'kalemiyle yaşamak (veya geçinmek)', 2),
-        new FeatureDataItem(4, 'kalemine dolanmak', 2),
-        new FeatureDataItem(5, 'kalem savaşçısı', 3),
-        new FeatureDataItem(6, 'kalem erbabı', 3),
+        new FeatureData(1, 'kalem', 1),
+        new FeatureData(2, 'gül', 1),
+        new FeatureData(3, 'kalemiyle yaşamak (veya geçinmek)', 2),
+        new FeatureData(4, 'kalemine dolanmak', 2),
+        new FeatureData(5, 'kalem savaşçısı', 3),
+        new FeatureData(6, 'kalem erbabı', 3),
     ],
 };
 
@@ -20,7 +20,7 @@ const { subscribe, set, update } = writable(initialState);
 
 export const history = {
     subscribe,
-    addHistoryItem: (historyItem: FeatureDataItem) =>
+    addHistoryItem: (historyItem: FeatureData) =>
         update((state) => ({
             ...state,
             history: state.history.concat([historyItem]),

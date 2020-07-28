@@ -1,4 +1,4 @@
-export class HomeContentItem {
+export class HomeContent {
     constructor(
         public title: string,
         public word: string,

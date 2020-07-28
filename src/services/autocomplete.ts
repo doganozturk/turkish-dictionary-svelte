@@ -1,9 +1,9 @@
 // @ts-ignore
 import data from '../../public/data/autocomplete.json';
-import type { AutocompleteItem } from '../models';
+import type { Autocomplete } from '../models';
 
 export const autocompleteService = {
-    getAutocompleteData(): AutocompleteItem[] {
+    getAutocompleteData(): Autocomplete[] {
         return data;
     },
 };

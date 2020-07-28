@@ -1,10 +1,10 @@
 <script lang="ts">
     import { detailDelete } from '../../../../stores';
     import { longpress } from '../../../../actions';
-    import { FeatureDataItem } from '../../../../models';
+    import { FeatureData } from '../../../../models';
     import Icon from '../../../UI/Icon/Icon.svelte';
 
-    export let data: FeatureDataItem = null;
+    export let data: FeatureData = null;
 
     $: pressed = $detailDelete.deletables.some((id) => id === data.id);
 
