@@ -1,12 +1,12 @@
 <script lang="ts">
     import { SvelteComponent } from 'svelte';
-    import { FeatureData } from '../../../../models';
+    import { Word } from '../../../../models';
     import DetailContentItemDeletable from '../DetailContentItemDeletable/DetailContentItemDeletable.svelte';
     import DetailContentItemSearch from '../DetailContentItemSearch/DetailContentItemSearch.svelte';
 
     // @TODO: Buraya enum olabilir.
     export let type = 'deletable'; // 'deletable', 'search'
-    export let detailData: FeatureData[] = [];
+    export let detailData: Word[] = [];
     export let title = '';
 
     const componentMapping: {

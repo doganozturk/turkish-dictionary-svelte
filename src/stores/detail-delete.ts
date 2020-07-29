@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 interface IDetailDeleteState {
-    deletables: number[];
+    deletables: string[];
 }
 
 const initialState: IDetailDeleteState = {
@@ -10,16 +10,16 @@ const initialState: IDetailDeleteState = {
 
 const { subscribe, set, update } = writable(initialState);
 
-const addDeletable = (deletable: number) =>
+const addDeletable = (deletable: string) =>
     update((state) => ({
         ...state,
         deletables: [...state.deletables, deletable],
     }));
 
-const removeDeletable = (deletable: number) =>
+const removeDeletable = (deletable: string) =>
     update((state) => ({
         ...state,
-        deletables: state.deletables.filter((id) => id !== deletable),
+        deletables: state.deletables.filter((word) => word !== deletable),
     }));
 
 export const detailDelete = {

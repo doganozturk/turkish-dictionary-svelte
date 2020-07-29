@@ -1,14 +1,14 @@
 <script lang="ts">
     import DetailFeature from '../components/Detail/DetailFeature/DetailFeature.svelte';
     import DetailNoContent from '../components/Detail/DetailFeature/DetailNoContent/DetailNoContent.svelte';
-    import { FeatureData } from '../models';
+    import { Word, WordType } from '../models';
 
-    const favoriteData: FeatureData[] = [
-        new FeatureData(1, 'kalem', 1),
-        new FeatureData(2, 'gül', 1),
-        new FeatureData(7, 'selam', 1),
-        new FeatureData(8, 'rüzgar', 1),
-        new FeatureData(9, 'feyz', 1),
+    const favoriteData: Word[] = [
+        new Word('kalem', WordType.WORD),
+        new Word('gül', WordType.WORD),
+        new Word('selam', WordType.WORD),
+        new Word('rüzgar', WordType.WORD),
+        new Word('feyz', WordType.WORD),
     ];
 </script>
 

@@ -1,15 +1,15 @@
 <script lang="ts">
     import { detailDelete } from '../../../stores';
-    import { FeatureData } from '../../../models';
+    import { Word, WordType } from '../../../models';
     import DetailHeader from '../DetailHeader/DetailHeader.svelte';
     import DetailNav from '../DetailNav/DetailNav.svelte';
     import DetailContent from './DetailContent/DetailContent.svelte';
     import DetailDeleteModal from './DetailDeleteModal/DetailDeleteModal.svelte';
 
-    export let data: FeatureData[] = [];
+    export let data: Word[] = [];
     export let headerTitle = '';
 
-    let selectedType = 1;
+    let selectedType = WordType.WORD;
 
     $: filtered = data.filter((d) => d.type === selectedType);
 
@@ -22,7 +22,7 @@
     function deleteAllSelectedData() {
         data = data
             .map((d) => {
-                if ($detailDelete.deletables.includes(d.id)) {
+                if ($detailDelete.deletables.includes(d.word)) {
                     return false;
                 }
 
@@ -36,7 +36,7 @@
     function selectAllData() {
         detailDelete.set(
             'deletables',
-            filtered.map((d) => d.id),
+            filtered.map((d) => d.word),
         );
     }
 

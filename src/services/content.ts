@@ -12,10 +12,14 @@ export const contentService = {
     > {
         return tdk.get('/icerik');
     },
-    getWordDetail(word: string): Promise<AxiosResponse> {
+    getWordDetail(
+        word: string,
+    ): Promise<AxiosResponse<{ data: ContentResponse; error: AxiosError }>> {
         return tdk.get('/yazim', { params: { ara: word } });
     },
-    getGts(word: string): Promise<AxiosResponse> {
+    getGts(
+        word: string,
+    ): Promise<AxiosResponse<{ data: ContentResponse; error: AxiosError }>> {
         return tdk.get('/gts', { params: { ara: word } });
     },
 };

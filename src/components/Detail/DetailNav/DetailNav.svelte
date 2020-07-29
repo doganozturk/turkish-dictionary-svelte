@@ -1,39 +1,40 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
     import { detailDelete } from '../../../stores';
+    import { WordType } from '../../../models';
 
     const dispatch = createEventDispatcher();
 
     let navData: {
-        id: number;
+        type: WordType;
         title: string;
         active: boolean;
     }[] = [
         {
-            id: 1,
+            type: WordType.WORD,
             title: 'Sözcük',
             active: true,
         },
         {
-            id: 2,
+            type: WordType.PROVERB,
             title: 'Atasözleri & Deyimler',
             active: false,
         },
         {
-            id: 3,
+            type: WordType.COMPOUND_WORD,
             title: 'Birleşik Kelimeler',
             active: false,
         },
     ];
 
-    function handleNavItemClick(id: number) {
+    function handleNavItemClick(type: WordType) {
         navData = navData.map((data) => {
-            data.active = data.id === id;
+            data.active = data.type === type;
 
             return data;
         });
 
-        dispatch('filter', id);
+        dispatch('filter', type);
 
         detailDelete.reset();
     }
@@ -98,11 +99,11 @@
 
 <nav class="detail-nav">
     <ul class="nav__list">
-        {#each navData as data (data.id)}
+        {#each navData as data (data.type)}
             <li
                 class="list__item"
                 class:list__item--active={data.active}
-                on:click={() => handleNavItemClick(data.id)}>
+                on:click={() => handleNavItemClick(data.type)}>
                 <div class="item__inner">
                     <span class="inner__title">{data.title}</span>
                 </div>

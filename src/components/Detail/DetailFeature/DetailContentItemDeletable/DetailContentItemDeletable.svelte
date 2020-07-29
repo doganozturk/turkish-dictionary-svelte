@@ -1,19 +1,21 @@
 <script lang="ts">
     import { detailDelete } from '../../../../stores';
     import { longpress } from '../../../../actions';
-    import { FeatureData } from '../../../../models';
+    import { Word } from '../../../../models';
     import Icon from '../../../UI/Icon/Icon.svelte';
 
-    export let data: FeatureData = null;
+    export let data: Word = null;
 
-    $: pressed = $detailDelete.deletables.some((id) => id === data.id);
+    $: pressed = $detailDelete.deletables.some(
+        (word: string) => word === data.word,
+    );
 
     function handleLongpress() {
         if (pressed) {
             return;
         }
 
-        detailDelete.addDeletable(data.id);
+        detailDelete.addDeletable(data.word);
     }
 
     function handleClick() {
@@ -22,13 +24,13 @@
         }
 
         if (!pressed) {
-            detailDelete.addDeletable(data.id);
+            detailDelete.addDeletable(data.word);
 
             return;
         }
 
         if (pressed) {
-            detailDelete.removeDeletable(data.id);
+            detailDelete.removeDeletable(data.word);
         }
     }
 </script>

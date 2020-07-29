@@ -1,16 +1,26 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { history } from '../stores';
-    import { FeatureData } from '../models';
+    import { Word, WordType } from '../models';
+    import { contentService } from '../services';
     import DetailHeader from '../components/Detail/DetailHeader/DetailHeader.svelte';
     import DetailNav from '../components/Detail/DetailNav/DetailNav.svelte';
     import DetailTop from '../components/Detail/DetailTop/DetailTop.svelte';
 
-    export let data: FeatureData[] = [];
     export let word = '';
 
-    onMount(() => {
-        history.addHistoryItem(new FeatureData(7, 'cemaat', 1));
+    onMount(async () => {
+        const [detailResponse, gtsResponse] = await Promise.allSettled([
+            contentService.getWordDetail(word),
+            contentService.getGts(word),
+        ]);
+
+        // @TODO: This needs proper error handling.
+
+        console.log('detailResponse', detailResponse);
+        console.log('gtsResponse', gtsResponse);
+
+        history.addHistoryItem(new Word(word, WordType.WORD));
     });
 </script>
 

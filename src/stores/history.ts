@@ -1,34 +1,27 @@
 import { writable } from 'svelte/store';
-import { FeatureData } from '../models';
+import type { Word } from '../models';
 
 interface IHistoryState {
-    history: FeatureData[];
+    history: Word[];
 }
 
 const initialState: IHistoryState = {
-    history: [
-        new FeatureData(1, 'kalem', 1),
-        new FeatureData(2, 'gül', 1),
-        new FeatureData(3, 'kalemiyle yaşamak (veya geçinmek)', 2),
-        new FeatureData(4, 'kalemine dolanmak', 2),
-        new FeatureData(5, 'kalem savaşçısı', 3),
-        new FeatureData(6, 'kalem erbabı', 3),
-    ],
+    history: [],
 };
 
 const { subscribe, set, update } = writable(initialState);
 
 export const history = {
     subscribe,
-    addHistoryItem: (historyItem: FeatureData) =>
+    addHistoryItem: (historyItem: Word) =>
         update((state) => ({
             ...state,
             history: state.history.concat([historyItem]),
         })),
-    removeHistoryItem: (id: number) =>
+    removeHistoryItem: (word: string) =>
         update((state) => ({
             ...state,
-            history: state.history.filter((item) => item.id === id),
+            history: state.history.filter((item) => item.word === word),
         })),
     reset: () => set(initialState),
 };
