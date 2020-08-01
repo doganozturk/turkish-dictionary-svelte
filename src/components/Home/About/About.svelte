@@ -49,6 +49,7 @@
         border-top-right-radius: 18px;
         box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
         z-index: 3;
+        overflow: hidden;
     }
 
     .about__header {
@@ -57,9 +58,9 @@
         flex-direction: column;
         align-items: center;
         height: 186px;
-        background-image: url('../assets/images/background.png');
+        background-color: var(--tdk-main);
+        background-image: url('../assets/images/background.svg');
         background-repeat: no-repeat;
-        background-size: cover;
     }
 
     .header__logo {

@@ -15,11 +15,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 174px;
-        background-image: url('../assets/images/background.png');
+        height: 284px;
+        background-color: var(--tdk-main);
+        background-image: url('../assets/images/background.svg');
         background-repeat: no-repeat;
-        background-position-y: -14px;
-        background-size: cover;
     }
 
     .header__btn {
