@@ -1,4 +1,6 @@
 <script lang="ts">
+    // @TODO: bilgi@tdk.gov.tr should be constant.
+
     import Button from '../../../UI/Button/Button.svelte';
     import Icon from '../../../UI/Icon/Icon.svelte';
 </script>
@@ -42,9 +44,11 @@
             <p>Katkı ve önerileriniz için bize e-posta gönderebilirsiniz.</p>
         </div>
         <div class="feedback-container__btn">
-            <Button bg="var(--tdk-secondary-btn)">
-                <span slot="text" class="btn__text">E-Posta Yaz</span>
-            </Button>
+            <a href="mailto:bilgi@tdk.gov.tr" target="_blank">
+                <Button bg="var(--tdk-secondary-btn)">
+                    <span slot="text" class="btn__text">E-Posta Yaz</span>
+                </Button>
+            </a>
         </div>
     </div>
 </div>

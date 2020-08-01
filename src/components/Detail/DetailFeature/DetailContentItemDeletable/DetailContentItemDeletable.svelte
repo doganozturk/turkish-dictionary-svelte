@@ -1,8 +1,11 @@
 <script lang="ts">
+    // @TODO: NavLink a element is clickable even in delete mode!
+
     import { detailDelete } from '../../../../stores';
     import { longpress } from '../../../../actions';
     import { Word } from '../../../../models';
     import Icon from '../../../UI/Icon/Icon.svelte';
+    import NavLink from '../../../UI/NavLink/NavLink.svelte';
 
     export let data: Word = null;
 
@@ -53,6 +56,13 @@
     .detail-content-item + .detail-content-item {
         margin-top: 12px;
     }
+    :global(.detail-content-item a) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
 
     .detail-content-item__word {
         max-width: 230px;
@@ -68,11 +78,13 @@
     use:longpress
     on:longpress={handleLongpress}
     on:click={handleClick}>
-    <span class="detail-content-item__word">{data.word}</span>
-    <span class="detail-content-item__icon-chevron">
-        <Icon
-            name={pressed ? 'tdk-icon-check' : 'tdk-icon-chevron-right'}
-            size={20}
-            color="var(--tdk-main)" />
-    </span>
+    <NavLink to={`/detay/${data.word}`}>
+        <span class="detail-content-item__word">{data.word}</span>
+        <span class="detail-content-item__icon-chevron">
+            <Icon
+                name={pressed ? 'tdk-icon-check' : 'tdk-icon-chevron-right'}
+                size={20}
+                color="var(--tdk-main)" />
+        </span>
+    </NavLink>
 </li>

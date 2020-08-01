@@ -1,8 +1,22 @@
 <script lang="ts">
+    import { favorite } from '../../../stores';
+    import { Word, WordType } from '../../../models';
     import Icon from '../../UI/Icon/Icon.svelte';
     import Button from '../../UI/Button/Button.svelte';
 
     export let title = '';
+
+    $: isFavorited = $favorite.favorite.some((item) => item.word === title);
+
+    function favoriteButtonClickHandler() {
+        if (isFavorited) {
+            favorite.removeFavoriteItem(title);
+
+            return;
+        }
+
+        favorite.addFavoriteItem(new Word(title, WordType.WORD));
+    }
 </script>
 
 <style>
@@ -66,8 +80,11 @@
             </Button>
         </div>
         <div class="action action--favorite">
-            <Button bg="#fdfdfd">
-                <Icon name="tdk-icon-fav" size={20} />
+            <Button bg="#fdfdfd" on:click={favoriteButtonClickHandler}>
+                <Icon
+                    name={isFavorited ? 'tdk-icon-fav-solid' : 'tdk-icon-fav'}
+                    color={isFavorited ? 'var(--tdk-main)' : 'var(--text-paragraph-2)'}
+                    size={20} />
             </Button>
         </div>
         <div class="action action--signs">

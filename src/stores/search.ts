@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
-import { localStorageService } from '../services';
-import { Search, Autocomplete } from '../models';
+import { LOCAL_STORAGE_SERVICE_KEY, localStorageService } from '../services';
+import { Autocomplete, Search } from '../models';
 
 const MAX_SEARCH_RECENT_NUMBER = 5;
 
@@ -16,7 +16,9 @@ const initialState: IStoreState = {
     searchMode: false,
     searchTerm: '',
     searchResults: [],
-    searchRecents: localStorageService.getSearchRecents(),
+    searchRecents: localStorageService.get(
+        LOCAL_STORAGE_SERVICE_KEY.SEARCH_RECENTS,
+    ),
     autocompleteData: [],
 };
 
@@ -39,7 +41,10 @@ const updateRecents = (state: IStoreState): Search[] => {
         new Search(newSearchRecents.length + 1, state.searchTerm),
     ];
 
-    localStorageService.setSearchRecents(newSearchRecents);
+    localStorageService.set(
+        LOCAL_STORAGE_SERVICE_KEY.SEARCH_RECENTS,
+        newSearchRecents,
+    );
 
     return newSearchRecents;
 };

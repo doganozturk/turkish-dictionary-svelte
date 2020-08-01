@@ -8,6 +8,7 @@
 
     export let data: Word[] = [];
     export let headerTitle = '';
+    export let deleteAllSelectedDataHandler = () => {};
 
     let selectedType = WordType.WORD;
 
@@ -23,6 +24,8 @@
         data = data
             .map((d) => {
                 if ($detailDelete.deletables.includes(d.word)) {
+                    deleteAllSelectedDataHandler(d.word);
+
                     return false;
                 }
 

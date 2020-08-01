@@ -2,6 +2,7 @@
     import Button from '../../../UI/Button/Button.svelte';
     import Icon from '../../../UI/Icon/Icon.svelte';
 
+    // @TODO: This should be handled better.
     const data: {
         name: string;
         address: string;
@@ -10,6 +11,7 @@
         contactButton: {
             title: string;
             link: string;
+            type: string;
         };
     }[] = [
         {
@@ -18,8 +20,9 @@
             phone: '+90 312 457 52 00',
             fax: '+90 312 457 52 00',
             contactButton: {
+                type: 'email',
                 title: 'E-Posta Yaz',
-                link: '#',
+                link: 'bilgi@tdk.gov.tr',
             },
         },
         {
@@ -29,8 +32,9 @@
             phone: '+90 312 457 52 00',
             fax: null,
             contactButton: {
+                type: 'link',
                 title: 'E-Mağazaya Git',
-                link: '#',
+                link: 'https://emagaza-tdk.ayk.gov.tr',
             },
         },
     ];
@@ -73,7 +77,7 @@
         font-size: var(--font-size-sm);
         color: var(--text-paragraph-2);
     }
-    .contact-item__phone span,
+    .contact-item__phone a,
     .contact-item__fax span {
         margin-left: 14px;
     }
@@ -104,7 +108,7 @@
                             size={20}
                             color="var(--tdk-main)" />
                     </div>
-                    <span>{item.phone}</span>
+                    <a href={`tel:${item.phone}`}>{item.phone}</a>
                 </div>
                 {#if item.fax}
                     <div class="contact-item__fax">
@@ -118,11 +122,15 @@
                     </div>
                 {/if}
                 <div class="contact-item__btn">
-                    <Button bg="var(--tdk-secondary-btn)">
-                        <span slot="text" class="btn__text">
-                            {item.contactButton.title}
-                        </span>
-                    </Button>
+                    <a
+                        href={item.contactButton.type === 'email' ? `mailto:${item.contactButton.link}` : item.contactButton.link}
+                        target="_blank">
+                        <Button bg="var(--tdk-secondary-btn)">
+                            <span slot="text" class="btn__text">
+                                {item.contactButton.title}
+                            </span>
+                        </Button>
+                    </a>
                 </div>
             </div>
         {/each}

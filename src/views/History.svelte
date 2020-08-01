@@ -4,7 +4,10 @@
     import DetailNoContent from '../components/Detail/DetailFeature/DetailNoContent/DetailNoContent.svelte';
 </script>
 
-<DetailFeature data={$history.history} headerTitle="Geçmiş">
+<DetailFeature
+    data={$history.history}
+    headerTitle="Geçmiş"
+    deleteAllSelectedDataHandler={history.removeHistoryItem}>
     <DetailNoContent
         icon="tdk-icon-history"
         noContentText="Henüz geçmiş yok." />

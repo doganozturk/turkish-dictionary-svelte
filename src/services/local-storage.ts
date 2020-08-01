@@ -1,14 +1,16 @@
-import type { Search } from '../models';
-
-const SEARCH_RECENTS = 'SEARCH_RECENTS';
+export enum LOCAL_STORAGE_SERVICE_KEY {
+    SEARCH_RECENTS = 'SEARCH_RECENTS',
+    HISTORY = 'HISTORY',
+    FAVORITE = 'FAVORITE',
+}
 
 export const localStorageService = {
-    getSearchRecents(): Search[] {
-        const data = localStorage.getItem(SEARCH_RECENTS);
+    get<T>(key: LOCAL_STORAGE_SERVICE_KEY): T[] {
+        const data = localStorage.getItem(key);
 
         return data && data.length ? JSON.parse(data) : [];
     },
-    setSearchRecents(searchRecents: Search[]): void {
-        localStorage.setItem(SEARCH_RECENTS, JSON.stringify(searchRecents));
+    set<T>(key: LOCAL_STORAGE_SERVICE_KEY, items: T[]): void {
+        localStorage.setItem(key, JSON.stringify(items));
     },
 };

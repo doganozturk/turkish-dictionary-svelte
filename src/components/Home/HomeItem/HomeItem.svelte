@@ -1,4 +1,6 @@
 <script lang="ts">
+    import NavLink from '../../UI/NavLink/NavLink.svelte';
+
     export let title = '';
     export let word = '';
     export let desc = '';
@@ -8,6 +10,14 @@
     .home-item:not(:first-child) {
         margin-top: 50px;
     }
+
+    /*:global(.detail-content-item a) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }*/
 
     .home-item h2 {
         padding-left: 10px;
@@ -44,11 +54,13 @@
 </style>
 
 <div class="home-item">
-    <h2>{title}</h2>
-    <div class="home-item__content">
-        <div class="content__inner">
-            <h3 class="inner__title">{word}</h3>
-            <p class="inner__desc">{desc}</p>
+    <NavLink to={`/detay/${word}`}>
+        <h2>{title}</h2>
+        <div class="home-item__content">
+            <div class="content__inner">
+                <h3 class="inner__title">{word}</h3>
+                <p class="inner__desc">{desc}</p>
+            </div>
         </div>
-    </div>
+    </NavLink>
 </div>

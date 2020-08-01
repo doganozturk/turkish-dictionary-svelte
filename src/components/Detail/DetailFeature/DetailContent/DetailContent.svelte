@@ -38,7 +38,7 @@
         <h1 class="detail-content__title">{title}</h1>
     {/if}
     <ul class="detail-content__list">
-        {#each detailData as data (`${data.word}_${data.id}`)}
+        {#each detailData as data (`${data.word}_${data.type}`)}
             <svelte:component this={componentMapping[type]} {data} />
         {/each}
     </ul>
