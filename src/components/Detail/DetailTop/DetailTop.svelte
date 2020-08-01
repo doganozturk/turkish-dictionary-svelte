@@ -5,6 +5,7 @@
     import Button from '../../UI/Button/Button.svelte';
 
     export let title = '';
+    export let subtitle = '';
 
     $: isFavorited = $favorite.favorite.some((item) => item.word === title);
 
@@ -34,6 +35,7 @@
     }
 
     .detail-top p {
+        height: 14px;
         margin-top: 12px;
         font-size: var(--font-size-sm);
         font-style: italic;
@@ -72,7 +74,7 @@
 
 <section class="detail-top">
     <h1>{title}</h1>
-    <p>Arapça ḳalem</p>
+    <p>{subtitle}</p>
     <div class="detail-top__actions">
         <div class="action action--pronunciation">
             <Button bg="#fdfdfd">

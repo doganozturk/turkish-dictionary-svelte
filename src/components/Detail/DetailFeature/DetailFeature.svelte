@@ -1,4 +1,6 @@
 <script lang="ts">
+    // @TODO: DetailNav should not be in scrollable area.
+
     import { detailDelete } from '../../../stores';
     import { Word, WordType } from '../../../models';
     import DetailHeader from '../DetailHeader/DetailHeader.svelte';
@@ -53,6 +55,7 @@
         display: flex;
         flex-direction: column;
         flex: 1;
+        overflow-y: scroll;
     }
 </style>
 

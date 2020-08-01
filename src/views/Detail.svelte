@@ -9,6 +9,8 @@
 
     export let word = '';
 
+    let wordData = null;
+
     onMount(async () => {
         const [detailResponse, gtsResponse] = await Promise.allSettled([
             contentService.getWordDetail(word),
@@ -19,6 +21,8 @@
 
         console.log('detailResponse', detailResponse);
         console.log('gtsResponse', gtsResponse);
+
+        wordData = gtsResponse.value.data[0];
 
         history.addHistoryItem(new Word(word, WordType.WORD));
     });
@@ -35,5 +39,5 @@
 <DetailHeader title={word} />
 <main class="detail">
     <DetailNav />
-    <DetailTop title={word} />
+    <DetailTop title={word} subtitle={wordData ? wordData.lisan : ''} />
 </main>

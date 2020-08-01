@@ -11,14 +11,6 @@
         margin-top: 50px;
     }
 
-    /*:global(.detail-content-item a) {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        height: 100%;
-    }*/
-
     .home-item h2 {
         padding-left: 10px;
         font-size: var(--font-size-xs);
