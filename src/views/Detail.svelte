@@ -9,7 +9,8 @@
 
     export let word = '';
 
-    let wordData = null;
+    let language = '';
+    let soundCode = '';
 
     onMount(async () => {
         const [detailResponse, gtsResponse] = await Promise.allSettled([
@@ -22,7 +23,8 @@
         console.log('detailResponse', detailResponse);
         console.log('gtsResponse', gtsResponse);
 
-        wordData = gtsResponse.value.data[0];
+        language = gtsResponse?.value?.data?.[0]?.lisan;
+        soundCode = detailResponse?.value?.data?.[0]?.seskod;
 
         history.addHistoryItem(new Word(word, WordType.WORD));
     });
@@ -39,5 +41,5 @@
 <DetailHeader title={word} />
 <main class="detail">
     <DetailNav />
-    <DetailTop title={word} subtitle={wordData ? wordData.lisan : ''} />
+    <DetailTop title={word} {language} {soundCode} />
 </main>

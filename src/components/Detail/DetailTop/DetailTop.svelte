@@ -5,9 +5,25 @@
     import Button from '../../UI/Button/Button.svelte';
 
     export let title = '';
-    export let subtitle = '';
+    export let language = '';
+    export let soundCode = '';
+
+    let audio: HTMLAudioElement;
 
     $: isFavorited = $favorite.favorite.some((item) => item.word === title);
+
+    function soundButtonClickHandler() {
+        if (!soundCode) {
+            return;
+        }
+
+        if (!audio) {
+            audio = new Audio(`https://sozluk.gov.tr/ses/${soundCode}.wav`);
+        }
+
+        // @TODO: track this, and when it ends update UI accordingly.
+        audio.play();
+    }
 
     function favoriteButtonClickHandler() {
         if (isFavorited) {
@@ -74,11 +90,17 @@
 
 <section class="detail-top">
     <h1>{title}</h1>
-    <p>{subtitle}</p>
+    <p>{language || ''}</p>
     <div class="detail-top__actions">
         <div class="action action--pronunciation">
-            <Button bg="#fdfdfd">
-                <Icon name="tdk-icon-voice" size={20} />
+            <Button
+                bg="#fdfdfd"
+                on:click={soundButtonClickHandler}
+                disabled={!soundCode}>
+                <Icon
+                    name={audio ? 'tdk-icon-voice-solid' : 'tdk-icon-voice'}
+                    color={audio ? 'var(--tdk-main)' : 'var(--text-paragraph-2)'}
+                    size={20} />
             </Button>
         </div>
         <div class="action action--favorite">
