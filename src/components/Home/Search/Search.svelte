@@ -7,7 +7,7 @@
     import SearchHelper from './SearchHelper/SearchHelper.svelte';
     import SearchRecent from './SearchRecent/SearchRecent.svelte';
     import SearchResults from './SearchResults/SearchResults.svelte';
-    import DetailNoContent from '../../Detail/DetailFeature/DetailNoContent/DetailNoContent.svelte';
+    import DetailNoContent from '../../Detail/DetailNoContent/DetailNoContent.svelte';
 
     function handleToggleSearchMode(isActive: boolean): void {
         search.set('searchMode', isActive);

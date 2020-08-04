@@ -1,6 +1,6 @@
 <script lang="ts">
     import { search } from '../../../../stores';
-    import DetailContent from '../../../Detail/DetailFeature/DetailContent/DetailContent.svelte';
+    import DetailContent from '../../../Detail/DetailContent/DetailContent.svelte';
 </script>
 
 <style>

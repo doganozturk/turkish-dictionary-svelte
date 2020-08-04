@@ -1,33 +1,33 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
     import { detailDelete } from '../../../stores';
-    import { WordType } from '../../../models';
+    import { WORD_TYPE } from '../../../models';
 
     const dispatch = createEventDispatcher();
 
     let navData: {
-        type: WordType;
+        type: WORD_TYPE;
         title: string;
         active: boolean;
     }[] = [
         {
-            type: WordType.WORD,
+            type: WORD_TYPE.WORD,
             title: 'Sözcük',
             active: true,
         },
         {
-            type: WordType.PROVERB,
+            type: WORD_TYPE.PROVERB,
             title: 'Atasözleri & Deyimler',
             active: false,
         },
         {
-            type: WordType.COMPOUND_WORD,
+            type: WORD_TYPE.COMPOUND_WORD,
             title: 'Birleşik Kelimeler',
             active: false,
         },
     ];
 
-    function handleNavItemClick(type: WordType) {
+    function handleNavItemClick(type: WORD_TYPE) {
         navData = navData.map((data) => {
             data.active = data.type === type;
 

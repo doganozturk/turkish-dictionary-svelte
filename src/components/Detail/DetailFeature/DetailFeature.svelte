@@ -2,17 +2,17 @@
     // @TODO: DetailNav should not be in scrollable area.
 
     import { detailDelete } from '../../../stores';
-    import { Word, WordType } from '../../../models';
+    import { Word, WORD_TYPE } from '../../../models';
     import DetailHeader from '../DetailHeader/DetailHeader.svelte';
     import DetailNav from '../DetailNav/DetailNav.svelte';
-    import DetailContent from './DetailContent/DetailContent.svelte';
-    import DetailDeleteModal from './DetailDeleteModal/DetailDeleteModal.svelte';
+    import DetailContent from '../DetailContent/DetailContent.svelte';
+    import DetailDeleteModal from '../DetailDeleteModal/DetailDeleteModal.svelte';
 
     export let data: Word[] = [];
     export let headerTitle = '';
     export let deleteAllSelectedDataHandler = () => {};
 
-    let selectedType = WordType.WORD;
+    let selectedType = WORD_TYPE.WORD;
 
     $: filtered = data.filter((d) => d.type === selectedType);
 

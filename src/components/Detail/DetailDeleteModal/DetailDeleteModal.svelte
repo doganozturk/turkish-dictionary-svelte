@@ -2,8 +2,8 @@
     // @TODO: I should implement this delete for recent searches, too!
 
     import { createEventDispatcher } from 'svelte';
-    import Button from '../../../UI/Button/Button.svelte';
-    import Icon from '../../../UI/Icon/Icon.svelte';
+    import Button from '../../UI/Button/Button.svelte';
+    import Icon from '../../UI/Icon/Icon.svelte';
 
     // @TODO: Bunların typing'i var.
     export let deleteSelectedHandler;

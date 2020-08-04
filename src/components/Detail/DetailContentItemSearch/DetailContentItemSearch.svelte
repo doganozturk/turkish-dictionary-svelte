@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { search } from '../../../../stores';
-    import { Word } from '../../../../models';
+    import { search } from '../../../stores';
+    import { Word } from '../../../models';
 
     export let data: Word = null;
 

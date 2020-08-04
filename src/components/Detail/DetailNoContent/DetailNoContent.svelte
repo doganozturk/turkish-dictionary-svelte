@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Icon from '../../../UI/Icon/Icon.svelte';
+    import Icon from '../../UI/Icon/Icon.svelte';
 
     export let icon: string = '';
     export let noContentText: string = '';

@@ -1,11 +1,11 @@
 <script lang="ts">
     // @TODO: NavLink a element is clickable even in delete mode!
 
-    import { detailDelete } from '../../../../stores';
-    import { longpress } from '../../../../actions';
-    import { Word } from '../../../../models';
-    import Icon from '../../../UI/Icon/Icon.svelte';
-    import NavLink from '../../../UI/NavLink/NavLink.svelte';
+    import { detailDelete } from '../../../stores';
+    import { longpress } from '../../../actions';
+    import { Word } from '../../../models';
+    import Icon from '../../UI/Icon/Icon.svelte';
+    import NavLink from '../../UI/NavLink/NavLink.svelte';
 
     export let data: Word = null;
 

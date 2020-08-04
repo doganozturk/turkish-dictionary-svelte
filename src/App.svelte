@@ -4,6 +4,8 @@
     import Detail from './views/Detail.svelte';
     import Favorites from './views/Favorites.svelte';
     import History from './views/History.svelte';
+    import DetailProverb from './views/DetailProverb.svelte';
+    import DetailCompound from './views/DetailCompound.svelte';
     import Footer from './components/UI/Footer/Footer.svelte';
     import Icons from './components/UI/Icon/Icons.svelte';
 </script>
@@ -40,6 +42,12 @@
         </Route>
         <Route path="detay/:word" let:params>
             <Detail word={params.word} />
+        </Route>
+        <Route path="detay/atasozu/:word" let:params>
+            <DetailProverb word={params.word} />
+        </Route>
+        <Route path="detay/birlesik-kelime/:word" let:params>
+            <DetailCompound word={params.word} />
         </Route>
         <Route path="/">
             <Home />

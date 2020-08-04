@@ -1,6 +1,6 @@
 <script lang="ts">
     import { favorite } from '../../../stores';
-    import { Word, WordType } from '../../../models';
+    import { Word, WORD_TYPE } from '../../../models';
     import Icon from '../../UI/Icon/Icon.svelte';
     import Button from '../../UI/Button/Button.svelte';
 
@@ -32,13 +32,13 @@
             return;
         }
 
-        favorite.addFavoriteItem(new Word(title, WordType.WORD));
+        favorite.addFavoriteItem(new Word(title, WORD_TYPE.WORD));
     }
 </script>
 
 <style>
     .detail-top {
-        min-height: 160px;
+        min-height: 140px;
         margin-top: 40px;
         padding: 0 24px;
     }
