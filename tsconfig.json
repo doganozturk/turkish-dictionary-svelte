@@ -1,5 +1,9 @@
 {
     "extends": "@tsconfig/svelte/tsconfig.json",
     "include": ["src/**/*", "src/node_modules"],
+    "typeRoots": ["src/types", "node_modules/@types"],
+    "compilerOptions": {
+        "resolveJsonModule": true
+    },
     "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
 }

@@ -12,6 +12,14 @@ interface IStoreState {
     autocompleteData: Autocomplete[];
 }
 
+// @TODO: There should be a better way :(
+type IStoreStateValueTypes =
+    | IStoreState['searchMode']
+    | IStoreState['searchTerm']
+    | IStoreState['searchResults']
+    | IStoreState['searchRecents']
+    | IStoreState['autocompleteData'];
+
 const initialState: IStoreState = {
     searchMode: false,
     searchTerm: '',
@@ -49,7 +57,7 @@ const updateRecents = (state: IStoreState): Search[] => {
     return newSearchRecents;
 };
 
-const fetchResults = () =>
+const fetchResults = (): void =>
     update((state) => {
         if (state.searchTerm.length <= 1) {
             return state;
@@ -68,7 +76,7 @@ const fetchResults = () =>
         };
     });
 
-const reset = () =>
+const reset = (): void =>
     update((state) => ({
         ...initialState,
         autocompleteData: state.autocompleteData,
@@ -77,7 +85,7 @@ const reset = () =>
 export const search = {
     subscribe,
     fetchResults,
-    // @TODO: How to type this?
-    set: (param, value) => update((state) => ({ ...state, [param]: value })),
+    set: (param: string, value: IStoreStateValueTypes): void =>
+        update((state) => ({ ...state, [param]: value })),
     reset,
 };

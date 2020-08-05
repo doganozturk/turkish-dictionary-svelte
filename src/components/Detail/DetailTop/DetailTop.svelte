@@ -9,8 +9,11 @@
     export let soundCode = '';
 
     let audio: HTMLAudioElement;
+    let isFavorited: boolean;
 
-    $: isFavorited = $favorite.favorite.some((item) => item.word === title);
+    $: {
+        isFavorited = $favorite.favorite.some((item) => item.word === title);
+    }
 
     function soundButtonClickHandler() {
         if (!soundCode) {

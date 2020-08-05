@@ -15,7 +15,7 @@ const { subscribe, set, update } = writable(initialState);
 export const history = {
     subscribe,
     // @TODO: What is return type of this?
-    addHistoryItem: (historyItem: Word) =>
+    addHistoryItem: (historyItem: Word): void =>
         update((state) => {
             if (state.history.some((item) => item.word === historyItem.word)) {
                 return state;
@@ -33,7 +33,7 @@ export const history = {
             };
         }),
     // @TODO: What is return type of this?
-    removeHistoryItem: (word: string) =>
+    removeHistoryItem: (word: string): void =>
         update((state) => {
             const updatedHistory = state.history.filter(
                 (item) => item.word !== word,

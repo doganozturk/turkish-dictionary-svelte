@@ -12,10 +12,13 @@
 
     let language = '';
     let soundCode = '';
-    let data = [];
+    let data: Word[] = [];
     let selectedType = WORD_TYPE.WORD;
+    let filtered: Word[];
 
-    $: filtered = data.filter((d) => d.type === selectedType);
+    $: {
+        filtered = data.filter((d) => d.type === selectedType);
+    }
 
     onMount(async () => {
         const [detailResponse, gtsResponse] = await Promise.allSettled([

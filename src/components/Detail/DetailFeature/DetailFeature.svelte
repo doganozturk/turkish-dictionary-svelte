@@ -13,8 +13,11 @@
     export let deleteAllSelectedDataHandler = () => {};
 
     let selectedType = WORD_TYPE.WORD;
+    let filtered: Word[];
 
-    $: filtered = data.filter((d) => d.type === selectedType);
+    $: {
+        filtered = data.filter((d) => d.type === selectedType);
+    }
 
     // @TODO: 'event' type?
     function filterData(event) {

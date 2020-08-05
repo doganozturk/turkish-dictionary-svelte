@@ -9,9 +9,13 @@
 
     export let data: Word = null;
 
-    $: pressed = $detailDelete.deletables.some(
-        (word: string) => word === data.word,
-    );
+    let pressed: boolean;
+
+    $: {
+        pressed = $detailDelete.deletables.some(
+            (word: string) => word === data.word,
+        );
+    }
 
     function handleLongpress() {
         if (pressed) {

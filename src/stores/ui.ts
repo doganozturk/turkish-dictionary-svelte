@@ -14,10 +14,12 @@ const { subscribe, set, update } = writable(initialState);
 
 export const ui = {
     subscribe,
-    // @TODO: How to type these?
-    toggle: (param) =>
+    // @TODO: There should be a better way of typing this 'param' parameters?
+    toggle: (param: string): void =>
         update((state) => ({ ...state, [param]: !state[param] })),
-    activate: (param) => update((state) => ({ ...state, [param]: true })),
-    deactivate: (param) => update((state) => ({ ...state, [param]: false })),
-    reset: () => set(initialState),
+    activate: (param: string): void =>
+        update((state) => ({ ...state, [param]: true })),
+    deactivate: (param: string): void =>
+        update((state) => ({ ...state, [param]: false })),
+    reset: (): void => set(initialState),
 };

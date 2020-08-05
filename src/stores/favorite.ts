@@ -18,7 +18,7 @@ const { subscribe, set, update } = writable(initialState);
 export const favorite = {
     subscribe,
     // @TODO: What is return type of this?
-    addFavoriteItem: (favoriteItem: Word) =>
+    addFavoriteItem: (favoriteItem: Word): void =>
         update((state) => {
             if (
                 state.favorite.some((item) => item.word === favoriteItem.word)
@@ -38,7 +38,7 @@ export const favorite = {
             };
         }),
     // @TODO: What is return type of this?
-    removeFavoriteItem: (word: string) =>
+    removeFavoriteItem: (word: string): void =>
         update((state) => {
             const updatedFavorite = state.favorite.filter(
                 (item) => item.word !== word,
