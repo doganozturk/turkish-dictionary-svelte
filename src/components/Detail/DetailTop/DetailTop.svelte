@@ -7,6 +7,7 @@
     export let title = '';
     export let language = '';
     export let soundCode = '';
+    export let type = 'default'; // 'default', 'proverb', 'compound'
 
     let audio: HTMLAudioElement;
     let isFavorited: boolean;
@@ -50,15 +51,26 @@
         font-size: var(--font-size-xl);
         font-weight: bold;
         color: var(--text-heading);
-        text-transform: uppercase;
+        text-transform: capitalize;
+    }
+    .detail-top h1.title--proverb {
+        color: var(--atasozleri-deyimler-main-text);
+    }
+    .detail-top h1.title--compound {
+        color: var(--birlesik-kelime-text);
     }
 
-    .detail-top p {
+    .detail-top__language,
+    .detail-top__feature {
+        display: block;
         height: 14px;
         margin-top: 12px;
         font-size: var(--font-size-sm);
-        font-style: italic;
         color: var(--text-paragraph-2);
+    }
+
+    .detail-top__language {
+        font-style: italic;
     }
 
     .detail-top__actions {
@@ -92,8 +104,20 @@
 </style>
 
 <section class="detail-top">
-    <h1>{title}</h1>
-    <p>{language || ''}</p>
+    <h1
+        class:title--proverb={type === 'proverb'}
+        class:title--compound={type === 'compound'}>
+        {title}
+    </h1>
+
+    {#if language}
+        <span class="detail-top__language">{language}</span>
+    {:else if type === 'proverb'}
+        <span class="detail-top__feature">{'Atasözleri ve Deyimler'}</span>
+    {:else if type === 'compound'}
+        <span class="detail-top__feature">{'Birleşik Kelime'}</span>
+    {/if}
+
     <div class="detail-top__actions">
         <div class="action action--pronunciation">
             <Button

@@ -3,6 +3,7 @@
     import NavLink from '../../UI/NavLink/NavLink.svelte';
 
     export let title = '';
+    export let type = 'default'; // 'default', 'proverb', 'compound'
 </script>
 
 <style>
@@ -12,6 +13,12 @@
         height: 68px;
         padding-left: 14px;
         padding-right: 14px;
+    }
+    .detail-header--proverb {
+        background-color: var(--atasozleri-deyimler-bg);
+    }
+    .detail-header--compound {
+        background-color: var(--birlesik-kelime-bg);
     }
 
     .detail-header__title {
@@ -29,7 +36,10 @@
     }
 </style>
 
-<header class="detail-header">
+<header
+    class="detail-header"
+    class:detail-header--proverb={type === 'proverb'}
+    class:detail-header--compound={type === 'compound'}>
     <div class="detail-header__back-btn">
         <NavLink to="/">
             <Icon
