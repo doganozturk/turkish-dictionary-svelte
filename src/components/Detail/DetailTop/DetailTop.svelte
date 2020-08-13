@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { onDestroy } from 'svelte';
     import { ui, favorite } from '../../../stores';
     import { Word, WORD_TYPE } from '../../../models';
     import Icon from '../../UI/Icon/Icon.svelte';
@@ -11,10 +12,21 @@
 
     let audio: HTMLAudioElement;
     let isFavorited: boolean;
+    let isAudioPlaying: boolean;
+
+    const handleAudioEnd = () => {
+        audio.currentTime = 0;
+
+        isAudioPlaying = false;
+    };
 
     $: {
         isFavorited = $favorite.favorite.some((item) => item.word === title);
     }
+
+    onDestroy(() => {
+        audio.removeEventListener('ended', handleAudioEnd);
+    });
 
     function soundButtonClickHandler() {
         if (!soundCode) {
@@ -23,10 +35,13 @@
 
         if (!audio) {
             audio = new Audio(`https://sozluk.gov.tr/ses/${soundCode}.wav`);
+
+            audio.addEventListener('ended', handleAudioEnd);
         }
 
-        // @TODO: track this, and when it ends update UI accordingly.
         audio.play();
+
+        isAudioPlaying = true;
 
         ui.showSnackbar({
             text: 'Şu an sesli dinliyorsunuz',
@@ -139,8 +154,8 @@
                 on:click={soundButtonClickHandler}
                 disabled={!soundCode}>
                 <Icon
-                    name={audio ? 'tdk-icon-voice-solid' : 'tdk-icon-voice'}
-                    color={audio ? 'var(--tdk-main)' : 'var(--text-paragraph-2)'}
+                    name={isAudioPlaying ? 'tdk-icon-voice-solid' : 'tdk-icon-voice'}
+                    color={isAudioPlaying ? 'var(--tdk-main)' : 'var(--text-paragraph-2)'}
                     size={20} />
             </Button>
         </div>
