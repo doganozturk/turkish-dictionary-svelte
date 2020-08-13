@@ -12,7 +12,7 @@
         padding-right: 28px;
         background-color: var(--white);
         box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.04);
-        z-index: 1;
+        z-index: var(--zindex-normal);
     }
 
     .footer__nav {

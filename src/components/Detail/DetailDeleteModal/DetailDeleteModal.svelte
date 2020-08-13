@@ -21,7 +21,7 @@
         height: 162px;
         padding: 16px;
         background-color: var(--white);
-        z-index: 2;
+        z-index: var(--zindex-modal);
         box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.04);
     }
 

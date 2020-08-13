@@ -74,6 +74,11 @@ table {
     --font-size-md: 16px;
     --font-size-sm: 14px;
     --font-size-xs: 12px;
+
+    /* z-index */
+    --zindex-normal: 1;
+    --zindex-overlay: 2;
+    --zindex-modal: 3;
 }
 
 * {

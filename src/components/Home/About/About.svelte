@@ -48,7 +48,7 @@
         border-top-left-radius: 18px;
         border-top-right-radius: 18px;
         box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
-        z-index: 3;
+        z-index: var(--zindex-modal);
         overflow: hidden;
     }
 

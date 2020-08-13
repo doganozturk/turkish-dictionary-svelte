@@ -47,7 +47,7 @@
         height: 80px;
         padding: 16px;
         background-color: var(--tdk-page-bg);
-        z-index: 1;
+        z-index: var(--zindex-normal);
     }
 
     .search input {

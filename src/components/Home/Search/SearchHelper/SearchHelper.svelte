@@ -20,7 +20,7 @@
         margin-top: 16px;
         background-color: #f0f0f0;
         overflow-x: scroll;
-        z-index: 1;
+        z-index: var(--zindex-normal);
     }
 
     .search-helper__item {

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { favorite } from '../../../stores';
+    import { ui, favorite } from '../../../stores';
     import { Word, WORD_TYPE } from '../../../models';
     import Icon from '../../UI/Icon/Icon.svelte';
     import Button from '../../UI/Button/Button.svelte';
@@ -27,16 +27,30 @@
 
         // @TODO: track this, and when it ends update UI accordingly.
         audio.play();
+
+        ui.showSnackbar({
+            text: 'Şu an sesli dinliyorsunuz',
+            icon: 'tdk-icon-voice-solid',
+            animationDuration: 1000,
+        });
     }
 
     function favoriteButtonClickHandler() {
         if (isFavorited) {
             favorite.removeFavoriteItem(title);
+            ui.showSnackbar({
+                text: 'Favorilerinizden çıkarıldı',
+                icon: 'tdk-icon-fav',
+            });
 
             return;
         }
 
         favorite.addFavoriteItem(new Word(title, WORD_TYPE.WORD));
+        ui.showSnackbar({
+            text: 'Favorilerinize eklendi',
+            icon: 'tdk-icon-fav-solid',
+        });
     }
 </script>
 

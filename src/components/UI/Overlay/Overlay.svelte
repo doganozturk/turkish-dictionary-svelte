@@ -15,7 +15,7 @@
         height: 100%;
         background-color: var(--black);
         opacity: 0.7;
-        z-index: 2;
+        z-index: var(--zindex-overlay);
     }
 </style>
 

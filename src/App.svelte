@@ -1,5 +1,6 @@
 <script lang="ts">
     import { Router, Route } from 'svelte-routing';
+    import { ui } from './stores';
     import Home from './views/Home.svelte';
     import Detail from './views/Detail.svelte';
     import Favorites from './views/Favorites.svelte';
@@ -7,6 +8,7 @@
     import DetailProverb from './views/DetailProverb.svelte';
     import DetailCompound from './views/DetailCompound.svelte';
     import Footer from './components/UI/Footer/Footer.svelte';
+    import Snackbar from './components/UI/Snackbar/Snackbar.svelte';
     import Icons from './components/UI/Icon/Icons.svelte';
 </script>
 
@@ -32,6 +34,10 @@
 
 <div class="app">
     <Icons />
+
+    {#if $ui.snackbar.text}
+        <Snackbar text={$ui.snackbar.text} icon={$ui.snackbar.icon} />
+    {/if}
 
     <Router>
         <Route path="favoriler">
