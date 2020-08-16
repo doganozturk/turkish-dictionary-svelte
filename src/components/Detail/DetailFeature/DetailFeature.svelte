@@ -63,11 +63,13 @@
 </style>
 
 <DetailHeader title={headerTitle} />
+{#if data.length}
+    <DetailNav on:filter={filterData} />
+{/if}
 <main class="detail-feature">
     {#if !data.length}
         <slot />
     {:else}
-        <DetailNav on:filter={filterData} />
         <DetailContent detailData={filtered} />
     {/if}
 

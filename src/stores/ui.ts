@@ -32,7 +32,7 @@ export const ui = {
     showSnackbar: function ({
         text,
         icon,
-        animationDuration = 2000,
+        animationDuration = 1500,
     }: {
         text: string;
         icon: string;

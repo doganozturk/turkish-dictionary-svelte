@@ -65,7 +65,12 @@
         padding-left: 16px;
         color: var(--text-heading);
         font-weight: bold;
-        border: 1px solid #f3a5b1;
+        border: 1px solid #d1d1d1;
+        box-shadow: 0 2px 4px rgba(91, 91, 91, 0.16);
+        transition: border-color 200ms;
+    }
+    .search.search--active input:focus {
+        border-color: #f3a5b1;
         box-shadow: 0 2px 4px rgba(207, 28, 55, 0.16);
     }
 
@@ -111,8 +116,10 @@
 
     <input
         type="text"
-        bind:value={$search.searchTerm}
+        autocapitalize="off"
+        autocomplete="off"
         placeholder={$search.searchMode ? '' : "Türkçe Sözlük'te Ara"}
+        bind:value={$search.searchTerm}
         on:keyup={debounce(search.fetchResults, 500)}
         on:focus={() => handleToggleSearchMode(true)}
         on:blur={$search.searchMode ? () => {} : () => handleToggleSearchMode(false)} />

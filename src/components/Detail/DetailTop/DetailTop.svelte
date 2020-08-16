@@ -25,7 +25,7 @@
     }
 
     onDestroy(() => {
-        audio.removeEventListener('ended', handleAudioEnd);
+        audio?.removeEventListener('ended', handleAudioEnd);
     });
 
     function soundButtonClickHandler() {
@@ -72,7 +72,7 @@
 <style>
     .detail-top {
         min-height: 140px;
-        margin-top: 40px;
+        margin-top: 25px;
         padding: 0 24px;
     }
 

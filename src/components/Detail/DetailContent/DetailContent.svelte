@@ -38,7 +38,11 @@
         margin-top: 12px;
     }
 
+    .detail-content__list {
+        height: calc(100% + 112px);
+    }
     .detail-content__list--description {
+        height: 100%;
         padding: 20px 15px;
         background-color: var(--white);
         border-radius: 8px;

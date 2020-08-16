@@ -89,9 +89,9 @@
 </style>
 
 <DetailHeader title={word} />
+<DetailNav on:filter={filterData} />
+<DetailTop title={word} {language} {soundCode} />
 <main class="detail">
-    <DetailNav on:filter={filterData} />
-    <DetailTop title={word} {language} {soundCode} />
     <DetailContent
         detailData={filtered}
         type={selectedType === WORD_TYPE.WORD ? 'description' : 'navigate'} />

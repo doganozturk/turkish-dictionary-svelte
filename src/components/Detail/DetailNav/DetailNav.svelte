@@ -45,7 +45,7 @@
         display: flex;
         align-items: center;
         width: 100%;
-        height: 32px;
+        height: 38px;
         margin-top: 12px;
     }
 

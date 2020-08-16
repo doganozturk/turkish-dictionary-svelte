@@ -1,6 +1,5 @@
 <script lang="ts">
     import Icon from '../../UI/Icon/Icon.svelte';
-    import NavLink from '../../UI/NavLink/NavLink.svelte';
 
     export let title = '';
     export let type = 'default'; // 'default', 'proverb', 'compound'
@@ -40,13 +39,8 @@
     class="detail-header"
     class:detail-header--proverb={type === 'proverb'}
     class:detail-header--compound={type === 'compound'}>
-    <div class="detail-header__back-btn">
-        <NavLink to="/">
-            <Icon
-                name="tdk-icon-chevron"
-                size={20}
-                color="var(--text-heading)" />
-        </NavLink>
+    <div class="detail-header__back-btn" on:click={() => history.back()}>
+        <Icon name="tdk-icon-chevron" size={20} color="var(--text-heading)" />
     </div>
     <div class="detail-header__title">
         <h2>{title}</h2>
