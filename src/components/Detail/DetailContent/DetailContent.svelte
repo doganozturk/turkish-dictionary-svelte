@@ -56,7 +56,7 @@
     <ul
         class="detail-content__list"
         class:detail-content__list--description={type === 'description'}>
-        {#each detailData as data (`${data.word}_${data.type}`)}
+        {#each [...detailData].reverse() as data (`${data.word}_${data.type}`)}
             <svelte:component this={componentMapping[type]} {data} />
         {/each}
     </ul>

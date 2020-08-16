@@ -123,6 +123,7 @@
         on:keyup={debounce(search.fetchResults, 500)}
         on:focus={() => handleToggleSearchMode(true)}
         on:blur={$search.searchMode ? () => {} : () => handleToggleSearchMode(false)} />
+
     {#if $search.searchMode}
         <div class="search__cancel">
             <Button on:click={() => handleToggleSearchMode(false)}>
