@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { SvelteComponent } from 'svelte';
+    import { SvelteComponent, onMount } from 'svelte';
     import { Word } from '../../../models';
     import DetailContentItemDeletable from '../DetailContentItemDeletable/DetailContentItemDeletable.svelte';
     import DetailContentItemSearch from '../DetailContentItemSearch/DetailContentItemSearch.svelte';
@@ -10,6 +10,14 @@
     export let type = 'deletable'; // 'deletable', 'search', 'navigate', 'description'
     export let detailData: Word[] = [];
     export let title = '';
+
+    onMount(() => {
+        if (type === 'description') {
+            return;
+        }
+
+        detailData = [...detailData].reverse();
+    });
 
     const componentMapping: {
         deletable: SvelteComponent;
@@ -56,7 +64,7 @@
     <ul
         class="detail-content__list"
         class:detail-content__list--description={type === 'description'}>
-        {#each [...detailData].reverse() as data (`${data.word}_${data.type}`)}
+        {#each detailData as data (`${data.word}_${data.type}`)}
             <svelte:component this={componentMapping[type]} {data} />
         {/each}
     </ul>

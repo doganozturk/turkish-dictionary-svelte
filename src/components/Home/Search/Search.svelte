@@ -120,7 +120,7 @@
         autocomplete="off"
         placeholder={$search.searchMode ? '' : "Türkçe Sözlük'te Ara"}
         bind:value={$search.searchTerm}
-        on:keyup={debounce(search.fetchResults, 500)}
+        on:keyup={debounce(search.fetchResults, 750)}
         on:focus={() => handleToggleSearchMode(true)}
         on:blur={$search.searchMode ? () => {} : () => handleToggleSearchMode(false)} />
 

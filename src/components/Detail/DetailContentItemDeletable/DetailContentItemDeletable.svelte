@@ -1,5 +1,5 @@
 <script lang="ts">
-    // @TODO: NavLink a element is clickable even in delete mode!
+    // @TODO: Navlink/div interchange should be handled better
 
     import { detailDelete } from '../../../stores';
     import { longpress } from '../../../actions';
@@ -25,7 +25,7 @@
         detailDelete.addDeletable(data.word);
     }
 
-    function handleClick() {
+    function handleClick(e) {
         if (!$detailDelete.deletables.length) {
             return;
         }
@@ -60,7 +60,8 @@
     .detail-content-item + .detail-content-item {
         margin-top: 12px;
     }
-    :global(.detail-content-item a) {
+    :global(.detail-content-item a),
+    .detail-content-item div {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -82,13 +83,25 @@
     use:longpress
     on:longpress={handleLongpress}
     on:click={handleClick}>
-    <NavLink to={`/detay/${data.word}`}>
-        <span class="detail-content-item__word">{data.word}</span>
-        <span class="detail-content-item__icon-chevron">
-            <Icon
-                name={pressed ? 'tdk-icon-check' : 'tdk-icon-chevron-right'}
-                size={20}
-                color="var(--tdk-main)" />
-        </span>
-    </NavLink>
+    {#if !$detailDelete.deletables.length}
+        <NavLink to={`/detay/${data.word}`}>
+            <span class="detail-content-item__word">{data.word}</span>
+            <span class="detail-content-item__icon-chevron">
+                <Icon
+                    name={pressed ? 'tdk-icon-check' : 'tdk-icon-chevron-right'}
+                    size={20}
+                    color="var(--tdk-main)" />
+            </span>
+        </NavLink>
+    {:else}
+        <div>
+            <span class="detail-content-item__word">{data.word}</span>
+            <span class="detail-content-item__icon-chevron">
+                <Icon
+                    name={pressed ? 'tdk-icon-check' : 'tdk-icon-chevron-right'}
+                    size={20}
+                    color="var(--tdk-main)" />
+            </span>
+        </div>
+    {/if}
 </li>
