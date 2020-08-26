@@ -11,14 +11,6 @@
     export let detailData: Word[] = [];
     export let title = '';
 
-    onMount(() => {
-        if (type === 'description') {
-            return;
-        }
-
-        detailData = [...detailData].reverse();
-    });
-
     const componentMapping: {
         deletable: SvelteComponent;
         search: SvelteComponent;
@@ -64,7 +56,7 @@
     <ul
         class="detail-content__list"
         class:detail-content__list--description={type === 'description'}>
-        {#each detailData as data (`${data.word}_${data.type}`)}
+        {#each type === 'description' ? detailData : [...detailData].reverse() as data (`${data.word}_${data.type}`)}
             <svelte:component this={componentMapping[type]} {data} />
         {/each}
     </ul>

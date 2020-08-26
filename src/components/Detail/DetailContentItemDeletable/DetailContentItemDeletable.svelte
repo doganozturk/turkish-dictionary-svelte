@@ -25,7 +25,7 @@
         detailDelete.addDeletable(data.word);
     }
 
-    function handleClick(e) {
+    function handleClick() {
         if (!$detailDelete.deletables.length) {
             return;
         }
