@@ -45,6 +45,7 @@
         padding-left: 16px;
         padding-right: 16px;
         background-color: var(--tdk-page-bg);
+        overflow-y: hidden;
     }
     .main--search-active {
         margin-top: 0;
@@ -54,7 +55,9 @@
     }
 
     .home {
+        height: calc(100% - 122px);
         margin-top: 50px;
+        overflow-y: scroll;
     }
 </style>
 
