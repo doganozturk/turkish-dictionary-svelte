@@ -1,7 +1,5 @@
-/* eslint-disable */
-
 import svelte from 'rollup-plugin-svelte';
-import autoPreprocess from 'svelte-preprocess';
+import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -28,7 +26,7 @@ export default {
             css: (css) => {
                 css.write('bundle.css');
             },
-            preprocess: autoPreprocess(),
+            preprocess: sveltePreprocess(),
         }),
 
         // If you have external dependencies installed from
@@ -41,7 +39,10 @@ export default {
             dedupe: ['svelte'],
         }),
         commonjs(),
-        typescript({ sourceMap: !production }),
+        typescript({
+            sourceMap: !production,
+            inlineSources: !production,
+        }),
         json(),
 
         // In dev mode, call `npm run start` once
