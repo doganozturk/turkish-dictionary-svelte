@@ -1,7 +1,7 @@
 <script lang="ts">
     // @TODO: This data should be shown better. There are a lot of different cases.
 
-    import { Word } from '../../../models';
+    import type { Word } from '../../../models';
 
     export let data: Word = null;
 
@@ -72,7 +72,8 @@
     </div>
     <div class="detail-content-item__bottom">
         <span class="bottom__example">
-            "{example}" {author ? `- ${author}` : ''}
+            "{example}"
+            {author ? `- ${author}` : ''}
         </span>
     </div>
 </li>

@@ -3,7 +3,7 @@
 
     import { detailDelete } from '../../../stores';
     import { longpress } from '../../../actions';
-    import { Word } from '../../../models';
+    import type { Word } from '../../../models';
     import Icon from '../../UI/Icon/Icon.svelte';
     import NavLink from '../../UI/NavLink/NavLink.svelte';
 

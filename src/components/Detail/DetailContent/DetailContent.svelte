@@ -1,6 +1,5 @@
 <script lang="ts">
-    import { SvelteComponent, onMount } from 'svelte';
-    import { Word } from '../../../models';
+    import type { Word } from '../../../models';
     import DetailContentItemDeletable from '../DetailContentItemDeletable/DetailContentItemDeletable.svelte';
     import DetailContentItemSearch from '../DetailContentItemSearch/DetailContentItemSearch.svelte';
     import DetailContentItemNavigate from '../DetailContentItemNavigate/DetailContentItemNavigate.svelte';
