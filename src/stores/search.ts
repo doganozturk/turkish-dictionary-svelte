@@ -1,13 +1,13 @@
 import { writable } from 'svelte/store';
 import { localStorageServiceKey, localStorageService } from '../services';
-import { Autocomplete, Search } from '../models';
+import { Autocomplete, Search, Word } from '../models';
 
 const MAX_SEARCH_RECENT_NUMBER = 5;
 
 interface IStoreState {
     searchMode: boolean;
     searchTerm: string;
-    searchResults: string[];
+    searchResults: Word[];
     searchRecents: Search[];
     autocompleteData: Autocomplete[];
 }
@@ -72,7 +72,7 @@ const fetchResults = (): void =>
                         data.madde.includes(state.searchTerm) &&
                         data.madde.indexOf(state.searchTerm) === 0,
                 )
-                .map((data) => data.madde),
+                .map((data) => new Word(data.madde)),
         };
     });
 

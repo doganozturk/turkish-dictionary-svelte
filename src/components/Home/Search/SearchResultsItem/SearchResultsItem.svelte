@@ -1,18 +1,19 @@
 <script lang="ts">
     import { search } from '../../../../stores';
+    import type { Word } from '../../../../models';
     import Icon from '../../../UI/Icon/Icon.svelte';
     import NavLink from '../../../UI/NavLink/NavLink.svelte';
 
-    export let data = '';
+    export let data: Word;
 
-    function makeSearchTermBold(term: string): string {
-        const index = data.indexOf(term);
+    function makeSearchTermBold(word: string, term: string): string {
+        const index = word.indexOf(term);
 
         if (index < 0) {
-            return data;
+            return word;
         }
 
-        const dataArr = data.split('');
+        const dataArr = word.split('');
 
         for (let i = index; i < index + term.length; i++) {
             dataArr[i] = `<strong>${dataArr[i]}</strong>`;
@@ -49,9 +50,9 @@
 </style>
 
 <li class="search-results-item">
-    <NavLink to="{`/detay/${data}`}">
+    <NavLink to="{data.getDetailUrl()}">
         <span class="search-results-item__word">
-            {@html makeSearchTermBold($search.searchTerm)}
+            {@html makeSearchTermBold(data.word, $search.searchTerm)}
         </span>
         <span class="search-results-item__icon-chevron">
             <Icon

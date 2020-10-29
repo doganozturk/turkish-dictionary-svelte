@@ -22,7 +22,7 @@
         if (!$search.autocompleteData[0]) {
             const data = autocompleteService.getAutocompleteData();
 
-            search.set('autocompleteData', data.default);
+            search.set('autocompleteData', data);
         }
     }
 

@@ -48,31 +48,24 @@
         const detailData = [];
 
         gtsResponse?.value?.data?.[0]?.anlamlarListe?.forEach((anlam) => {
-            detailData.push({
-                word: anlam.anlam,
-                type: wordType.WORD,
-                detail: {
-                    ...anlam,
-                },
-            });
+            detailData.push(new Word(word, wordType.WORD, anlam.anlam, anlam));
         });
 
         gtsResponse?.value?.data?.[0]?.atasozu?.forEach((atasozu) => {
-            detailData.push({
-                word: atasozu.on_taki
-                    ? atasozu.on_taki + ' '
-                    : '' + atasozu.madde,
-                type: wordType.PROVERB,
-            });
+            detailData.push(
+                new Word(
+                    atasozu.on_taki
+                        ? atasozu.on_taki + ' '
+                        : '' + atasozu.madde,
+                    wordType.PROVERB,
+                ),
+            );
         });
 
         gtsResponse?.value?.data?.[0]?.birlesikler
             ?.split(', ')
             .forEach((birlesik) => {
-                detailData.push({
-                    word: birlesik,
-                    type: wordType.COMPOUND_WORD,
-                });
+                detailData.push(new Word(birlesik, wordType.COMPOUND_WORD));
             });
 
         return detailData;

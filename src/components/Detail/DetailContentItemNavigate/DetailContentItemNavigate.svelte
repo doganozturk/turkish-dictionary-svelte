@@ -1,22 +1,9 @@
 <script lang="ts">
-    import { Word, wordType } from '../../../models';
+    import type { Word } from '../../../models';
     import Icon from '../../UI/Icon/Icon.svelte';
     import NavLink from '../../UI/NavLink/NavLink.svelte';
 
-    export let data: Word = null;
-
-    function getDetailUrl() {
-        switch (data.type) {
-            case wordType.WORD:
-                return `/detay/${data.word}`;
-            case wordType.COMPOUND_WORD:
-                return `/detay/birlesik-kelime/${data.word}`;
-            case wordType.PROVERB:
-                return `/detay/atasozu/${data.word}`;
-            default:
-                break;
-        }
-    }
+    export let data: Word;
 </script>
 
 <style>
@@ -52,7 +39,7 @@
 </style>
 
 <li class="detail-content-item">
-    <NavLink to="{getDetailUrl()}">
+    <NavLink to="{data.getDetailUrl()}">
         <span class="detail-content-item__word">{data.word}</span>
         <span class="detail-content-item__icon-chevron">
             <Icon

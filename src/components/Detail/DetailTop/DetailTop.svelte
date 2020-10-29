@@ -14,6 +14,12 @@
     let isFavorited: boolean;
     let isAudioPlaying: boolean;
 
+    const typeMapping = {
+        default: wordType.WORD,
+        proverb: wordType.PROVERB,
+        compound: wordType.COMPOUND_WORD,
+    };
+
     const handleAudioEnd = () => {
         audio.currentTime = 0;
 
@@ -61,7 +67,7 @@
             return;
         }
 
-        favorite.addFavoriteItem(new Word(title, wordType.WORD));
+        favorite.addFavoriteItem(new Word(title, typeMapping[type]));
         ui.showSnackbar({
             text: 'Favorilerinize eklendi',
             icon: 'tdk-icon-fav-solid',

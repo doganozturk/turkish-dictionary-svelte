@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { SvelteComponent } from 'svelte';
-    import type { Word } from '../../../models';
+    import type { Word, Search } from '../../../models';
     import DetailContentItemDeletable from '../DetailContentItemDeletable/DetailContentItemDeletable.svelte';
     import DetailContentItemSearch from '../DetailContentItemSearch/DetailContentItemSearch.svelte';
     import DetailContentItemNavigate from '../DetailContentItemNavigate/DetailContentItemNavigate.svelte';
@@ -8,7 +8,7 @@
 
     // @TODO: Buraya enum olabilir.
     export let type = 'deletable'; // 'deletable', 'search', 'navigate', 'description'
-    export let detailData: Word[] = [];
+    export let detailData: Word[] | Search[] = [];
     export let title = '';
 
     const componentMapping: {
@@ -57,7 +57,7 @@
         class="detail-content__list"
         class:detail-content__list--description="{type === 'description'}"
     >
-        {#each type === 'description' ? detailData : [...detailData].reverse() as data (`${data.word}_${data.type}`)}
+        {#each type === 'description' ? detailData : [...detailData].reverse() as data, index (`${data.word}_${index}`)}
             <svelte:component this="{componentMapping[type]}" data="{data}" />
         {/each}
     </ul>

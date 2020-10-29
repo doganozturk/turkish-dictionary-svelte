@@ -7,7 +7,7 @@
     import Icon from '../../UI/Icon/Icon.svelte';
     import NavLink from '../../UI/NavLink/NavLink.svelte';
 
-    export let data: Word = null;
+    export let data: Word;
 
     let pressed: boolean;
 
@@ -85,7 +85,7 @@
     on:click="{handleClick}"
 >
     {#if !$detailDelete.deletables.length}
-        <NavLink to="{`/detay/${data.word}`}">
+        <NavLink to="{data.getDetailUrl()}">
             <span class="detail-content-item__word">{data.word}</span>
             <span class="detail-content-item__icon-chevron">
                 <Icon

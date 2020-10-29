@@ -1,9 +1,13 @@
 <script lang="ts">
     import NavLink from '../../UI/NavLink/NavLink.svelte';
+    import { wordType, Word } from '../../../models';
 
-    export let title = '';
-    export let word = '';
-    export let desc = '';
+    export let word: Word;
+
+    const typeTitleMapping = {
+        [wordType.WORD]: 'Bir Kelime',
+        [wordType.PROVERB]: 'Bir Deyim-Atasözü',
+    };
 </script>
 
 <style>
@@ -46,12 +50,12 @@
 </style>
 
 <div class="home-item">
-    <NavLink to="{`/detay/${word}`}">
-        <h2>{title}</h2>
+    <NavLink to="{word.getDetailUrl()}">
+        <h2>{typeTitleMapping[word.type]}</h2>
         <div class="home-item__content">
             <div class="content__inner">
-                <h3 class="inner__title">{word}</h3>
-                <p class="inner__desc">{desc}</p>
+                <h3 class="inner__title">{word.word}</h3>
+                <p class="inner__desc">{word.description}</p>
             </div>
         </div>
     </NavLink>

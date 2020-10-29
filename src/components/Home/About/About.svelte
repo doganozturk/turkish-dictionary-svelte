@@ -7,10 +7,10 @@
     import Icon from '../../UI/Icon/Icon.svelte';
 
     let navigationVisible = true;
-    let currentView: SvelteComponent = null;
+    let currentView: typeof SvelteComponent;
     let currentTitle = '';
 
-    const items: { component: SvelteComponent; title: string }[] = [
+    const items: { component: typeof SvelteComponent; title: string }[] = [
         {
             component: AboutUs,
             title: 'Hakkında',
@@ -25,7 +25,7 @@
         },
     ];
 
-    function handleNavClick(component: SvelteComponent, title: string) {
+    function handleNavClick(component: typeof SvelteComponent, title: string) {
         navigationVisible = false;
         currentView = component;
         currentTitle = title;

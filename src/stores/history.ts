@@ -1,13 +1,18 @@
 import { writable } from 'svelte/store';
-import type { Word } from '../models';
 import { localStorageServiceKey, localStorageService } from '../services';
+import { wordType, Word } from '../models';
 
 interface IHistoryState {
     history: Word[];
 }
 
 const initialState: IHistoryState = {
-    history: localStorageService.get(localStorageServiceKey.HISTORY),
+    history: localStorageService
+        .get(localStorageServiceKey.HISTORY)
+        .map(
+            (history: { word: string; type: wordType }) =>
+                new Word(history.word, history.type),
+        ),
 };
 
 const { subscribe, set, update } = writable(initialState);

@@ -2,15 +2,20 @@
 // @TODO: history and favorite should have a max number like searchRecents?
 
 import { writable } from 'svelte/store';
-import type { Word } from '../models';
 import { localStorageServiceKey, localStorageService } from '../services';
+import { Word, wordType } from '../models';
 
 interface IFavoriteState {
     favorite: Word[];
 }
 
 const initialState: IFavoriteState = {
-    favorite: localStorageService.get(localStorageServiceKey.FAVORITE),
+    favorite: localStorageService
+        .get(localStorageServiceKey.FAVORITE)
+        .map(
+            (favorite: { word: string; type: wordType }) =>
+                new Word(favorite.word, favorite.type),
+        ),
 };
 
 const { subscribe, set, update } = writable(initialState);

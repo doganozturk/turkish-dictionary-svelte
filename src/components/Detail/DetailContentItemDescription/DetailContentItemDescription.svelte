@@ -46,6 +46,9 @@
         margin-top: 12px;
         padding-left: 12px;
     }
+    .detail-content-item__middle:first-letter {
+        text-transform: uppercase;
+    }
     .detail-content-item__middle .middle__word {
         font-size: var(--font-size-sm);
         font-weight: bold;
@@ -68,12 +71,15 @@
         <span class="top__type">{type}</span>
     </div>
     <div class="detail-content-item__middle">
-        <span class="middle__word">{data.word}</span>
+        <span class="middle__word">{data.description}.</span>
     </div>
-    <div class="detail-content-item__bottom">
-        <span class="bottom__example">
-            "{example}"
-            {author ? `- ${author}` : ''}
-        </span>
-    </div>
+
+    {#if example}
+        <div class="detail-content-item__bottom">
+            <span class="bottom__example">
+                "{example}"
+                {author ? `- ${author}` : ''}
+            </span>
+        </div>
+    {/if}
 </li>

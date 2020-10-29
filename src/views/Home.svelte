@@ -1,22 +1,21 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { ui, search } from '../stores';
+    import { search, ui } from '../stores';
     import { contentService } from '../services';
-    import { HomeContent } from '../models';
+    import { Word, wordType } from '../models';
     import Header from '../components/Home/Header/Header.svelte';
     import HomeItem from '../components/Home/HomeItem/HomeItem.svelte';
     import Search from '../components/Home/Search/Search.svelte';
     import Overlay from '../components/UI/Overlay/Overlay.svelte';
     import About from '../components/Home/About/About.svelte';
 
-    let homeContent: HomeContent[] = [];
+    let homeContent: Word[] = [];
 
     onMount(async () => {
         homeContent = await getInitialData();
     });
 
-    async function getInitialData(): Promise<HomeContent[]> {
-        // @TODO: Burada 'data' nın typing'i dandik.
+    async function getInitialData(): Promise<Word[]> {
         const { data, error } = await contentService.getContent();
 
         if (error) {
@@ -24,14 +23,10 @@
         }
 
         return [
-            new HomeContent(
-                'Bir Kelime',
-                data.kelime[0].madde,
-                data.kelime[0].anlam,
-            ),
-            new HomeContent(
-                'Bir Deyim-Atasözü',
+            new Word(data.kelime[0].madde, wordType.WORD, data.kelime[0].anlam),
+            new Word(
                 data.atasoz[0].madde,
+                wordType.PROVERB,
                 data.atasoz[0].anlam,
             ),
         ];
@@ -74,12 +69,8 @@
 
     {#if !$search.searchMode}
         <section class="home">
-            {#each homeContent as item (item.title)}
-                <HomeItem
-                    title="{item.title}"
-                    word="{item.word}"
-                    desc="{item.description}"
-                />
+            {#each homeContent as item (item.word)}
+                <HomeItem word="{item}" />
             {/each}
         </section>
     {/if}
