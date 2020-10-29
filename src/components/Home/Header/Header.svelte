@@ -30,9 +30,14 @@
 
 <header class="header">
     <div class="header__btn">
-        <Button on:click={onAboutButtonClick}>
+        <Button on:click="{onAboutButtonClick}">
             <Icon name="tdk-icon-dots" color="white" />
         </Button>
     </div>
-    <Icon name="tdk-icon-logo" width={86} height={40} color="var(--white)" />
+    <Icon
+        name="tdk-icon-logo"
+        width="{86}"
+        height="{40}"
+        color="var(--white)"
+    />
 </header>

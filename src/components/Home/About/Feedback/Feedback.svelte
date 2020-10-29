@@ -38,7 +38,7 @@
 <div class="feedback">
     <div class="feedback-container">
         <div class="feedback-container__icon">
-            <Icon name="tdk-icon-message" size={40} color="var(--tdk-main)" />
+            <Icon name="tdk-icon-message" size="{40}" color="var(--tdk-main)" />
         </div>
         <div class="feedback-container__text">
             <p>Katkı ve önerileriniz için bize e-posta gönderebilirsiniz.</p>

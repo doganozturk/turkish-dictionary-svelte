@@ -66,7 +66,7 @@
         <div class="nav__btn nav__btn--search">
             <NavLink to="/">
                 <Button bg="var(--tdk-main)">
-                    <Icon name="tdk-icon-search" size={28} color="white" />
+                    <Icon name="tdk-icon-search" size="{28}" color="white" />
                 </Button>
             </NavLink>
         </div>

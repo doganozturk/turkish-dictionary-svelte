@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { SvelteComponent } from 'svelte';
+    import type { SvelteComponent } from 'svelte';
     import AboutUs from './AboutUs/AboutUs.svelte';
     import Connect from './Connect/Connect.svelte';
     import Feedback from './Feedback/Feedback.svelte';
@@ -10,7 +10,7 @@
     let currentView: SvelteComponent = null;
     let currentTitle = '';
 
-    const items: { component: SvelteComponent; title: string } = [
+    const items: { component: SvelteComponent; title: string }[] = [
         {
             component: AboutUs,
             title: 'Hakkında',
@@ -89,7 +89,7 @@
         border-radius: 8px;
         overflow: hidden;
     }
-    .nav__button + .nav__button {
+    .nav__button:not(:first-child) {
         margin-top: 16px;
     }
     .button__text {
@@ -132,9 +132,10 @@
             <div class="header__logo">
                 <Icon
                     name="tdk-icon-logo"
-                    width={86}
-                    height={50}
-                    color="var(--white)" />
+                    width="{86}"
+                    height="{50}"
+                    color="var(--white)"
+                />
             </div>
             <span class="header__title">Türk Dil Kurumu Başkanlığı</span>
             <span class="header__version">v.1.0</span>
@@ -146,7 +147,8 @@
                 <div class="nav__button">
                     <Button
                         bg="var(--tdk-secondary-btn)"
-                        on:click={() => handleNavClick(item.component, item.title)}>
+                        on:click="{() => handleNavClick(item.component, item.title)}"
+                    >
                         <span slot="text" class="button__text">
                             {item.title}
                         </span>
@@ -158,18 +160,18 @@
                 <div class="nav__back-btn">
                     <Button
                         bg="var(--tdk-secondary-btn)"
-                        on:click={handleNavBack}>
+                        on:click="{handleNavBack}"
+                    >
                         <Icon
                             name="tdk-icon-chevron"
-                            size={20}
-                            color="var(--text-paragraph)" />
+                            size="{20}"
+                            color="var(--text-paragraph)"
+                        />
                     </Button>
                 </div>
-                <div class="nav__title">
-                    <span>{currentTitle}</span>
-                </div>
+                <div class="nav__title"><span>{currentTitle}</span></div>
             </div>
-            <svelte:component this={currentView} />
+            <svelte:component this="{currentView}" />
         {/if}
     </div>
 </div>

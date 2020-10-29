@@ -36,7 +36,7 @@
         width: 100%;
         height: 100%;
     }
-    .search-results-item + .search-results-item {
+    .search-results-item:not(:first-child) {
         border-top: 1px solid #eef0f2;
     }
 
@@ -49,15 +49,16 @@
 </style>
 
 <li class="search-results-item">
-    <NavLink to={`/detay/${data}`}>
+    <NavLink to="{`/detay/${data}`}">
         <span class="search-results-item__word">
             {@html makeSearchTermBold($search.searchTerm)}
         </span>
         <span class="search-results-item__icon-chevron">
             <Icon
                 name="tdk-icon-chevron-right"
-                size={20}
-                color="var(--tdk-main)" />
+                size="{20}"
+                color="var(--tdk-main)"
+            />
         </span>
     </NavLink>
 </li>

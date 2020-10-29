@@ -103,10 +103,10 @@
     }
 </style>
 
-<div class="search" class:search--active={$search.searchMode}>
+<div class="search" class:search--active="{$search.searchMode}">
     {#if $search.searchMode}
-        <div class="close-icon" on:click={handleInputDelete}>
-            <Icon name="tdk-icon-close" size={18} />
+        <div class="close-icon" on:click="{handleInputDelete}">
+            <Icon name="tdk-icon-close" size="{18}" />
         </div>
     {:else}
         <div class="search-icon">
@@ -118,15 +118,16 @@
         type="text"
         autocapitalize="off"
         autocomplete="off"
-        placeholder={$search.searchMode ? '' : "Türkçe Sözlük'te Ara"}
-        bind:value={$search.searchTerm}
-        on:keyup={debounce(search.fetchResults, 750)}
-        on:focus={() => handleToggleSearchMode(true)}
-        on:blur={$search.searchMode ? () => {} : () => handleToggleSearchMode(false)} />
+        placeholder="{$search.searchMode ? '' : "Türkçe Sözlük'te Ara"}"
+        bind:value="{$search.searchTerm}"
+        on:keyup="{debounce(search.fetchResults, 750)}"
+        on:focus="{() => handleToggleSearchMode(true)}"
+        on:blur="{$search.searchMode ? () => {} : () => handleToggleSearchMode(false)}"
+    />
 
     {#if $search.searchMode}
         <div class="search__cancel">
-            <Button on:click={() => handleToggleSearchMode(false)}>
+            <Button on:click="{() => handleToggleSearchMode(false)}">
                 <span slot="text" class="cancel__text">Vazgeç</span>
             </Button>
         </div>
@@ -144,7 +145,8 @@
         <div class="search-no-result">
             <DetailNoContent
                 icon="tdk-icon-book"
-                noContentText="Aradığınız sözcük bulunamadı." />
+                noContentText="Aradığınız sözcük bulunamadı."
+            />
         </div>
     {/if}
 

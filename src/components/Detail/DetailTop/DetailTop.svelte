@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onDestroy } from 'svelte';
     import { ui, favorite } from '../../../stores';
-    import { Word, WORD_TYPE } from '../../../models';
+    import { Word, wordType } from '../../../models';
     import Icon from '../../UI/Icon/Icon.svelte';
     import Button from '../../UI/Button/Button.svelte';
 
@@ -61,7 +61,7 @@
             return;
         }
 
-        favorite.addFavoriteItem(new Word(title, WORD_TYPE.WORD));
+        favorite.addFavoriteItem(new Word(title, wordType.WORD));
         ui.showSnackbar({
             text: 'Favorilerinize eklendi',
             icon: 'tdk-icon-fav-solid',
@@ -134,8 +134,9 @@
 
 <section class="detail-top">
     <h1
-        class:title--proverb={type === 'proverb'}
-        class:title--compound={type === 'compound'}>
+        class:title--proverb="{type === 'proverb'}"
+        class:title--compound="{type === 'compound'}"
+    >
         {title}
     </h1>
 
@@ -151,25 +152,28 @@
         <div class="action action--pronunciation">
             <Button
                 bg="#fdfdfd"
-                on:click={soundButtonClickHandler}
-                disabled={!soundCode}>
+                on:click="{soundButtonClickHandler}"
+                disabled="{!soundCode}"
+            >
                 <Icon
-                    name={isAudioPlaying ? 'tdk-icon-voice-solid' : 'tdk-icon-voice'}
-                    color={isAudioPlaying ? 'var(--tdk-main)' : 'var(--text-paragraph-2)'}
-                    size={20} />
+                    name="{isAudioPlaying ? 'tdk-icon-voice-solid' : 'tdk-icon-voice'}"
+                    color="{isAudioPlaying ? 'var(--tdk-main)' : 'var(--text-paragraph-2)'}"
+                    size="{20}"
+                />
             </Button>
         </div>
         <div class="action action--favorite">
-            <Button bg="#fdfdfd" on:click={favoriteButtonClickHandler}>
+            <Button bg="#fdfdfd" on:click="{favoriteButtonClickHandler}">
                 <Icon
-                    name={isFavorited ? 'tdk-icon-fav-solid' : 'tdk-icon-fav'}
-                    color={isFavorited ? 'var(--tdk-main)' : 'var(--text-paragraph-2)'}
-                    size={20} />
+                    name="{isFavorited ? 'tdk-icon-fav-solid' : 'tdk-icon-fav'}"
+                    color="{isFavorited ? 'var(--tdk-main)' : 'var(--text-paragraph-2)'}"
+                    size="{20}"
+                />
             </Button>
         </div>
         <div class="action action--signs">
             <Button bg="#fdfdfd">
-                <Icon name="tdk-icon-hand" size={20} />
+                <Icon name="tdk-icon-hand" size="{20}" />
                 <span slot="text" class="action__text">Türk İşaret Dili</span>
             </Button>
         </div>

@@ -13,7 +13,8 @@
 
 <div class="search-recent">
     <DetailContent
-        detailData={$search.searchRecents}
+        detailData="{$search.searchRecents}"
         title="SON ARAMALAR"
-        type="search" />
+        type="search"
+    />
 </div>

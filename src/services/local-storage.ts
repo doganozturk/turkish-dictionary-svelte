@@ -1,16 +1,16 @@
-export enum LOCAL_STORAGE_SERVICE_KEY {
+export enum localStorageServiceKey {
     SEARCH_RECENTS = 'SEARCH_RECENTS',
     HISTORY = 'HISTORY',
     FAVORITE = 'FAVORITE',
 }
 
 export const localStorageService = {
-    get<T>(key: LOCAL_STORAGE_SERVICE_KEY): T[] {
+    get<T>(key: localStorageServiceKey): T[] {
         const data = localStorage.getItem(key);
 
         return data && data.length ? JSON.parse(data) : [];
     },
-    set<T>(key: LOCAL_STORAGE_SERVICE_KEY, items: T[]): void {
+    set<T>(key: localStorageServiceKey, items: T[]): void {
         localStorage.setItem(key, JSON.stringify(items));
     },
 };

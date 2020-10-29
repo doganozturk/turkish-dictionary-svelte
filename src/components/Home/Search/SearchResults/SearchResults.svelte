@@ -15,6 +15,6 @@
 
 <ul class="search-results">
     {#each $search.searchResults as result, i (`${result}_${i}`)}
-        <SearchResultsItem data={result} />
+        <SearchResultsItem data="{result}" />
     {/each}
 </ul>

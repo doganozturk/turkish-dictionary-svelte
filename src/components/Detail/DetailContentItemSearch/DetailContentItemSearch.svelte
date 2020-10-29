@@ -1,6 +1,6 @@
 <script lang="ts">
+    import type { Word } from '../../../models';
     import { search } from '../../../stores';
-    import { Word } from '../../../models';
 
     export let data: Word = null;
 
@@ -22,7 +22,7 @@
         border-radius: 6px;
     }
 
-    .detail-content-item + .detail-content-item {
+    .detail-content-item:not(:first-child) {
         margin-top: 12px;
     }
 
@@ -34,6 +34,6 @@
     }
 </style>
 
-<li class="detail-content-item" on:click={() => handleClick(data.word)}>
+<li class="detail-content-item" on:click="{() => handleClick(data.word)}">
     <span class="detail-content-item__word">{data.word}</span>
 </li>

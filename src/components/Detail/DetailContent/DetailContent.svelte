@@ -1,4 +1,5 @@
 <script lang="ts">
+    import type { SvelteComponent } from 'svelte';
     import type { Word } from '../../../models';
     import DetailContentItemDeletable from '../DetailContentItemDeletable/DetailContentItemDeletable.svelte';
     import DetailContentItemSearch from '../DetailContentItemSearch/DetailContentItemSearch.svelte';
@@ -11,10 +12,10 @@
     export let title = '';
 
     const componentMapping: {
-        deletable: SvelteComponent;
-        search: SvelteComponent;
-        navigate: SvelteComponent;
-        description: SvelteComponent;
+        deletable: typeof SvelteComponent;
+        search: typeof SvelteComponent;
+        navigate: typeof SvelteComponent;
+        description: typeof SvelteComponent;
     } = {
         deletable: DetailContentItemDeletable,
         search: DetailContentItemSearch,
@@ -33,7 +34,7 @@
         color: var(--text-paragraph-2);
     }
 
-    .detail-content__title + .detail-content__list {
+    .detail-content__title:not(:first-child) {
         margin-top: 12px;
     }
 
@@ -54,9 +55,10 @@
     {/if}
     <ul
         class="detail-content__list"
-        class:detail-content__list--description={type === 'description'}>
+        class:detail-content__list--description="{type === 'description'}"
+    >
         {#each type === 'description' ? detailData : [...detailData].reverse() as data (`${data.word}_${data.type}`)}
-            <svelte:component this={componentMapping[type]} {data} />
+            <svelte:component this="{componentMapping[type]}" data="{data}" />
         {/each}
     </ul>
 </div>

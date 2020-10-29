@@ -1,9 +1,9 @@
-export enum WORD_TYPE {
+export enum wordType {
     WORD,
     PROVERB,
     COMPOUND_WORD,
 }
 
 export class Word {
-    constructor(public word: string, public type: WORD_TYPE) {}
+    constructor(public word: string, public type: wordType) {}
 }

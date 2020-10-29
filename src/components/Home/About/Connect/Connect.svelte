@@ -45,7 +45,7 @@
         margin-top: 40px;
     }
 
-    .contact-item + .contact-item {
+    .contact-item:not(:first-child) {
         margin-top: 24px;
         padding-top: 24px;
         border-top: 1px solid var(--tdk-secondary-btn);
@@ -105,26 +105,29 @@
                     <div class="contact-item__phone__icon">
                         <Icon
                             name="tdk-icon-phone"
-                            size={20}
-                            color="var(--tdk-main)" />
+                            size="{20}"
+                            color="var(--tdk-main)"
+                        />
                     </div>
-                    <a href={`tel:${item.phone}`}>{item.phone}</a>
+                    <a href="{`tel:${item.phone}`}">{item.phone}</a>
                 </div>
                 {#if item.fax}
                     <div class="contact-item__fax">
                         <div class="contact-item__fax__icon">
                             <Icon
                                 name="tdk-icon-fax"
-                                size={20}
-                                color="var(--tdk-main)" />
+                                size="{20}"
+                                color="var(--tdk-main)"
+                            />
                         </div>
                         <span>{item.fax}</span>
                     </div>
                 {/if}
                 <div class="contact-item__btn">
                     <a
-                        href={item.contactButton.type === 'email' ? `mailto:${item.contactButton.link}` : item.contactButton.link}
-                        target="_blank">
+                        href="{item.contactButton.type === 'email' ? `mailto:${item.contactButton.link}` : item.contactButton.link}"
+                        target="_blank"
+                    >
                         <Button bg="var(--tdk-secondary-btn)">
                             <span slot="text" class="btn__text">
                                 {item.contactButton.title}

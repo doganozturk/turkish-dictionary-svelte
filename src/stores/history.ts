@@ -1,13 +1,13 @@
 import { writable } from 'svelte/store';
 import type { Word } from '../models';
-import { LOCAL_STORAGE_SERVICE_KEY, localStorageService } from '../services';
+import { localStorageServiceKey, localStorageService } from '../services';
 
 interface IHistoryState {
     history: Word[];
 }
 
 const initialState: IHistoryState = {
-    history: localStorageService.get(LOCAL_STORAGE_SERVICE_KEY.HISTORY),
+    history: localStorageService.get(localStorageServiceKey.HISTORY),
 };
 
 const { subscribe, set, update } = writable(initialState);
@@ -24,7 +24,7 @@ export const history = {
             const updatedHistory = state.history.concat([historyItem]);
 
             localStorageService.set(
-                LOCAL_STORAGE_SERVICE_KEY.HISTORY,
+                localStorageServiceKey.HISTORY,
                 updatedHistory,
             );
 
@@ -40,7 +40,7 @@ export const history = {
             );
 
             localStorageService.set(
-                LOCAL_STORAGE_SERVICE_KEY.HISTORY,
+                localStorageServiceKey.HISTORY,
                 updatedHistory,
             );
 
@@ -50,7 +50,7 @@ export const history = {
         }),
     reset: (): void => {
         localStorageService.set(
-            LOCAL_STORAGE_SERVICE_KEY.HISTORY,
+            localStorageServiceKey.HISTORY,
             initialState.history,
         );
 

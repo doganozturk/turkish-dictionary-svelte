@@ -25,9 +25,10 @@
     <div class="about-us__logo">
         <Icon
             name="tdk-icon-logo"
-            width={70}
-            height={32}
-            color="var(--tdk-main)" />
+            width="{70}"
+            height="{32}"
+            color="var(--tdk-main)"
+        />
     </div>
     <div class="about-us__content">
         <p>

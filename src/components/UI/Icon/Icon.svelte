@@ -25,8 +25,9 @@
 
 <svg
     class="icon"
-    width={width ? width : size}
-    height={height ? height : size}
-    style={`color: ${color};`}>
-    <use xlink:href="#{name}" />
+    width="{width ? width : size}"
+    height="{height ? height : size}"
+    style="{`color: ${color};`}"
+>
+    <use xlink:href="#{name}"></use>
 </svg>

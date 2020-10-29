@@ -38,14 +38,16 @@
 
 <header
     class="detail-header"
-    class:detail-header--proverb={type === 'proverb'}
-    class:detail-header--compound={type === 'compound'}>
+    class:detail-header--proverb="{type === 'proverb'}"
+    class:detail-header--compound="{type === 'compound'}"
+>
     <div class="detail-header__back-btn">
         <NavLink to="/">
             <Icon
                 name="tdk-icon-chevron"
-                size={20}
-                color="var(--text-heading)" />
+                size="{20}"
+                color="var(--text-heading)"
+            />
         </NavLink>
     </div>
     <div class="detail-header__title">

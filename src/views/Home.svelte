@@ -9,13 +9,13 @@
     import Overlay from '../components/UI/Overlay/Overlay.svelte';
     import About from '../components/Home/About/About.svelte';
 
-    let homeContent = [];
+    let homeContent: HomeContent[] = [];
 
     onMount(async () => {
         homeContent = await getInitialData();
     });
 
-    async function getInitialData(): HomeContent[] {
+    async function getInitialData(): Promise<HomeContent[]> {
         // @TODO: Burada 'data' nın typing'i dandik.
         const { data, error } = await contentService.getContent();
 
@@ -69,16 +69,17 @@
     <Header />
 {/if}
 
-<main class="main" class:main--search-active={$search.searchMode}>
+<main class="main" class:main--search-active="{$search.searchMode}">
     <Search />
 
     {#if !$search.searchMode}
         <section class="home">
             {#each homeContent as item (item.title)}
                 <HomeItem
-                    title={item.title}
-                    word={item.word}
-                    desc={item.description} />
+                    title="{item.title}"
+                    word="{item.word}"
+                    desc="{item.description}"
+                />
             {/each}
         </section>
     {/if}

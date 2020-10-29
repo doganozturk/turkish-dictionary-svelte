@@ -3,14 +3,14 @@
 
 import { writable } from 'svelte/store';
 import type { Word } from '../models';
-import { LOCAL_STORAGE_SERVICE_KEY, localStorageService } from '../services';
+import { localStorageServiceKey, localStorageService } from '../services';
 
 interface IFavoriteState {
     favorite: Word[];
 }
 
 const initialState: IFavoriteState = {
-    favorite: localStorageService.get(LOCAL_STORAGE_SERVICE_KEY.FAVORITE),
+    favorite: localStorageService.get(localStorageServiceKey.FAVORITE),
 };
 
 const { subscribe, set, update } = writable(initialState);
@@ -29,7 +29,7 @@ export const favorite = {
             const updatedFavorite = state.favorite.concat([favoriteItem]);
 
             localStorageService.set(
-                LOCAL_STORAGE_SERVICE_KEY.FAVORITE,
+                localStorageServiceKey.FAVORITE,
                 updatedFavorite,
             );
 
@@ -45,7 +45,7 @@ export const favorite = {
             );
 
             localStorageService.set(
-                LOCAL_STORAGE_SERVICE_KEY.FAVORITE,
+                localStorageServiceKey.FAVORITE,
                 updatedFavorite,
             );
 
@@ -55,7 +55,7 @@ export const favorite = {
         }),
     reset: (): void => {
         localStorageService.set(
-            LOCAL_STORAGE_SERVICE_KEY.FAVORITE,
+            localStorageServiceKey.FAVORITE,
             initialState.favorite,
         );
 

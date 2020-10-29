@@ -42,9 +42,9 @@
     }
 </style>
 
-<div class="snackbar-container" transition:fade={{ duration: 500 }}>
+<div class="snackbar-container" transition:fade="{{ duration: 500 }}">
     <div class="snackbar">
-        <Icon name={icon} color="var(--white)" />
+        <Icon name="{icon}" color="var(--white)" />
         <span class="snackbar__text">{text}</span>
     </div>
 </div>

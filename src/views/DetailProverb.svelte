@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { history } from '../stores';
-    import { Word, WORD_TYPE } from '../models';
+    import { Word, wordType } from '../models';
     import { contentService } from '../services';
     import DetailHeader from '../components/Detail/DetailHeader/DetailHeader.svelte';
     import DetailTop from '../components/Detail/DetailTop/DetailTop.svelte';
@@ -12,7 +12,7 @@
     let language = '';
     let soundCode = '';
     let data: Word[] = [];
-    let selectedType = WORD_TYPE.WORD;
+    let selectedType = wordType.WORD;
     let filtered: Word[];
 
     $: {
@@ -34,7 +34,7 @@
         soundCode = detailResponse?.value?.data?.[0]?.seskod;
         data = createDetailData(gtsResponse);
 
-        history.addHistoryItem(new Word(word, WORD_TYPE.WORD));
+        history.addHistoryItem(new Word(word, wordType.WORD));
     });
 
     // @TODO: 'event' type?
@@ -49,7 +49,7 @@
         gtsResponse?.value?.data?.[0]?.anlamlarListe?.forEach((anlam) => {
             detailData.push({
                 word: anlam.anlam,
-                type: WORD_TYPE.WORD,
+                type: wordType.WORD,
                 detail: {
                     ...anlam,
                 },
@@ -61,7 +61,7 @@
                 word: atasozu.on_taki
                     ? atasozu.on_taki + ' '
                     : '' + atasozu.madde,
-                type: WORD_TYPE.PROVERB,
+                type: wordType.PROVERB,
             });
         });
 
@@ -70,7 +70,7 @@
             .forEach((birlesik) => {
                 detailData.push({
                     word: birlesik,
-                    type: WORD_TYPE.COMPOUND_WORD,
+                    type: wordType.COMPOUND_WORD,
                 });
             });
 
@@ -88,10 +88,16 @@
     }
 </style>
 
-<DetailHeader title={word} type="proverb" />
+<DetailHeader title="{word}" type="proverb" />
 <main class="detail">
-    <DetailTop title={word} {language} {soundCode} type="proverb" />
+    <DetailTop
+        title="{word}"
+        language="{language}"
+        soundCode="{soundCode}"
+        type="proverb"
+    />
     <DetailContent
-        detailData={filtered}
-        type={selectedType === WORD_TYPE.WORD ? 'description' : 'navigate'} />
+        detailData="{filtered}"
+        type="{selectedType === wordType.WORD ? 'description' : 'navigate'}"
+    />
 </main>

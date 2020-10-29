@@ -5,10 +5,12 @@
 </script>
 
 <DetailFeature
-    data={$history.history}
+    data="{$history.history}"
     headerTitle="Geçmiş"
-    deleteAllSelectedDataHandler={history.removeHistoryItem}>
+    deleteAllSelectedDataHandler="{history.removeHistoryItem}"
+>
     <DetailNoContent
         icon="tdk-icon-history"
-        noContentText="Henüz geçmiş yok." />
+        noContentText="Henüz geçmiş yok."
+    />
 </DetailFeature>

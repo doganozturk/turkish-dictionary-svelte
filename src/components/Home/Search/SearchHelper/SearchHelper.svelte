@@ -31,7 +31,7 @@
     .search-helper__item:first-child {
         padding-left: 19px;
     }
-    .search-helper__item + .search-helper__item {
+    .search-helper__item:not(:first-child) {
         margin-left: 32px;
     }
     .search-helper__item:last-child {
@@ -41,7 +41,7 @@
 
 <div class="search-helper">
     {#each data as word (word)}
-        <span class="search-helper__item" on:click={() => handleClick(word)}>
+        <span class="search-helper__item" on:click="{() => handleClick(word)}">
             {word}
         </span>
     {/each}

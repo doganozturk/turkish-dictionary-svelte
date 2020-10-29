@@ -27,7 +27,7 @@
 
 <div class="detail-no-content">
     <div class="detail-no-content__icon">
-        <Icon name={icon} size={40} />
+        <Icon name="{icon}" size="{40}" />
     </div>
     <div class="detail-no-content__text">
         <p>{noContentText}</p>

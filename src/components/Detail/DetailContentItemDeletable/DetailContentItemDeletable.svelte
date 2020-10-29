@@ -57,7 +57,7 @@
         border: 1px solid #f3a5b1;
         box-shadow: 0 2px 4px rgba(207, 28, 55, 0.16);
     }
-    .detail-content-item + .detail-content-item {
+    .detail-content-item:not(:first-child) {
         margin-top: 12px;
     }
     :global(.detail-content-item a),
@@ -79,18 +79,20 @@
 
 <li
     class="detail-content-item"
-    class:detail-content-item--pressed={pressed}
+    class:detail-content-item--pressed="{pressed}"
     use:longpress
-    on:longpress={handleLongpress}
-    on:click={handleClick}>
+    on:longpress="{handleLongpress}"
+    on:click="{handleClick}"
+>
     {#if !$detailDelete.deletables.length}
-        <NavLink to={`/detay/${data.word}`}>
+        <NavLink to="{`/detay/${data.word}`}">
             <span class="detail-content-item__word">{data.word}</span>
             <span class="detail-content-item__icon-chevron">
                 <Icon
-                    name={pressed ? 'tdk-icon-check' : 'tdk-icon-chevron-right'}
-                    size={20}
-                    color="var(--tdk-main)" />
+                    name="{pressed ? 'tdk-icon-check' : 'tdk-icon-chevron-right'}"
+                    size="{20}"
+                    color="var(--tdk-main)"
+                />
             </span>
         </NavLink>
     {:else}
@@ -98,9 +100,10 @@
             <span class="detail-content-item__word">{data.word}</span>
             <span class="detail-content-item__icon-chevron">
                 <Icon
-                    name={pressed ? 'tdk-icon-check' : 'tdk-icon-chevron-right'}
-                    size={20}
-                    color="var(--tdk-main)" />
+                    name="{pressed ? 'tdk-icon-check' : 'tdk-icon-chevron-right'}"
+                    size="{20}"
+                    color="var(--tdk-main)"
+                />
             </span>
         </div>
     {/if}

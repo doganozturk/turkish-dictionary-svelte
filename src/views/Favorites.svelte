@@ -5,8 +5,9 @@
 </script>
 
 <DetailFeature
-    data={$favorite.favorite}
+    data="{$favorite.favorite}"
     headerTitle="Favoriler"
-    deleteAllSelectedDataHandler={favorite.removeFavoriteItem}>
+    deleteAllSelectedDataHandler="{favorite.removeFavoriteItem}"
+>
     <DetailNoContent icon="tdk-icon-fav" noContentText="Henüz favori yok." />
 </DetailFeature>

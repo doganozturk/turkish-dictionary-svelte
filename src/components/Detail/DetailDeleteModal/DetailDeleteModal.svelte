@@ -44,7 +44,7 @@
     .btns__btn--red {
         box-shadow: 0 4px 12px rgba(225, 30, 60, 0.32);
     }
-    .btns__btn + .btns__btn {
+    .btns__btn:not(:first-child) {
         margin-left: 20px;
     }
 
@@ -67,7 +67,7 @@
 <div class="detail-delete-modal">
     <div class="detail-delete-modal__btns">
         <div class="btns__btn btns__btn--red">
-            <Button on:click={deleteSelectedHandler} bg="var(--tdk-main)">
+            <Button on:click="{deleteSelectedHandler}" bg="var(--tdk-main)">
                 <span slot="text" class="btn__text btn__text--white">
                     Sil ({selectedCount})
                 </span>
@@ -75,7 +75,7 @@
             </Button>
         </div>
         <div class="btns__btn">
-            <Button on:click={selectAllHandler} bg="var(--tdk-secondary-btn)">
+            <Button on:click="{selectAllHandler}" bg="var(--tdk-secondary-btn)">
                 <span slot="text" class="btn__text btn__text--gray">
                     Tümünü Seç
                 </span>
@@ -84,7 +84,7 @@
     </div>
     <div class="detail-delete-modal__cancel">
         <div class="btns__btn">
-            <Button on:click={() => dispatch('modalClose')}>
+            <Button on:click="{() => dispatch('modalClose')}">
                 <span slot="text" class="btn__text btn__text--gray-alt">
                     Vazgeç
                 </span>

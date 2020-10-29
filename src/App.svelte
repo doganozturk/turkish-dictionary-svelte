@@ -36,7 +36,7 @@
     <Icons />
 
     {#if $ui.snackbar.text}
-        <Snackbar text={$ui.snackbar.text} icon={$ui.snackbar.icon} />
+        <Snackbar text="{$ui.snackbar.text}" icon="{$ui.snackbar.icon}" />
     {/if}
 
     <Router>
@@ -47,13 +47,13 @@
             <History />
         </Route>
         <Route path="detay/:word" let:params>
-            <Detail word={params.word} />
+            <Detail word="{params.word}" />
         </Route>
         <Route path="detay/atasozu/:word" let:params>
-            <DetailProverb word={params.word} />
+            <DetailProverb word="{params.word}" />
         </Route>
         <Route path="detay/birlesik-kelime/:word" let:params>
-            <DetailCompound word={params.word} />
+            <DetailCompound word="{params.word}" />
         </Route>
         <Route path="/">
             <Home />

@@ -2,7 +2,7 @@
     // @TODO: DetailNav should not be in scrollable area.
 
     import { detailDelete } from '../../../stores';
-    import { Word, WORD_TYPE } from '../../../models';
+    import { Word, wordType } from '../../../models';
     import DetailHeader from '../DetailHeader/DetailHeader.svelte';
     import DetailNav from '../DetailNav/DetailNav.svelte';
     import DetailContent from '../DetailContent/DetailContent.svelte';
@@ -10,9 +10,9 @@
 
     export let data: Word[] = [];
     export let headerTitle = '';
-    export let deleteAllSelectedDataHandler = () => {};
+    export let deleteAllSelectedDataHandler = (_: string) => {};
 
-    let selectedType = WORD_TYPE.WORD;
+    let selectedType = wordType.WORD;
     let filtered: Word[];
 
     $: {
@@ -26,17 +26,15 @@
     }
 
     function deleteAllSelectedData() {
-        data = data
-            .map((d) => {
-                if ($detailDelete.deletables.includes(d.word)) {
-                    deleteAllSelectedDataHandler(d.word);
+        data = data.filter((d) => {
+            if ($detailDelete.deletables.includes(d.word)) {
+                deleteAllSelectedDataHandler(d.word);
 
-                    return false;
-                }
+                return false;
+            }
 
-                return d;
-            })
-            .filter((d) => d);
+            return true;
+        });
 
         detailDelete.reset();
     }
@@ -62,22 +60,23 @@
     }
 </style>
 
-<DetailHeader title={headerTitle} />
+<DetailHeader title="{headerTitle}" />
 {#if data.length}
-    <DetailNav on:filter={filterData} />
+    <DetailNav on:filter="{filterData}" />
 {/if}
 <main class="detail-feature">
     {#if !data.length}
         <slot />
     {:else}
-        <DetailContent detailData={filtered} />
+        <DetailContent detailData="{filtered}" />
     {/if}
 
     {#if $detailDelete.deletables.length}
         <DetailDeleteModal
-            deleteSelectedHandler={deleteAllSelectedData}
-            selectAllHandler={selectAllData}
-            selectedCount={$detailDelete.deletables.length}
-            on:modalClose={deselectAllData} />
+            deleteSelectedHandler="{deleteAllSelectedData}"
+            selectAllHandler="{selectAllData}"
+            selectedCount="{$detailDelete.deletables.length}"
+            on:modalClose="{deselectAllData}"
+        />
     {/if}
 </main>

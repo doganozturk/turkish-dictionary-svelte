@@ -46,7 +46,7 @@
 </style>
 
 <div class="home-item">
-    <NavLink to={`/detay/${word}`}>
+    <NavLink to="{`/detay/${word}`}">
         <h2>{title}</h2>
         <div class="home-item__content">
             <div class="content__inner">

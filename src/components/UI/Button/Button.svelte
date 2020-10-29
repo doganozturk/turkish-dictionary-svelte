@@ -19,7 +19,12 @@
     }
 </style>
 
-<button class="button" style={`background-color: ${bg};`} on:click {disabled}>
+<button
+    class="button"
+    style="{`background-color: ${bg};`}"
+    on:click
+    disabled="{disabled}"
+>
     <slot />
     <slot name="text" />
 </button>

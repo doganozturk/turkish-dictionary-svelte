@@ -7,19 +7,17 @@ type ContentResponse = {
 };
 
 export const contentService = {
-    getContent(): Promise<
-        AxiosResponse<{ data: ContentResponse; error: AxiosError }>
-    > {
+    getContent(): Promise<{ data: ContentResponse; error: AxiosError }> {
         return tdk.get('/icerik');
     },
     getWordDetail(
         word: string,
-    ): Promise<AxiosResponse<{ data: ContentResponse; error: AxiosError }>> {
+    ): Promise<{ data: ContentResponse; error: AxiosError }> {
         return tdk.get('/yazim', { params: { ara: word } });
     },
     getGts(
         word: string,
-    ): Promise<AxiosResponse<{ data: ContentResponse; error: AxiosError }>> {
+    ): Promise<{ data: ContentResponse; error: AxiosError }> {
         return tdk.get('/gts', { params: { ara: word } });
     },
 };

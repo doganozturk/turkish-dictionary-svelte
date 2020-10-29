@@ -19,4 +19,4 @@
     }
 </style>
 
-<div class="overlay" on:click={handleClick} />
+<div class="overlay" on:click="{handleClick}"></div>
